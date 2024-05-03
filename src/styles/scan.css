@@ -1,0 +1,233 @@
+.text-muted {
+  color: #6c757d !important;
+  @apply text-opacity-80;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-fluid,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    @apply max-w-[1440px] mx-auto px-10;
+  }
+}
+
+a {
+  text-decoration: none;
+  @apply text-[#0784C3] hover:text-[#066A9C];
+}
+
+.link-dark {
+  color: #081d35;
+  @apply dark:text-white;
+}
+
+:hover.link-dark {
+  color: #0784c3 !important;
+}
+
+h4 {
+  @apply text-dark dark:text-white;
+}
+
+hr {
+  border-top: #e9ecef solid;
+  @apply border-t opacity-100;
+}
+
+.text-base {
+  font-size: 0.9375rem !important;
+}
+
+body {
+  font-size: 0.9375rem !important;
+}
+
+p {
+  @apply text-dark dark:text-white;
+}
+
+/* CONTACT PAGE */
+.contact-concept-header {
+  @apply flex flex-col gap-2 justify-center text-base text-black200 lg:w-[692px] text-center;
+}
+
+.contact-heading {
+  @apply text-[21px] lg:text-[22.5px] text-black200;
+}
+
+.contact-blue-text {
+  @apply text-sm text-[#0784c3] dark:text-scanDark;
+}
+
+.contact-blue-text-bold {
+  @apply text-sm font-bold text-[#066A9C] dark:text-scanDark;
+}
+
+.contact-blue-text-regular {
+  @apply text-sm font-normal text-[#066A9C] dark:text-[#da6c1dbb];
+}
+
+/* TERMS AND PRIVACY */
+.style-term-privacy-text {
+  @apply text-[15px] text-dark900 dark:text-[#F5F5F5];
+}
+
+.style-term-privacy-text-content {
+  @apply mt-2 flex flex-col gap-4 style-term-privacy-text -ml-4;
+}
+
+.boxShadow {
+  box-shadow: 0 0.5rem 1.2rem rgb(189 197 209 / 20%);
+}
+
+.button-primary {
+  @apply p-3 bg-[#0784c3] hover:bg-[#0670a6] dark:bg-scanDark dark:hover:bg-scanDark rounded-lg text-[15px] text-white uppercase;
+}
+
+/* Brand Assets Page */
+.content-heading {
+  @apply flex flex-col gap-2 text-[15px] text-dark900 dark:text-[#FAFAFA];
+}
+
+.line {
+  @apply my-10 border border-[#e9ecef] dark:border-[#333];
+}
+
+.list-style-custom {
+  @apply flex flex-col gap-[6px] text-[15px] text-dark900 dark:text-[#FAFAFA] list-disc ml-8;
+}
+
+.list-circle {
+  list-style-type: circle;
+}
+
+.border-tag-address {
+  @apply text-[11px] text-black !border !border-[#e9ecef] dark:!border-gray600 py-[6px] px-2 rounded-full font-semibold;
+}
+
+.button-address {
+  @apply flex gap-1 items-center py-1 px-2 bg-[#0784c3] dark:bg-scanDark hover:bg-[#0670a6] rounded-md text-[12.5px] text-white;
+}
+
+.bg-theme {
+  @apply bg-white dark:bg-gray900;
+}
+
+.bg-theme-hover {
+  @apply hover:bg-gray-200 dark:hover:bg-gray600;
+}
+
+.bg-light {
+  @apply !bg-[#F8F9FA] dark:!bg-[#151515];
+}
+
+.bg-light-focus {
+  @apply focus:!bg-white dark:focus:!bg-black;
+}
+
+/* Table */
+
+.hover-yellow {
+  @apply hover:border hover:bg-[#fff3cd] dark:hover:bg-[#99740488] hover:border-dashed hover:border-[#fd7e14] dark:hover:border-[#ffc107];
+}
+
+.block-custom {
+  @apply bg-[#f8f9fa] dark:bg-transparent py-[5px] px-2 rounded-md text-[11px] text-dark900 dark:text-[#FAFAFA] text-center italic !border-[0.5px] border-[#0000001a] dark:border-[#fafafa1a];
+}
+
+.border,
+.border-t,
+.border-r,
+.border-b,
+.border-l {
+  @apply !border-[#e9ecef] dark:!border-[#222];
+}
+
+.bg-image-what-is-an-vinachain-address {
+  background-image: radial-gradient(
+      at 14% 42%,
+      hsla(209, 22%, 9%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 12% 89%, hsla(209, 22%, 9%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, hsla(209, 22%, 9%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 55%, hsla(209, 22%, 9%, 1) 0px, transparent 50%),
+    radial-gradient(
+      at 52% 36%,
+      rgba(var(--bs-header-color-rgb), 0.5) 0px,
+      transparent 50%
+    );
+}
+
+.border-address {
+  @apply border !border-[#dee2e6] dark:!border-[#333]
+}
+
+.link-color {
+  @apply text-blue dark:text-scanDark;
+}
+.bg-button-theme {
+  @apply bg-gray300 hover:bg-gray400 dark:bg-gray600 dark:hover:bg-gray500
+}
+
+.bg-gradient-theme {
+  @apply bg-gradient-to-b from-[#fafbfd] to-gray-50 dark:from-gray800 dark:to-gray900
+}
+
+.box-shadow {
+  @apply shadow-lg dark:shadow-xl  dark:shadow-gray700
+}
+
+.text-theme {
+  @apply !text-gray-950 dark:!text-white
+}
+.text-cap {
+  font-size: .75rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  @apply text-[#6c757d] dark:text-[#bbb]
+}
+
+.text-theme {
+  @apply text-dark900 dark:text-[#FAFAFA]
+}
+.border-theme { 
+  @apply border !border-sky-600 dark:!border-scanDark
+}
+
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-down {
+  -webkit-animation: fade-down .3s both;
+          animation: fade-down .3s both;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fade-out {
+  -webkit-animation: fade-out .3s both;
+          animation: fade-out .3s both;
+}
