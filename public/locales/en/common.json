@@ -565,6 +565,7 @@
       "confirmPasswordRequiredError": "Your password must be at least 8 characters long.",
       "acceptTermsAndConditions.": "Please accept our Terms and Conditions.",
       "emailTooLong": "Email too long",
+      "registerSuccessfully": "Register successfully",
       "verify": {
         "title": "Verify Your Email",
         "message": "Your account registration has been submitted and is",
@@ -1112,7 +1113,9 @@
     "buyNow": "Buy Now",
     "verifyYourTransactionHash": "Verify your transaction hash",
     "purchasingAndWaitConfirmation": "Purchasing and wait confirmation. Please don't leave out or reload page.",
-    "buySuccessful": "Buy Successful"
+    "buySuccessful": "Buy Successful",
+    "confirmWalletAddressSuccess": "Confirm Wallet Address Success",
+    "walletAddressNotMatch": "Wallet address not match. Please try connect with the correct wallet"
   },
   "settings": {
     "title": "Site Settings",
@@ -1342,6 +1345,15 @@
   },
   "somethingWentWrong": "Something went wrong. Please try again later.",
   "errorMsg": {
+    "notFound": "Not found",
+    "invalidSignature": "Invalid Signature",
+    "invalidCaptchaToken": "Invalid Captcha Token",
+    "invalidUsernameFormat": "Invalid Username Format",
+    "invalidEmailFormat": "Invalid Email Format",
+    "emailAlreadyExists": "Email Already Exists",
+    "usernameAlreadyExists": "Username Already Exists",
+    "unauthorized": "Unauthorized",
+    "invalidPasswordFormat": "Invalid Password Format",
     "walletAddressAlreadyTaken": "Wallet address already taken",
     "transactionHashAlreadyExists": "Transaction hash already exists",
     "emailAndLoggedInUserEmailDoNotMatch": "Email and logged in user email do not match",
@@ -1355,7 +1367,14 @@
     "invalidToken": "Invalid token",
     "userAlreadyVerified": "User already verified",
     "oldPasswordIncorrect": "Old password incorrect",
-    "somethingWentWrong": "Something went wrong. Please try again later."
+    "somethingWentWrong": "Something went wrong. Please try again later.",
+    "invalidTxHashFormat":"Invalid transaction hash format",
+    "walletAddressAlreadyPurchasedSwapPackage":"Wallet address already purchased swap page",
+    "swapPackageNotFound":"Swap package not found",
+    "notTransferringEnoughMoney":"Not transferring enough money",
+    "doNotBoughtSwapPackageYet":"Do not bought swap package yet",
+    "notEnoughBalanceToSwap":"Not enought balance to swap",
+    "PleaseTryAgainLater": "Please try again later"
   },
   "tokenTransfers": {
     "title": "Token Transfers (ERC-20)",
@@ -1415,5 +1434,18 @@
     "uniqueMinters": "Unique Minters",
     "totalOwners": "Total Owners",
     "totalAssets": "Total Assets"
+  },
+  "lastestTransfers": {
+    "title": "NFT Transfers",
+    "moreThan": "More than",
+    "recordsFound": "records found",
+    "showingLastRecords": "Showing last 10,000 records",
+    "transactionHash": "Transaction Hash",
+    "method": "Method",
+    "block": "Block",
+    "age": "Age",
+    "from": "From",
+    "to": "To",
+    "item": "Item"
   }
 }

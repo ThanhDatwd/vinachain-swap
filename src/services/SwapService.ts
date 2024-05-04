@@ -28,11 +28,27 @@ export class SwapService {
     return data;
   }
 
-  public async getBuySwapPackageStatus(walletAddress: string): Promise<any | null> {
-    const { data } = await restConnector.get("/swap-purchases/check-purchased", {
-      params: {
-        walletAddress,
-      },
+  public async getBuySwapPackageStatus(
+    walletAddress: string
+  ): Promise<any | null> {
+    const { data } = await restConnector.get(
+      "/swap-purchases/check-purchased",
+      {
+        params: {
+          walletAddress,
+        },
+      }
+    );
+
+    return data;
+  }
+
+  public async confirmWalletAddress(values: {
+    walletAddress: string;
+    signature: string;
+  }): Promise<any | null> {
+    const { data } = await restConnector.post("/swap-tokens/confirm-wallet", {
+      ...values,
     });
 
     return data;
@@ -51,9 +67,7 @@ export class SwapService {
 
   public async buySwapPackage(values: {
     swapPackageId: string;
-    walletAddress: string;
     txHash: string;
-    signature: string;
   }): Promise<any | null> {
     const { data } = await restConnector.post("/swap-purchases", {
       ...values,

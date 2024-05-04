@@ -564,6 +564,7 @@
       "confirmPasswordRequiredError": "Mật khẩu của bạn phải có ít nhất 8 ký tự.",
       "acceptTermsAndConditions.": "Vui lòng chấp nhận Điều khoản và điều kiện của chúng tôi.",
       "emailTooLong": "Email quá dài",
+      "registerSuccessfully": "Đăng ký thành công",
       "verify": {
         "title": "Xác minh Email của bạn",
         "message": "Đăng ký tài khoản của bạn đã được gửi và đang",
@@ -1340,6 +1341,15 @@
   },
   "somethingWentWrong": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
   "errorMsg": {
+    "notFound": "Không tìm thấy",
+    "invalidSignature": "Chữ ký không hợp lệ",
+    "invalidCaptchaToken": "Token Captcha không hợp lệ",
+    "invalidUsernameFormat": "Định dạng tên người dùng không hợp lệ",
+    "invalidEmailFormat": "Định dạng email không hợp lệ",
+    "emailAlreadyExists": "Email đã tồn tại",
+    "usernameAlreadyExists": "Tên người dùng đã tồn tại",
+    "unauthorized": "Không được ủy quyền",
+    "invalidPasswordFormat": "Định dạng mật khẩu không hợp lệ",
     "walletAddressAlreadyTaken": "Địa chỉ ví đã được sử dụng",
     "transactionHashAlreadyExists": "Hash giao dịch đã tồn tại",
     "emailAndLoggedInUserEmailDoNotMatch": "Email và email người dùng đăng nhập không khớp",
@@ -1353,7 +1363,14 @@
     "invalidToken": "Token không hợp lệ",
     "userAlreadyVerified": "Người dùng đã được xác minh",
     "oldPasswordIncorrect": "Mật khẩu cũ không chính xác",
-    "somethingWentWrong": "Đã xảy ra lỗi. Vui lòng thử lại sau."
+    "somethingWentWrong": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+    "invalidTxHashFormat": "Định dạng hash giao dịch không hợp lệ",
+    "walletAddressAlreadyPurchasedSwapPackage": "Địa chỉ ví đã mua gói trao đổi trước đó",
+    "swapPackageNotFound": "Không tìm thấy gói trao đổi",
+    "notTransferringEnoughMoney": "Không chuyển đủ tiền",
+    "doNotBoughtSwapPackageYet": "Chưa mua gói trao đổi",
+    "notEnoughBalanceToSwap": "Không đủ số dư để trao đổi",
+    "PleaseTryAgainLater": "Vui lòng thử lại sau"
   },
   "tokenTransfers": {
     "title": "Chuyển đổi Token (ERC-20)",
@@ -1385,5 +1402,18 @@
     "transfers": "Chuyển nhượng",
     "owners": "Chủ sở hữu",
     "totalAssets": "Tổng tài sản"
+  },
+  "lastestTransfers": {
+    "title": "Chuyển nhượng NFT",
+    "moreThan": "Hơn",
+    "recordsFound": "bản ghi được tìm thấy",
+    "showingLastRecords": "Hiển thị 10,000 bản ghi cuối cùng",
+    "transactionHash": "Băm giao dịch",
+    "method": "Phương thức",
+    "block": "Khối",
+    "age": "Tuổi",
+    "from": "Từ",
+    "to": "Đến",
+    "item": "Mục"
   }
 }

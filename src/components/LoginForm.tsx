@@ -99,16 +99,16 @@ export const LoginForm = () => {
         }
       />
       <div className="flex gap-1">
-        <input type="checkbox" className="border border-[#6c757d]" />
+        <input type="checkbox" id="checkbox_remember" className="border cursor-pointer border-[#6c757d]" />
         <TooltipCustom
           position="bottom"
           content={
             "Please do not check this box if you are using a public or shared PC"
           }
         >
-          <span className="text-gray550">
+          <label className="text-gray550" htmlFor="checkbox_remember">
             {t("vinaScan.login.rememberAutoLogin")}
-          </span>
+          </label>
         </TooltipCustom>
       </div>
       <button

@@ -3,55 +3,25 @@ import { ERR_CODE } from "./constants";
 export const errorMsg = (errorCode?: string) => {
   switch (errorCode) {
     case ERR_CODE.NOT_FOUND:
-      return "Not found";
-    case ERR_CODE.USER_NOT_FOUND:
-      return "User not found";
-    case ERR_CODE.NOT_TX_OWNER:
-      return "User not the owner of transaction";
-    case ERR_CODE.CONFIRMATION_TOO_LOW:
-      return "Confirmation too low";
-    case ERR_CODE.INVALID_CURRENCY:
-      return "Invalid Currency";
-    case ERR_CODE.INVALID_TX_FUNCTION:
-      return "Invalid Transaction Function";
-    case ERR_CODE.INVALID_PURCHASE_PRICE:
-      return "Invalid Purchase Price";
-    case ERR_CODE.INVALID_DEPOSIT_ADDRESS:
-      return "Invalid Deposit Address";
+      return "notFound";
     case ERR_CODE.INVALID_SIGNATURE:
-      return "Invalid Signature";
-    case ERR_CODE.TX_HASH_USED:
-      return "Transaction Hash Used";
-    case ERR_CODE.USER_LOCKED:
-      return "User Locked";
+      return "invalidSignature";
     case ERR_CODE.INVALID_CAPTCHA_TOKEN:
-      return "Invalid Captcha Token";
-    case ERR_CODE.TRADE_COMPLETED:
-      return "Trade Completed";
+      return "invalidCaptchaToken";
     case ERR_CODE.INVALID_EMAIL_FORMAT:
-      return "Invalid Email Format";
-    case ERR_CODE.REQUIRE_EMAIL_OR_PHONE_NUMBER:
-      return "Require Email Or Phone Number";
-    case ERR_CODE.INVALID_REGISTER_METHOD:
-      return "Invalid Register Method";
+      return "invalidEmailFormat";
     case ERR_CODE.INVALID_USERNAME_FORMAT:
-      return "Invalid Username Format";
+      return "invalidUsernameFormat";
     case ERR_CODE.INVALID_PASSWORD_FORMAT:
-      return "Invalid Password Format";
+      return "invalidPasswordFormat";
     case ERR_CODE.EMAIL_ALREADY_EXISTS:
-      return "Email Already Exists";
+      return "emailAlreadyExists";
     case ERR_CODE.USERNAME_ALREADY_EXISTS:
-      return "Username Already Exists";
-    case ERR_CODE.PHONE_NUMBER_ALREADY_EXISTS:
-      return "Phone Number Already Exists";
+      return "usernameAlreadyExists";
     case ERR_CODE.UNAUTHORIZED:
-      return "Unauthorized";
-    case ERR_CODE.TRADE_SETTLED:
-      return "Trade Settled";
+      return "unauthorized";
     case ERR_CODE.INTERNAL_SERVER_ERROR:
       return "somethingWentWrong";
-    case ERR_CODE.INVALID_LOGIN_MODE:
-      return "Invalid Login Mode";
     case ERR_CODE.WALLET_ADDRESS_ALREADY_TAKEN:
       return "walletAddressAlreadyTaken";
     case ERR_CODE.EMAIL_AND_LOGGED_IN_USER_EMAIL_DO_NOT_MATCH:
@@ -76,7 +46,19 @@ export const errorMsg = (errorCode?: string) => {
       return "userAlreadyVerified";
     case ERR_CODE.OLD_PASSWORD_INCORRECT:
       return "oldPasswordIncorrect";
+    case ERR_CODE.INVALID_TX_HASH_FORMAT:
+      return "invalidTxHashFormat";
+    case ERR_CODE.WALLET_ADDRESS_ALREADY_PURCHASED_SWAP_PACKAGE:
+      return "walletAddressAlreadyPurchasedSwapPackage";
+    case ERR_CODE.SWAP_PACKAGE_NOT_FOUND:
+      return "swapPackageNotFound";
+    case ERR_CODE.NOT_TRANSFERRING_ENOUGH_MONEY:
+      return "notTransferringEnoughMoney";
+    case ERR_CODE.DO_NOT_BOUGHT_SWAP_PACKAGE_YET:
+      return "doNotBoughtSwapPackageYet";
+    case ERR_CODE.NOT_ENOUGH_BALANCE_TO_SWAP:
+      return "notEnoughBalanceToSwap";
     default:
-      return "Please try again later";
+      return "PleaseTryAgainLater";
   }
 };

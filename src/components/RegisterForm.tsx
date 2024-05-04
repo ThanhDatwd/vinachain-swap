@@ -78,12 +78,12 @@ export const RegisterForm = () => {
           password: values.password,
           refCode: values.refCode,
         };
-        const response = await authService.register(data);
-        if (response && response.success) {
-          onToast("Register successfully", "success");
+        const res = await authService.register(data);
+        if (res && res.success) {
+          onToast(t("vinaScan.register.registerSuccessfully"), "success");
           setShowShowVerifyEmail(true);
         } else {
-          setMessageErr(errorMsg(response.code) || response.message);
+          setMessageErr(t(`errorMsg.${errorMsg(res.code)}`) || res.message);
         }
       } catch (error) {}
     },
@@ -233,12 +233,13 @@ export const RegisterForm = () => {
               <div className="flex gap-1">
                 <input
                   name="agreement"
+                  id="agreement"
                   type="checkbox"
                   checked={formik.values.agreement}
                   onChange={handleFieldChange}
-                  className="border border-[#6c757d]"
+                  className="border cursor-pointer border-[#6c757d]"
                 />
-                <label className="text-gray550">
+                <label className="text-gray550 cursor-pointer" htmlFor="agreement">
                   <span>{t("vinaScan.register.agreeToThe")}</span>&nbsp;
                   <Link
                     href={"/terms"}
@@ -257,9 +258,10 @@ export const RegisterForm = () => {
             <div className="flex items-start gap-1">
               <input
                 type="checkbox"
-                className="relative top-1 border border-[#6c757d]"
+                id="checkbox_receive"
+                className="relative cursor-pointer top-1 border border-[#6c757d]"
               />
-              <label className="text-gray550 lg:w-[400px]">
+              <label className=" cursor-pointer text-gray550 lg:w-[400px" htmlFor="checkbox_receive">
                 <span>
                   {t("vinaScan.register.receiveVinascan")}{" "}
                   <Link href={""} className="text-[#0784c3] dark:text-scanDark">

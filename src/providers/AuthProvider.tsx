@@ -66,11 +66,11 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
         return res.data;
       } else {
         setLoading(false);
-        onToast(t(`errorMessages.${errorMsg(res.code)}`), "error");
+        onToast(t(`errorMsg.${errorMsg(res.code)}`), "error");
       }
     } catch (error: AxiosError | any) {
       setLoading(false);
-      onToast(t(`errorMessages.${error.data.code}`), "error");
+      onToast(t(`errorMsg.${error.data.code}`), "error");
     }
   };
 

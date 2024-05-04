@@ -564,6 +564,7 @@
       "confirmPasswordRequiredError": "您的密码必须至少8个字符长。",
       "acceptTermsAndConditions.": "请接受我们的服务条款。",
       "emailTooLong": "邮箱地址过长",
+      "registerSuccessfully": "注册成功",
       "verify": {
         "title": "验证您的电子邮件",
         "message": "您的帐户注册已提交并正在进行中",
@@ -1340,6 +1341,15 @@
   },
   "somethingWentWrong": "出现了问题，请稍后再试",
   "errorMsg": {
+    "notFound": "未找到",
+    "invalidSignature": "无效的签名",
+    "invalidCaptchaToken": "无效的验证码令牌",
+    "invalidUsernameFormat": "无效的用户名格式",
+    "invalidEmailFormat": "无效的电子邮件格式",
+    "emailAlreadyExists": "电子邮件已存在",
+    "usernameAlreadyExists": "用户名已存在",
+    "unauthorized": "未经授权",
+    "invalidPasswordFormat": "无效的密码格式",
     "walletAddressAlreadyTaken": "钱包地址已被使用",
     "transactionHashAlreadyExists": "交易哈希已存在",
     "emailAndLoggedInUserEmailDoNotMatch": "电子邮件和已登录用户的电子邮件不匹配",
@@ -1353,7 +1363,14 @@
     "invalidToken": "无效的令牌",
     "userAlreadyVerified": "用户已验证",
     "oldPasswordIncorrect": "旧密码不正确",
-    "somethingWentWrong": "出现了问题，请稍后再试"
+    "somethingWentWrong": "出现了问题，请稍后再试",
+    "invalidTxHashFormat": "无效的交易哈希格式",
+    "walletAddressAlreadyPurchasedSwapPackage": "钱包地址已购买交换套餐",
+    "swapPackageNotFound": "找不到交换套餐",
+    "notTransferringEnoughMoney": "没有转移足够的资金",
+    "doNotBoughtSwapPackageYet": "尚未购买交换套餐",
+    "notEnoughBalanceToSwap": "余额不足以进行交换",
+    "PleaseTryAgainLater": "请稍后再试"
   },
   "tokenTransfers": {
     "title": "代币转账 (ERC-20)",
@@ -1385,5 +1402,18 @@
     "transfers": "转让",
     "owners": "所有者",
     "totalAssets": "总资产"
+  },
+  "lastestTransfers": {
+    "title": "NFT 转账",
+    "moreThan": "超过",
+    "recordsFound": "条记录找到",
+    "showingLastRecords": "显示最后 10,000 条记录",
+    "transactionHash": "交易哈希",
+    "method": "方法",
+    "block": "区块",
+    "age": "年龄",
+    "from": "从",
+    "to": "到",
+    "item": "项目"
   }
 }

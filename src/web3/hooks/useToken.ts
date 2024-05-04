@@ -64,8 +64,6 @@ export const useToken = () => {
     const contract = getContract(provider, contractJson, address);
     const { gasLimit, gasPrice } = await getGasPriceAndGasLimit(provider);
 
-    console.log({ amount, referrerAddress });
-
     const balance = await contract.methods
       .purchasePoints(amount, referrerAddress)
       .send({ from: account, gasLimit, gasPrice });

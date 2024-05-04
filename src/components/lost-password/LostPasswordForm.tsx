@@ -37,13 +37,12 @@ export const LostPasswordForm = () => {
         const data = {
           email: values.email,
         };
-        const response = await authService.forgotPassword(data);
-        if (response && response.success) {
-          setCurrentUser(response?.data?.user);
+        const res = await authService.forgotPassword(data);
+        if (res && res.success) {
+          setCurrentUser(res?.data?.user);
           setShowNotification(true)
-          // router.push("/");
         } else {
-          setMessageErr(errorMsg(response.code) || response.message);
+          setMessageErr(t(`errorMsg.${errorMsg(res.code)}`) || res.message);
         }
       } catch (error) {}
     },

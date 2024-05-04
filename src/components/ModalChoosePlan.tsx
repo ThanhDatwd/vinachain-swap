@@ -20,8 +20,9 @@ import { errorMsg } from "@/utils/errMsg";
 import { signMsg } from "@/utils/generateMsg";
 import { SwapPackage } from "@/utils/type";
 import { useToken } from "@/web3/hooks/useToken";
-import { EToken } from "@/web3/token";
+import { CONTRACT_ADDRESS, EToken, ITokenOption, TOKENS } from "@/web3/token";
 import { useFormik } from "formik";
+import abiUsdtToken from "@/web3/abi/usdt.json";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -31,7 +32,12 @@ import FormInput from "./FormInput";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { TopModal } from "./controls/TopModal";
 import { toast } from "react-toastify";
-import { convertNumberToFormattedString } from "@/utils/converter";
+import {
+  convertBalanceDecimalToNumber,
+  convertNumberToFormattedString,
+  isGreaterOrEqual,
+} from "@/utils/converter";
+import { useAuth } from "@/hooks/useAuth";
 
 enum STATE {
   CONNECT_WALLET = "CONNECT_WALLET",
@@ -41,13 +47,25 @@ interface IProps {
   onVerifySuccess: () => void;
 }
 
+const TokenOptions: ITokenOption[] = [
+  {
+    name: TOKENS.USDT.name,
+    value: EToken.USDT,
+    image: `${getStaticURL()}/assets/images/liquidity/${TOKENS.USDT.image}`,
+    abi: abiUsdtToken,
+    address: "",
+  },
+];
+
 declare const window: any;
 
 export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
   const { t } = useTranslation();
+  const { currentUser } = useAuth();
   const [openVerifyTransaction, setOpenVerifyTransaction] = useState(false);
   const [modalState, setModalState] = useState<STATE>(STATE.CONNECT_WALLET);
   const [currentPlan, setCurrentPlan] = useState<SwapPackage>();
+  const [token, setToken] = useState<ITokenOption>(TokenOptions[0]);
   const [isUserBuyPlan, setIsUserBuyPlan] = useState(false);
   const [currentToken, setCurrentToken] = useState<EToken>(EToken.USDT);
   const [swapPackage, setSwapPackage] = useState<SwapPackage[]>([
@@ -77,7 +95,18 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
     openModalConnectWallet,
     setOpenModalConnectWallet,
   } = useWalletContext();
-  const { transferUsdt } = useToken();
+  const {
+    getBalance,
+    getDecimals,
+    checkAllowance,
+    approve,
+    purchase,
+    getReferrer,
+    totalSupplyNotConnectWallet,
+    decimalNotConnectWallet,
+    checkIsReferrerValid,
+    transferUsdt,
+  } = useToken();
 
   const {
     hook,
@@ -100,16 +129,109 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
     try {
       await connectWallet(connectorName, walletNetwork);
       setConnectorName(connectorName);
+      handleCheckWalletAddress();
     } catch (e) {
       console.log(e);
     }
   };
 
+  const checkAllowanceOfToken = async (ammout: string): Promise<boolean> => {
+    const fnPromiseCheckAllowance = () =>
+      new Promise<string>(async (resolve, reject) => {
+        if (!networkSeleted || !ammout)
+          return reject("ammout or networkSeleted is null");
+        try {
+          const allowance = await checkAllowance(token.address, token.abi);
+          const decimal = await getDecimals(token.address, token.abi);
+          const allowanceConvert = convertBalanceDecimalToNumber(
+            allowance,
+            decimal
+          );
+          resolve(allowanceConvert);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    try {
+      const allowance = await toast.promise(fnPromiseCheckAllowance, {
+        pending: t("checkingAllowance") + "...",
+        success: t("checkedAllowance") || "",
+        error: t("errorWhenCheckingAllowance"),
+      });
+      const checkAllowanceGreaterThanAmount = isGreaterOrEqual(
+        allowance,
+        ammout
+      );
+      return checkAllowanceGreaterThanAmount;
+    } catch {
+      return false;
+    }
+  };
+
+  const checkAllowanceAndApprove = async (): Promise<boolean> => {
+    if (!currentPlan?.currency) throw new Error("amount is null");
+    const fnPromiseCheckAllowance = () =>
+      new Promise<boolean>(async (resolve, reject) => {
+        try {
+          let check = false;
+          do {
+            check = await checkAllowanceOfToken(currentPlan.price.toString());
+            if (!check) {
+              await approve(token.address, token.abi);
+              check = await checkAllowanceOfToken(currentPlan.price.toString());
+            }
+          } while (!check);
+          resolve(true);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    try {
+      await toast.promise(fnPromiseCheckAllowance, {
+        pending: t("checkingAndApprovingToken") + "...",
+        success: t("checkedAndApprovedToken") || "",
+        error: t("errorWhenCheckingAndApprovingToken"),
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   useEffect(() => {
-    if (account) {
+    if (account && networkSeleted) {
+      setToken({
+        ...token,
+        address: CONTRACT_ADDRESS[EToken.USDT][networkSeleted],
+      });
+    }
+  }, [account, networkSeleted]);
+
+  const handleCheckWalletAddress = async () => {
+    if (!account || !networkSeleted) return;
+
+    if (!currentUser?.walletAddress) {
+      const signature = await signMessage(
+        signMsg.confirmWalletAddress(account as string),
+        account as string
+      );
+      // const res = await swapService.confirmWalletAddress({
+      //   walletAddress: account,
+      //   signature,
+      // });
+      const res = {
+        success: true,
+      };
+      if (res.success) {
+        onToast(t("swapPage.confirmWalletAddressSuccess"), "success");
+        checkPurchasePlanStatus();
+      }
+    } else if (currentUser?.walletAddress !== account) {
+      onToast(t("swapPage.walletAddressNotMatch"), "error");
+    } else if (currentUser?.walletAddress === account) {
       checkPurchasePlanStatus();
     }
-  }, [account]);
+  };
 
   const checkPurchasePlanStatus = async () => {
     const check = await getPurchasePlanStatus(account ?? "");
@@ -142,22 +264,25 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
         }
       );
 
-      const check = await transferUsdt(currentToken, String(price), {
-        blocksToWait: MINIMUM_TX_CONFIRMATION,
-        interval: REFECT_CONFIRMATION_BLOCK,
-      });
+      const checkApprove = await checkAllowanceAndApprove();
+      if (!checkApprove) {
+        toast.dismiss(toastId);
+        return;
+      }
+
+      const check = await transferUsdt(
+        currentToken,
+        String(currentPlan?.price ?? 0),
+        {
+          blocksToWait: MINIMUM_TX_CONFIRMATION,
+          interval: REFECT_CONFIRMATION_BLOCK,
+        }
+      );
 
       if (check) {
-        const signature = await signMessage(
-          signMsg.confirmBuyPlan(currentPlan?.price ?? 0, account),
-          account as string
-        );
-
         const res = await swapService.buySwapPackage({
           swapPackageId: currentPlan?._id ?? "",
-          signature,
           txHash: check.transactionHash,
-          walletAddress: account,
         });
 
         if (res.success) {
@@ -170,6 +295,8 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
       }
       toast.dismiss(toastId);
     } catch (error) {
+      console.log(error);
+
       await onToast(t(`errorMsg.${errorMsg()}`), "error");
     } finally {
       setLoading(false);
@@ -213,9 +340,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
 
         const res = await swapService.buySwapPackage({
           swapPackageId: currentPlan?._id ?? "",
-          signature,
           txHash: values.transaction,
-          walletAddress: account,
         });
 
         if (res.success) {
@@ -344,7 +469,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
         {modalState === STATE.CHOOSE_PLAN && (
           <div>
             <div className="grid grid-cols-2 gap-2 w-[90vw] md:w-[550px]">
-              {swapPackage?.length &&
+              {!!swapPackage?.length &&
                 swapPackage?.map((item) => (
                   <div
                     key={item._id}
