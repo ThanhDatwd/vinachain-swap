@@ -1,16 +1,11 @@
 import Link from "next/link";
-import {
-  MutableRefObject,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ReactNode, useRef, useState } from "react";
 // import { LogoScan } from "../LogoScan";
 import { EarthIcon } from "@/assets/icons/EarthIcon";
 import { MoonNightIcon } from "@/assets/icons/MoonNightIcon";
 import { useTheme } from "@/hooks/useTheme";
 import {
+  CHILDREN_MENU,
   SMART_CHAIN_OPTIONS,
   StakingHeader,
   THEME,
@@ -19,6 +14,7 @@ import {
 } from "@/utils/constants";
 import { useTranslation } from "react-i18next";
 import { IOptions, StakingDropdown } from "../StakingDropdown";
+import { usePathname } from "next/navigation";
 
 export const HeaderStaking = ({
   menuBarRef,
@@ -27,7 +23,6 @@ export const HeaderStaking = ({
 }) => {
   const { theme, changeTheme } = useTheme();
   const { t } = useTranslation();
-  const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>();
   const [selected, setSelected] = useState(0);
   const [valueSmartChain, setValueSmartChain] = useState<IOptions>(
     SMART_CHAIN_OPTIONS[0]
@@ -44,6 +39,17 @@ export const HeaderStaking = ({
   const handleChangeWallet = (value: IOptions) => {
     setWalletInfo(value);
   };
+
+  const [childrenMenu, setChildrenMenu] = useState<any>([]);
+
+  const pathname = usePathname();
+  useEffect(() => {
+    if (pathname) {
+      console.log(pathname);
+      const menu = CHILDREN_MENU.find((item) => item.links.includes(pathname));
+      setChildrenMenu(menu?.itemList);
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -69,15 +75,12 @@ export const HeaderStaking = ({
                   {StakingHeader.map((item, index) => (
                     <li
                       key={index}
-                      onClick={() => setSelected(index)}
-                      onMouseEnter={() => setIsHovered({ [index]: true })}
-                      onMouseLeave={() => setIsHovered(undefined)}
-                      className={`link-header relative ${
-                        selected === index &&
-                        "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
-                      } cursor-pointer`}
+                      className={` relative group  cursor-pointer`}
                     >
-                      <Link href={item.link}>
+                      <Link href={item.link} className={`link-header ${
+                        pathname === item.link &&
+                        "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
+                      }`}>
                         {t(`staking.header.${item.label}`)}
                       </Link>
                       <span className="absolute -bottom-2 left-0 h-2 w-full" />
@@ -87,7 +90,7 @@ export const HeaderStaking = ({
                           onMouseEnter={() => setIsHovered({ [index]: true })}
                           onMouseLeave={() => setIsHovered(undefined)}
                         >
-                          <div className="flex flex-col">
+                          <ul className="flex flex-col">
                             {item.itemList.map((item, index) => (
                               <Link
                                 href={item.link}
@@ -97,7 +100,7 @@ export const HeaderStaking = ({
                                 {item.label}
                               </Link>
                             ))}
-                          </div>
+                          </ul>
                         </div>
                       )}
                     </li>
@@ -158,24 +161,25 @@ export const HeaderStaking = ({
           </div>
         </nav>
       </div>
-      {StakingHeader[selected] && (
+      {childrenMenu && childrenMenu.length > 0 && (
         <div className="bg-white dark:bg-gray900">
           <div className=" relative container-xxl w-full flex flex-wrap items-center lg:pl-[316px]">
             <ul className="flex items-center gap-2 w-full">
-              {StakingHeader[selected].itemList.map((item, index) => (
+              {childrenMenu.map((item: any, index: number) => (
+                 
+                  <Link href={item.link} className={`hover:text-blue500`} key={index} > 
+
                 <li
                   onClick={() => setSelectedCurrency(index)}
-                  key={index}
                   className={`relative h-10 flex-1 lg:flex-none w-[143px] flex items-center justify-center text-base ${
                     selectedCurrency === index
                       ? "text-blue500 font-bold after:absolute after:w-full after:h-1 after:rounded-full after:bg-blue500 after:bottom-0 after:left-0 after:right-0"
                       : "text-blue800 hover:text-blue500"
                   }`}
                 >
-                  <Link href={item.link} className="hover:text-blue500">
                     {item.label}
-                  </Link>
                 </li>
+                  </Link>
               ))}
             </ul>
           </div>

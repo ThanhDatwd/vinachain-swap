@@ -4,6 +4,7 @@ import { convertNumberToFormattedString } from "./converter";
 import { EToken, ITokenOption, TOKENS } from "@/web3/token";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
 import { IOptions } from "@/components/StakingDropdown";
+import { link } from "fs";
 
 export const getStaticURL = () => process.env.NEXT_PUBLIC_STATIC_URL;
 
@@ -834,6 +835,26 @@ export const StakingHeader = [
     ]
   },
 ];
+
+export const CHILDREN_MENU = [
+  {
+    links:['/vpl-staking','/vpc-staking','/staking'],
+    itemList: [
+      {
+        label: "VPC",
+        link: "/staking"
+      },
+      {
+        label: "VPL",
+        link: "/staking"
+      }
+    ]
+  }
+]
+
+
+
+
 
 export const SMART_CHAIN_OPTIONS: IOptions[] = [
   {
