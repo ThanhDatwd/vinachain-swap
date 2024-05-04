@@ -195,8 +195,6 @@ export const HeaderStaking = ({
             <div
               key={index}
               onClick={() => setSelected(index)}
-              onMouseEnter={() => setIsHovered({ [index]: true })}
-              onMouseLeave={() => setIsHovered(undefined)}
               className={`flex-1 link-header relative ${
                 selected === index &&
                 "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
