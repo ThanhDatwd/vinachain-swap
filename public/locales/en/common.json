@@ -1368,12 +1368,12 @@
     "userAlreadyVerified": "User already verified",
     "oldPasswordIncorrect": "Old password incorrect",
     "somethingWentWrong": "Something went wrong. Please try again later.",
-    "invalidTxHashFormat":"Invalid transaction hash format",
-    "walletAddressAlreadyPurchasedSwapPackage":"Wallet address already purchased swap page",
-    "swapPackageNotFound":"Swap package not found",
-    "notTransferringEnoughMoney":"Not transferring enough money",
-    "doNotBoughtSwapPackageYet":"Do not bought swap package yet",
-    "notEnoughBalanceToSwap":"Not enought balance to swap",
+    "invalidTxHashFormat": "Invalid transaction hash format",
+    "walletAddressAlreadyPurchasedSwapPackage": "Wallet address already purchased swap page",
+    "swapPackageNotFound": "Swap package not found",
+    "notTransferringEnoughMoney": "Not transferring enough money",
+    "doNotBoughtSwapPackageYet": "Do not bought swap package yet",
+    "notEnoughBalanceToSwap": "Not enought balance to swap",
     "PleaseTryAgainLater": "Please try again later"
   },
   "tokenTransfers": {
@@ -1454,5 +1454,22 @@
       "staking": "Staking",
       "refferal": "Refferal"
     }
+  },
+  "stakingPage": {
+    "title": "VPC Staking",
+    "enjoyBenefitsVPC": "Enjoy the benefits of monthly VPC yield, revenue share,...",
+    "lockOverview": "LOCK OVERVIEW",
+    "addVpc": "Add Vpc",
+    "choosePackage": "CHOOSE PACKAGE",
+    "week": "Weeks",
+    "totalApr": "Total APR",
+    "poolApr": "Pool APR",
+    "upTo": "Up to ",
+    "factor": "Factor",
+    "toBeLocked": "to be locked",
+    "duration": "Duration",
+    "unlockOn": "Unlock on",
+    "lock": "Lock",
+    "get": "Get"
   }
 }

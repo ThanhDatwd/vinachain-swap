@@ -9,11 +9,21 @@
   .container-lg,
   .container-md,
   .container-sm,
-  .container-xl,
   .container-xxl {
     @apply max-w-[1440px] mx-auto lg:px-10;
   }
 }
+@media (min-width: 768px) {
+  .container,
+  .container-fluid,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    @apply max-w-[1200px] mx-auto px-10;
+  }
+}
+
 
 a {
   text-decoration: none;
