@@ -31,7 +31,6 @@ import { t } from "i18next";
 import Swal from "sweetalert2";
 import Web3 from "web3";
 import { ModalChoosePlan } from "@/components/ModalChoosePlan";
-import { SwapPackage } from "@/utils/type";
 
 const enum TYPE_IMAGE_UPLOAD {
   LIKE_FANPAGE = "like_fanpage",
@@ -56,7 +55,6 @@ export default function SwapPage() {
   const [currentTab, setCurrentTab] = useState(TAB.TRANSACTION);
   const [swapPackageBalanceRemaining, setSwapPackageBalanceRemaining] =
     useState<number>();
-  const [swapPackageBought, setSwapPackageBought] = useState<SwapPackage>();
   const [tokenVerify, setTokenVerify] = useState<string>();
   const { onAliUpload } = useAliUpload();
   const { setOpenModalConnectWallet, connectorName } = useWalletContext();
@@ -182,12 +180,11 @@ export default function SwapPage() {
       const res = await swapService.getSwapPackageBalanceRemaining();
       if (res.success) {
         setSwapPackageBalanceRemaining(res.data.swapRemaining);
-        setSwapPackageBought(res.data.swapPackage);
       } else {
         onToast(t(`errorMsg.${errorMsg(res.code)}`), "error");
       }
     } catch (error) {}
-  };
+  }
 
   const transtionFormik = useFormik({
     initialValues: {
@@ -299,12 +296,6 @@ export default function SwapPage() {
   const onVerifySuccess = (account: string) => {
     verifyFormik.setFieldValue("accountAddress", account);
   };
-
-  useEffect(() => {
-    if (currentUser) {
-      fetchSwapPackageBalanceRemaining();
-    }
-  }, [currentUser]);
 
   return (
     <ScanLayout containerStyle="bg-[#FAFAFA] dark:bg-primaryDark font-sans-serif relative">
