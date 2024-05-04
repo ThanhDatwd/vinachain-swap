@@ -203,7 +203,7 @@ export default function StakingPage() {
               </div>
             </div>
           </div>
-          <button className="py-2 px-4 text-[16px] font-semibold rounded bg-[#3B3BFC] dark:bg-[#DA6C1D] w-full lg:w-1/2 mx-auto text-white">
+          <button className="py-2 px-4 text-[16px] font-semibold rounded bg-[#3B3BFC] dark:bg-[#DA6C1D] w-full lg:w-1/2 mx-auto text-white hover:opacity-70">
             {t("stakingPage.lock")}
           </button>
         </div>
