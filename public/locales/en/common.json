@@ -1448,6 +1448,13 @@
     "to": "To",
     "item": "Item"
   },
+  "staking": {
+    "header": {
+      "swap": "Swap",
+      "staking": "Staking",
+      "refferal": "Refferal"
+    }
+  },
   "stakingPage": {
     "title": "VPC Staking",
     "enjoyBenefitsVPC": "Enjoy the benefits of monthly VPC yield, revenue share,...",
