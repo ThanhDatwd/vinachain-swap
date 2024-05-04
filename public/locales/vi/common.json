@@ -1415,5 +1415,22 @@
     "from": "Từ",
     "to": "Đến",
     "item": "Mục"
+  },
+  "stakingPage": {
+    "title": "Đầu tư VPC",
+    "enjoyBenefitsVPC": "Tận hưởng lợi ích từ lợi suất hàng tháng của VPC, chia sẻ doanh thu,...",
+    "lockOverview": "TỔNG QUAN",
+    "addVpc": "Thêm Vpc",
+    "choosePackage": "CHỌN GÓI",
+    "week": "Tuần",
+    "totalApr": "Tổng APR",
+    "poolApr": "Lợi suất hàng năm của hồ",
+    "upTo": "Lên đến ",
+    "factor": "Hệ số",
+    "toBeLocked": "được khóa",
+    "duration": "Thời gian",
+    "unlockOn": "Mở khóa vào",
+    "lock": "Khóa",
+    "get": "Nhận"
   }
 }
