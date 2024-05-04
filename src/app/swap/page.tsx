@@ -53,6 +53,8 @@ export default function SwapPage() {
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentTab, setCurrentTab] = useState(TAB.TRANSACTION);
+  const [swapPackageBalanceRemaining, setSwapPackageBalanceRemaining] =
+    useState<number>();
   const [tokenVerify, setTokenVerify] = useState<string>();
   const { onAliUpload } = useAliUpload();
   const { setOpenModalConnectWallet, connectorName } = useWalletContext();
@@ -92,7 +94,7 @@ export default function SwapPage() {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-      
+
         await handleVerify({
           accountAddress: values.accountAddress,
           email: values.email,
@@ -172,6 +174,17 @@ export default function SwapPage() {
       console.log(error);
     }
   };
+
+  const fetchSwapPackageBalanceRemaining = async () => {
+    try {
+      const res = await swapService.getSwapPackageBalanceRemaining();
+      if (res.success) {
+        setSwapPackageBalanceRemaining(res.data.swapRemaining);
+      } else {
+        onToast(t(`errorMsg.${errorMsg(res.code)}`), "error");
+      }
+    } catch (error) {}
+  }
 
   const transtionFormik = useFormik({
     initialValues: {
@@ -562,12 +575,16 @@ export default function SwapPage() {
                             {t("swapPage.addressVPC")}:&nbsp;
                           </p>
                           <span>
-                            {process.env.NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS}
+                            {
+                              process.env
+                                .NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS
+                            }
                             <button
                               className="ml-2"
                               onClick={() => {
                                 navigator.clipboard.writeText(
-                                  process.env.NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS ||
+                                  process.env
+                                    .NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS ||
                                     ""
                                 );
                                 onToast(t("copied"), "success");
