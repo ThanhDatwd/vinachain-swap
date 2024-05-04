@@ -10,7 +10,7 @@
   .container-md,
   .container-sm,
   .container-xxl {
-    @apply max-w-[1440px] mx-auto lg:px-10;
+    @apply max-w-[1440px] mx-auto px-10;
   }
 }
 @media (min-width: 768px) {
@@ -240,8 +240,4 @@ p {
 .animate-fade-out {
   -webkit-animation: fade-out .3s both;
           animation: fade-out .3s both;
-}
-
-.link-header {
-  @apply px-4 py-2 text-base text-grey300 dark:text-orange300 hover:text-grey300 hover:bg-white900 dark:hover:bg-[#2c2a28] rounded-2xl
 }

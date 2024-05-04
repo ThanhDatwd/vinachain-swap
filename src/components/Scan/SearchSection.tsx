@@ -3,10 +3,9 @@ import { ArrowTurnDownLeftIcon } from "@/assets/icons/ArrowTurnDownLeftIcon";
 import { useTheme } from "@/hooks/useTheme";
 import { debounce, optionFilterScan } from "@/utils/constants";
 import { isDarkTheme } from "@/utils/theme";
-import { isNumber, isTransactionHash } from "@/utils/transactionHelpers";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DropdownScan } from "../DropdownScan";
 
