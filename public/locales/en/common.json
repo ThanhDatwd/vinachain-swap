@@ -1447,5 +1447,12 @@
     "from": "From",
     "to": "To",
     "item": "Item"
+  },
+  "staking": {
+    "header": {
+      "swap": "Swap",
+      "staking": "Staking",
+      "refferal": "Refferal"
+    }
   }
 }

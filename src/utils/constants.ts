@@ -3,6 +3,7 @@ import abiUsdtToken from "@/web3/abi/usdt.json";
 import { convertNumberToFormattedString } from "./converter";
 import { EToken, ITokenOption, TOKENS } from "@/web3/token";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
+import { IOptions } from "@/components/StakingDropdown";
 
 export const getStaticURL = () => process.env.NEXT_PUBLIC_STATIC_URL;
 
@@ -785,6 +786,80 @@ export const VinaScanHeader = [...VinaScanData];
 export const VinaScanFooter = VinaScanData.filter(
   (item, index) => item.footerItemKey !== "more"
 );
+
+export const StakingHeader = [
+  {
+    label: "swap",
+    itemList: [
+      // {
+      //   label: "swap1",
+      //   link: "/coming-soon"
+      // },
+      // {
+      //   label: "swap2",
+      //   link: "/coming-soon"
+      // }
+    ]
+  },
+  {
+    label: "staking",
+    itemList: [
+      {
+        label: "VPC",
+        link: "/coming-soon"
+      },
+      {
+        label: "VPL",
+        link: "/coming-soon"
+      }
+    ]
+  },
+  {
+    label: "refferal",
+    itemList: [
+      // {
+      //   label: "refferal1",
+      //   link: "/coming-soon"
+      // },
+      // {
+      //   label: "refferal2",
+      //   link: "/coming-soon"
+      // }
+    ]
+  },
+];
+
+export const SMART_CHAIN_OPTIONS: IOptions[] = [
+  {
+    imgName: "logo",
+    value: "vinachain",
+    label: "Vinachain",
+  }
+];
+
+export const WALLET_INFO_OPTIONS: IOptions[] = [
+  {
+    imgName: "wallet",
+    value: "0x...87C&",
+    label: "0x...87C&",
+  },
+  {
+    imgName: "wallet",
+    value: "0x...87C&",
+    label: "0x...87C&",
+  },
+];
+
+export const CURRENCY_OPTIONS = [
+  {
+    label: "VPC",
+    value: "vpc",
+  },
+  {
+    label: "VPL",
+    value: "vpl",
+  },
+];
 
 export const Developers = [
   {
@@ -1647,11 +1722,18 @@ export const FILTER_VERIFIED_CONTRACT_DATA = [
     label: "Contract Security Audit",
     line: false,
     link: "/coming-soon",
-  }
+  },
 ];
 
 export const FILTER_TIME_DATA = ["1h", "6h", "12h", "1d", "7d", "30d"];
-export const FILTER_TOP_MINTS_TIME_DATA = ["1m", "3m", "5m", "15m", "20m", "1h"];
+export const FILTER_TOP_MINTS_TIME_DATA = [
+  "1m",
+  "3m",
+  "5m",
+  "15m",
+  "20m",
+  "1h",
+];
 
 export const MARKETPLACES_DATA = [
   {
@@ -1705,36 +1787,44 @@ export enum TableType {
 export const VPC_EXCHANGE_RATE_USD = 0.008;
 
 export const ERR_CODE = {
-  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'.toLowerCase(),
-  NOT_FOUND: 'NOT_FOUND'.toLowerCase(),
-  INVALID_USERNAME_FORMAT: 'INVALID_USERNAME_FORMAT'.toLowerCase(),
-  INVALID_EMAIL_FORMAT: 'INVALID_EMAIL_FORMAT'.toLowerCase(),
-  INVALID_TX_HASH_FORMAT: 'INVALID_TX_HASH_FORMAT'.toLowerCase(),
-  INVALID_PASSWORD_FORMAT: 'INVALID_PASSWORD_FORMAT'.toLowerCase(),
-  EMAIL_ALREADY_EXISTS: 'EMAIL_ALREADY_EXISTS'.toLowerCase(),
-  WALLET_ADDRESS_ALREADY_TAKEN: 'WALLET_ADDRESS_ALREADY_TAKEN'.toLowerCase(),
-  TRANSACTION_HASH_ALREADY_EXISTS: 'TRANSACTION_HASH_ALREADY_EXISTS'.toLowerCase(),
-  EMAIL_AND_LOGGED_IN_USER_EMAIL_DO_NOT_MATCH: 'EMAIL_AND_LOGGED_IN_USER_EMAIL_DO_NOT_MATCH'.toLowerCase(),
-  WALLET_ADDRESS_AND_TRANSACTION_FROM_ADDRESS_DO_NOT_MATCH: 'WALLET_ADDRESS_AND_TRANSACTION_FROM_ADDRESS_DO_NOT_MATCH'.toLowerCase(),
-  TRANSACTION_NOT_SENT_TO_CORRECT_RECIPIENT_ADDRESS: 'TRANSACTION_NOT_SENT_TO_CORRECT_RECIPIENT_ADDRESS'.toLowerCase(),
-  TRANSACTION_NOT_SENT_WITH_VPL_TOKEN: 'TRANSACTION_NOT_SENT_WITH_VPL_TOKEN'.toLowerCase(),
-  TRANSACTION_NOT_SENT_WITH_USDT_TOKEN: 'TRANSACTION_NOT_SENT_WITH_USDT_TOKEN'.toLowerCase(),
-  SWAP_TOKEN_REQUEST_IS_PENDING: 'SWAP_TOKEN_REQUEST_IS_PENDING'.toLowerCase(),
-  WALLET_ADDRESS_ALREADY_PURCHASED_SWAP_PACKAGE: 'WALLET_ADDRESS_ALREADY_PURCHASED_SWAP_PACKAGE'.toLowerCase(),
-  SWAP_PACKAGE_NOT_FOUND: 'SWAP_PACKAGE_NOT_FOUND'.toLowerCase(),
-  NOT_TRANSFERRING_ENOUGH_MONEY: 'NOT_TRANSFERRING_ENOUGH_MONEY'.toLowerCase(),
-  DO_NOT_BOUGHT_SWAP_PACKAGE_YET: 'DO_NOT_BOUGHT_SWAP_PACKAGE_YET'.toLowerCase(),
-  NOT_ENOUGH_BALANCE_TO_SWAP: 'NOT_ENOUGH_BALANCE_TO_SWAP'.toLowerCase(),
-  INVALID_SIGNATURE: 'INVALID_SIGNATURE'.toLowerCase(),
-  INVALID_TRANSACTION_HASH: 'INVALID_TRANSACTION_HASH'.toLowerCase(),
-  PASSWORD_INCORRECT: 'PASSWORD_INCORRECT'.toLowerCase(),
-  USERNAME_ALREADY_EXISTS: 'USERNAME_ALREADY_EXISTS'.toLowerCase(),
-  UNAUTHORIZED: 'UNAUTHORIZED'.toLowerCase(),
-  USER_NOT_VERIFIED: 'USER_NOT_VERIFIED'.toLowerCase(),
-  INVALID_TOKEN: 'INVALID_TOKEN'.toLowerCase(),
-  USER_ALREADY_VERIFIED: 'USER_ALREADY_VERIFIED'.toLowerCase(),
-  INVALID_CAPTCHA_TOKEN: 'INVALID_CAPTCHA_TOKEN'.toLowerCase(),
-  OLD_PASSWORD_INCORRECT: 'OLD_PASSWORD_INCORRECT'.toLowerCase(),
+  INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR".toLowerCase(),
+  NOT_FOUND: "NOT_FOUND".toLowerCase(),
+  INVALID_USERNAME_FORMAT: "INVALID_USERNAME_FORMAT".toLowerCase(),
+  INVALID_EMAIL_FORMAT: "INVALID_EMAIL_FORMAT".toLowerCase(),
+  INVALID_TX_HASH_FORMAT: "INVALID_TX_HASH_FORMAT".toLowerCase(),
+  INVALID_PASSWORD_FORMAT: "INVALID_PASSWORD_FORMAT".toLowerCase(),
+  EMAIL_ALREADY_EXISTS: "EMAIL_ALREADY_EXISTS".toLowerCase(),
+  WALLET_ADDRESS_ALREADY_TAKEN: "WALLET_ADDRESS_ALREADY_TAKEN".toLowerCase(),
+  TRANSACTION_HASH_ALREADY_EXISTS:
+    "TRANSACTION_HASH_ALREADY_EXISTS".toLowerCase(),
+  EMAIL_AND_LOGGED_IN_USER_EMAIL_DO_NOT_MATCH:
+    "EMAIL_AND_LOGGED_IN_USER_EMAIL_DO_NOT_MATCH".toLowerCase(),
+  WALLET_ADDRESS_AND_TRANSACTION_FROM_ADDRESS_DO_NOT_MATCH:
+    "WALLET_ADDRESS_AND_TRANSACTION_FROM_ADDRESS_DO_NOT_MATCH".toLowerCase(),
+  TRANSACTION_NOT_SENT_TO_CORRECT_RECIPIENT_ADDRESS:
+    "TRANSACTION_NOT_SENT_TO_CORRECT_RECIPIENT_ADDRESS".toLowerCase(),
+  TRANSACTION_NOT_SENT_WITH_VPL_TOKEN:
+    "TRANSACTION_NOT_SENT_WITH_VPL_TOKEN".toLowerCase(),
+  TRANSACTION_NOT_SENT_WITH_USDT_TOKEN:
+    "TRANSACTION_NOT_SENT_WITH_USDT_TOKEN".toLowerCase(),
+  SWAP_TOKEN_REQUEST_IS_PENDING: "SWAP_TOKEN_REQUEST_IS_PENDING".toLowerCase(),
+  WALLET_ADDRESS_ALREADY_PURCHASED_SWAP_PACKAGE:
+    "WALLET_ADDRESS_ALREADY_PURCHASED_SWAP_PACKAGE".toLowerCase(),
+  SWAP_PACKAGE_NOT_FOUND: "SWAP_PACKAGE_NOT_FOUND".toLowerCase(),
+  NOT_TRANSFERRING_ENOUGH_MONEY: "NOT_TRANSFERRING_ENOUGH_MONEY".toLowerCase(),
+  DO_NOT_BOUGHT_SWAP_PACKAGE_YET:
+    "DO_NOT_BOUGHT_SWAP_PACKAGE_YET".toLowerCase(),
+  NOT_ENOUGH_BALANCE_TO_SWAP: "NOT_ENOUGH_BALANCE_TO_SWAP".toLowerCase(),
+  INVALID_SIGNATURE: "INVALID_SIGNATURE".toLowerCase(),
+  INVALID_TRANSACTION_HASH: "INVALID_TRANSACTION_HASH".toLowerCase(),
+  PASSWORD_INCORRECT: "PASSWORD_INCORRECT".toLowerCase(),
+  USERNAME_ALREADY_EXISTS: "USERNAME_ALREADY_EXISTS".toLowerCase(),
+  UNAUTHORIZED: "UNAUTHORIZED".toLowerCase(),
+  USER_NOT_VERIFIED: "USER_NOT_VERIFIED".toLowerCase(),
+  INVALID_TOKEN: "INVALID_TOKEN".toLowerCase(),
+  USER_ALREADY_VERIFIED: "USER_ALREADY_VERIFIED".toLowerCase(),
+  INVALID_CAPTCHA_TOKEN: "INVALID_CAPTCHA_TOKEN".toLowerCase(),
+  OLD_PASSWORD_INCORRECT: "OLD_PASSWORD_INCORRECT".toLowerCase(),
 };
 
 export const enum PLAN_SWAP {
