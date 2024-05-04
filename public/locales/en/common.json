@@ -1462,6 +1462,8 @@
     "addVpc": "Add Vpc",
     "choosePackage": "CHOOSE PACKAGE",
     "week": "Weeks",
+    "profit":"Profit",
+    "months":"months",
     "totalApr": "Total APR",
     "poolApr": "Pool APR",
     "upTo": "Up to ",
