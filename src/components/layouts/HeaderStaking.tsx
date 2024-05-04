@@ -95,8 +95,8 @@ export const HeaderStaking = () => {
                 </>
               </ul>
             </div>
-            <div className="flex gap-4 text-base text-blue950 dark:text-orange-400 font-bold">
-              <div className="hidden lg:flex items-center gap-2 px-2 py-1 rounded-full bg-white900 dark:bg-[#2c2a28]">
+            <div className="flex gap-4 items-center text-base text-blue950 dark:text-orange-400 font-bold">
+              <div className="hidden lg:flex items-center gap-2 min-w-fit px-2 py-1 rounded-full bg-white900 dark:bg-[#2c2a28]">
                 <span className="font-normal">Balance:</span>
                 $0.01 VPC
               </div>
@@ -114,7 +114,27 @@ export const HeaderStaking = () => {
                   color={theme === THEME.DARK ? "#FF964A" : "#2B2B87"}
                 />
               </button>
-              <StakingDropdown
+              <button
+                className={`flex justify-between items-center gap-2 w-full h-9 text-base text-blue950 dark:text-gray100 font-bold rounded-full bg-white900 dark:bg-[#2c2a28] lg:pr-2 whitespace-nowrap`}
+              >
+                <img
+                  src={`${getStaticURL()}/assets/images/icons/logo_${theme}.svg`}
+                  alt="metamask"
+                  className="h-8"
+                />
+                <span className="hidden lg:inline">Vinachain</span>
+              </button>
+              <button
+                className={`flex justify-between items-center gap-2 w-full h-9 text-base text-blue950 dark:text-gray100 font-bold rounded-full bg-white900 dark:bg-[#2c2a28] lg:pr-2 whitespace-nowrap`}
+              >
+                <img
+                  src={`${getStaticURL()}/assets/images/icons/wallet.svg`}
+                  alt="metamask"
+                  className="h-8"
+                />
+                <span className="hidden lg:inline">0x...87C&</span>
+              </button>
+              {/* <StakingDropdown
                 valueSelected={valueSmartChain}
                 options={SMART_CHAIN_OPTIONS}
                 onchangeValue={handleChange}
@@ -123,7 +143,7 @@ export const HeaderStaking = () => {
                 valueSelected={walletInfo}
                 options={WALLET_INFO_OPTIONS}
                 onchangeValue={handleChangeWallet}
-              />
+              /> */}
             </div>
           </div>
         </nav>
