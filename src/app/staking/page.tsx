@@ -12,16 +12,16 @@ enum STAKING_TOKEN {
   VPL = "vpl",
 }
 const PERCENT_BALANCE = [
-  { label: "25%", value: 25 },
+  { label: "25%" , value: 25 },
   { label: "50%", value: 50 },
   { label: "75%", value: 75 },
   { label: "MAX", value: 100 },
 ];
 
 const PERCENT_PROFIT = [
-  { label: "12 months", value: 12 },
-  { label: "24 months", value: 24 },
-  { label: "36 months", value: 36 },
+  { label: "12 " + t("stakingPage.months"), value: 12 },
+  { label: "24 " + t("stakingPage.months"), value: 24 },
+  { label: "36 " + t("stakingPage.months"), value: 36 },
 ];
 export default function StakingPage() {
   const [stakingToken, setStakingToken] = useState(STAKING_TOKEN.VPC);
@@ -108,7 +108,7 @@ export default function StakingPage() {
                 </span>
               </div>
               <div className="h-[68px] flex items-center justify-between gap-2 py-2 px-4 !border !border-[#D2D2ED] bg-[#FAFBFF] dark:bg-[#2C2A28] dark:!border-[#685C51] rounded-2xl">
-                <div className="flex items-center gap-4 ">
+                <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full">
                     <img
                       src={`${getStaticURL()}/assets/images/money-bag.svg`}

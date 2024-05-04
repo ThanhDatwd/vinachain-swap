@@ -4,7 +4,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { debounce, optionFilterScan } from "@/utils/constants";
 import { isDarkTheme } from "@/utils/theme";
 import { isNumber, isTransactionHash } from "@/utils/transactionHelpers";
-import web3 from "@/web3/vinaPlusChainNetwork";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
