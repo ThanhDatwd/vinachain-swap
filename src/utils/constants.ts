@@ -790,6 +790,7 @@ export const VinaScanFooter = VinaScanData.filter(
 export const StakingHeader = [
   {
     label: "swap",
+    link: "/swap",
     itemList: [
       // {
       //   label: "swap1",
@@ -803,19 +804,21 @@ export const StakingHeader = [
   },
   {
     label: "staking",
+    link: "/staking",
     itemList: [
       {
         label: "VPC",
-        link: "/coming-soon"
+        link: "/staking"
       },
       {
         label: "VPL",
-        link: "/coming-soon"
+        link: "/staking"
       }
     ]
   },
   {
     label: "refferal",
+    link: "/coming-soon",
     itemList: [
       // {
       //   label: "refferal1",

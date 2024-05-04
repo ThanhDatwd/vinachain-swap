@@ -57,35 +57,35 @@ export const StakingDropdown = (props: Props) => {
         />
         <span className="hidden lg:inline">{valueSelected?.label}</span>
         <div className="px-[6px]">
-          <ExpendMoreIcon color={theme === THEME.DARK ? "#fafafa" : "#0C0C4E"}/>
+          <ExpendMoreIcon
+            color={theme === THEME.DARK ? "#fafafa" : "#0C0C4E"}
+          />
         </div>
       </button>
       <div
         className={`absolute ${
           isOpen ? "" : "hidden"
-        } z-20 mt-2 origin-top-right rounded-md focus:outline-none border border-[#bdc5d133] px-1 shadow-inner bg-[#e9ecef] ${classNameMore}`}
+        } z-20 right-0 top-12 rounded-2xl bg-white dark:bg-gray900 border border-b-[#DCDCDC] dark:border-b-dark800  overflow-hidden ${classNameMore}`}
       >
-        <div className="py-1">
-          {options?.map((option, i) => (
-            <div
-              key={i}
-              onClick={() => {
-                setIsOpen(false);
-                onchangeValue(option);
-              }}
-              className={`relative px-4 text-[12.5px] flex  items-center justify-center gap-1 text-left  cursor-pointer text-dark900 hover:text-[#F5F5F5] hover:bg-[#589beb] rounded-md ${classNameMoreItem}`}
-            >
-              {option.imgName && (
-                <img
-                  src={`${getStaticURL()}/assets/images/${option.imgName}.svg`}
-                  alt="metamask"
-                  className="h-8"
-                />
-              )}
-              {option.label}
-            </div>
-          ))}
-        </div>
+        {options?.map((option, i) => (
+          <div
+            key={i}
+            onClick={() => {
+              setIsOpen(false);
+              onchangeValue(option);
+            }}
+            className={`relative flex items-center gap-2 min-w-[148px] px-5 py-3 text-base text-blue950 dark:text-gray100 hover:text-blue950 hover:dark:text-gray100 hover:bg-white900 dark:hover:bg-[#2c2a28] rounded-none font-bold cursor-pointer whitespace-nowrap ${classNameMoreItem}`}
+          >
+            {option.imgName && (
+              <img
+                src={`${getStaticURL()}/assets/images/icons/${valueSelected?.imgName}_${theme}.svg`}
+                alt="metamask"
+                className="h-8"
+              />
+            )}
+            {option.label}
+          </div>
+        ))}
       </div>
     </div>
   );

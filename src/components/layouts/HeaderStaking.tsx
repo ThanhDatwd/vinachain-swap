@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 // import { LogoScan } from "../LogoScan";
 import { EarthIcon } from "@/assets/icons/EarthIcon";
 import { MoonNightIcon } from "@/assets/icons/MoonNightIcon";
@@ -12,12 +12,12 @@ import {
   getStaticURL,
 } from "@/utils/constants";
 import { useTranslation } from "react-i18next";
-import { IOptions, StakingDropdown } from "./StakingDropdown";
+import { IOptions, StakingDropdown } from "../StakingDropdown";
 
 export const HeaderStaking = () => {
   const { theme, changeTheme } = useTheme();
   const { t } = useTranslation();
-  const [isHovered, setIsHovered] = useState<{[key: number]: boolean }>();
+  const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>();
   const [selected, setSelected] = useState(0);
   const [valueSmartChain, setValueSmartChain] = useState<IOptions>(
     SMART_CHAIN_OPTIONS[0]
@@ -67,7 +67,9 @@ export const HeaderStaking = () => {
                         "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
                       } cursor-pointer`}
                     >
-                      {t(`staking.header.${item.label}`)}
+                      <Link href={item.link}>
+                        {t(`staking.header.${item.label}`)}
+                      </Link>
                       <span className="absolute -bottom-2 left-0 h-2 w-full" />
                       {isHovered?.[index] && item.itemList.length > 0 && (
                         <div
@@ -127,7 +129,7 @@ export const HeaderStaking = () => {
         </nav>
       </div>
       {StakingHeader[selected] && (
-        <div className="bg-white dark:bg-gray900 h-screen">
+        <div className="bg-white dark:bg-gray900">
           <div className=" relative container-xxl flex flex-wrap items-center lg:pl-[316px]">
             <ul className="flex items-center gap-2 ">
               {StakingHeader[selected].itemList.map((item, index) => (
@@ -140,7 +142,7 @@ export const HeaderStaking = () => {
                       : "text-blue800 hover:text-blue500"
                   }`}
                 >
-                  <Link href={""} className="hover:text-blue500">
+                  <Link href={item.link} className="hover:text-blue500">
                     {item.label}
                   </Link>
                 </li>
