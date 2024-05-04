@@ -94,7 +94,7 @@ export default function StakingPage() {
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full">
                     <img
-                      src={`${getStaticURL()}/assets/icons/money-bag.svg`}
+                      src={`${getStaticURL()}/assets/images/icons/money-bag.svg`}
                       alt="logo-vpc"
                       className="w-full h-full"
                     />
