@@ -81,23 +81,6 @@ export default function StakingPage() {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-1">
-                {/* {PERCENT_BALANCE.map((item, index) => {
-                  return (
-                    <div
-                      className={`flex-1 p-2 flex items-center justify-center text-[16px] font-semibold rounded-full cursor-pointer  ${
-                        item.value === currentPercentBalance
-                          ? "bg-[#1687B7] dark:bg-[#6BD3FF] text-white dark:text-[#1A1A1A]"
-                          : "bg-[#E1EEF1] dark:bg-[#435154] text-[#1B9BD2] dark:text-[#6BD3FF] hover:opacity-70"
-                      }   `}
-                      key={index}
-                      onClick={() => setCurrentBalance(item.value)}
-                    >
-                      {item.label}
-                    </div>
-                  );
-                })} */}
-              </div>
             </div>
             {/* ///// */}
             <div className="flex flex-col justify-between gap-4 h-full 0">
