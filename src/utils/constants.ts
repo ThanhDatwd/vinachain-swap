@@ -1831,6 +1831,11 @@ export const ERR_CODE = {
 };
 
 export const enum PLAN_SWAP {
-  BASIC = "30",
-  PREMIUM = "50",
+  BASIC = 30,
+  PREMIUM = 50,
+}
+
+export const enum CODE_CONTRACT_BUY_SWAP {
+  BASIC = 1,
+  PREMIUM = 2,
 }

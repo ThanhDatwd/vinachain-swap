@@ -13,7 +13,6 @@ export class SwapService {
     password: string;
     walletAddress: string;
     images: string[];
-    signature: string;
   }): Promise<any | null> {
     const { data } = await restConnector.post("/swap-tokens/info", {
       ...values,
@@ -39,17 +38,6 @@ export class SwapService {
         },
       }
     );
-
-    return data;
-  }
-
-  public async confirmWalletAddress(values: {
-    walletAddress: string;
-    signature: string;
-  }): Promise<any | null> {
-    const { data } = await restConnector.post("/swap-tokens/confirm-wallet", {
-      ...values,
-    });
 
     return data;
   }

@@ -3,6 +3,7 @@
 import { onToast } from "@/hooks/useToast";
 import { authService } from "@/services/AuthServices";
 import { errorMsg } from "@/utils/errMsg";
+import { User } from "@/utils/type";
 import { AxiosError } from "axios";
 import { t } from "i18next";
 import { useRouter } from "next/navigation";
@@ -42,7 +43,7 @@ export const AuthCtx = createContext<AuthCtxProps>(defaultCtxVal);
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const login = async (values: {
@@ -77,10 +78,10 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const logout = async () => {
     authService.logout();
     setCurrentUser(null);
-    await router.push("/login");
+    router.push("/login");
   };
 
-  const fetchCurrentUser = async (): Promise<any | null> => {
+  const fetchCurrentUser = async (): Promise<User | null> => {
     setLoading(true);
     authService.loadAccessToken();
     const currentUser = await authService.fetchCurrentUser();
