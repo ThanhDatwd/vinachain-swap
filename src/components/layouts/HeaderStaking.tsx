@@ -150,13 +150,13 @@ export const HeaderStaking = () => {
       </div>
       {StakingHeader[selected] && (
         <div className="bg-white dark:bg-gray900">
-          <div className=" relative container-xxl flex flex-wrap items-center lg:pl-[316px]">
-            <ul className="flex items-center gap-2 ">
+          <div className=" relative container-xxl w-full flex flex-wrap items-center lg:pl-[316px]">
+            <ul className="flex items-center gap-2 w-full">
               {StakingHeader[selected].itemList.map((item, index) => (
                 <li
                   onClick={() => setSelectedCurrency(index)}
                   key={index}
-                  className={`relative h-10 w-[143px] flex items-center justify-center text-base ${
+                  className={`relative h-10 flex-1 lg:flex-none w-[143px] flex items-center justify-center text-base ${
                     selectedCurrency === index
                       ? "text-blue500 font-bold after:absolute after:w-full after:h-1 after:rounded-full after:bg-blue500 after:bottom-0 after:left-0 after:right-0"
                       : "text-blue800 hover:text-blue500"
