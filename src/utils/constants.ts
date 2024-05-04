@@ -791,6 +791,7 @@ export const StakingHeader = [
   {
     label: "swap",
     link: "/swap",
+    iconName: "currency_exchange",
     itemList: [
       // {
       //   label: "swap1",
@@ -805,6 +806,7 @@ export const StakingHeader = [
   {
     label: "staking",
     link: "/staking",
+    iconName: "price_check",
     itemList: [
       {
         label: "VPC",
@@ -819,6 +821,7 @@ export const StakingHeader = [
   {
     label: "refferal",
     link: "/coming-soon",
+    iconName: "drafts",
     itemList: [
       // {
       //   label: "refferal1",
