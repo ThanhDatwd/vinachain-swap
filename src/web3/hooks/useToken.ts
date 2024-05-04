@@ -14,11 +14,13 @@ import {
 } from "@/utils/converter";
 import { waitTransaction } from "@/utils/transactionHelpers";
 import contractJson from "@/web3/abi/VinachainPoint.json";
+import contractSwapJson from "@/web3/abi/vpc.json";
 import { MaxUint256 } from "@ethersproject/constants";
 import Web3 from "web3";
 import abiUsdtToken from "@/web3/abi/token.json";
 import { core } from "./useQuicknode";
 import initialWeb3 from "./useWeb3";
+
 export type TransferUsdt = {
   from: string;
   to: string;
@@ -66,6 +68,22 @@ export const useToken = () => {
 
     const balance = await contract.methods
       .purchasePoints(amount, referrerAddress)
+      .send({ from: account, gasLimit, gasPrice });
+    return balance;
+  };
+
+  const buySwapPackage = async (
+    packageNumber: number
+  ): Promise<TransferUsdt> => {
+    if (!account || !networkSeleted) throw new Error("Please connect wallet");
+
+    const address = CONTRACT_ADDRESS.VINACHAIN[networkSeleted] as string;
+
+    const contract = getContract(provider, contractSwapJson, address);
+    const { gasLimit, gasPrice } = await getGasPriceAndGasLimit(provider);
+
+    const balance = await contract.methods
+      .buyPackage(packageNumber)
       .send({ from: account, gasLimit, gasPrice });
     return balance;
   };
@@ -233,5 +251,6 @@ export const useToken = () => {
     decimalNotConnectWallet,
     checkIsReferrerValid,
     transferUsdt,
+    buySwapPackage
   };
 };

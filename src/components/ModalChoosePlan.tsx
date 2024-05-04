@@ -2,6 +2,7 @@
 
 import { CheckIcon } from "@/assets/icons/CheckIcon";
 import { CheckSmallIcon } from "@/assets/icons/CheckSmallIcon";
+import { useAuth } from "@/hooks/useAuth";
 import { onToast } from "@/hooks/useToast";
 import {
   connectWallet,
@@ -11,33 +12,33 @@ import {
 import { useWalletContext } from "@/pkgs/wallet-connector/context";
 import { E_CONNECTOR_NAMES, E_NETWORK_ID } from "@/pkgs/wallet-connector/types";
 import { swapService } from "@/services/SwapService";
+import { userService } from "@/services/UserService";
 import {
-  MINIMUM_TX_CONFIRMATION,
-  REFECT_CONFIRMATION_BLOCK,
-  getStaticURL,
+  CODE_CONTRACT_BUY_SWAP,
+  PLAN_SWAP,
+  getStaticURL
 } from "@/utils/constants";
-import { errorMsg } from "@/utils/errMsg";
-import { signMsg } from "@/utils/generateMsg";
-import { SwapPackage } from "@/utils/type";
-import { useToken } from "@/web3/hooks/useToken";
-import { CONTRACT_ADDRESS, EToken, ITokenOption, TOKENS } from "@/web3/token";
-import { useFormik } from "formik";
-import abiUsdtToken from "@/web3/abi/usdt.json";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import Web3 from "web3";
-import * as Yup from "yup";
-import FormInput from "./FormInput";
-import { LoadingSpinner } from "./LoadingSpinner";
-import { TopModal } from "./controls/TopModal";
-import { toast } from "react-toastify";
 import {
   convertBalanceDecimalToNumber,
   convertNumberToFormattedString,
   isGreaterOrEqual,
 } from "@/utils/converter";
-import { useAuth } from "@/hooks/useAuth";
+import { errorMsg } from "@/utils/errMsg";
+import { signMsg } from "@/utils/generateMsg";
+import { SwapPackage } from "@/utils/type";
+import abiUsdtToken from "@/web3/abi/usdt.json";
+import { useToken } from "@/web3/hooks/useToken";
+import { CONTRACT_ADDRESS, EToken, ITokenOption, TOKENS } from "@/web3/token";
+import { useFormik } from "formik";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import Web3 from "web3";
+import * as Yup from "yup";
+import FormInput from "./FormInput";
+import { LoadingSpinner } from "./LoadingSpinner";
+import { TopModal } from "./controls/TopModal";
 
 enum STATE {
   CONNECT_WALLET = "CONNECT_WALLET",
@@ -61,13 +62,13 @@ declare const window: any;
 
 export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
   const { t } = useTranslation();
-  const { currentUser } = useAuth();
+  const { currentUser, fetchCurrentUser } = useAuth();
   const [openVerifyTransaction, setOpenVerifyTransaction] = useState(false);
   const [modalState, setModalState] = useState<STATE>(STATE.CONNECT_WALLET);
   const [currentPlan, setCurrentPlan] = useState<SwapPackage>();
   const [token, setToken] = useState<ITokenOption>(TokenOptions[0]);
+  const [connectSuccess, setConnectSuccess] = useState(false);
   const [isUserBuyPlan, setIsUserBuyPlan] = useState(false);
-  const [currentToken, setCurrentToken] = useState<EToken>(EToken.USDT);
   const [swapPackage, setSwapPackage] = useState<SwapPackage[]>([
     {
       _id: "basic",
@@ -95,18 +96,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
     openModalConnectWallet,
     setOpenModalConnectWallet,
   } = useWalletContext();
-  const {
-    getBalance,
-    getDecimals,
-    checkAllowance,
-    approve,
-    purchase,
-    getReferrer,
-    totalSupplyNotConnectWallet,
-    decimalNotConnectWallet,
-    checkIsReferrerValid,
-    transferUsdt,
-  } = useToken();
+  const { getDecimals, checkAllowance, approve, buySwapPackage } = useToken();
 
   const {
     hook,
@@ -122,14 +112,21 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
     setModalState(STATE.CONNECT_WALLET);
     if (account) {
       await disconnectWallet(connectorName);
+      setConnectSuccess(false);
     }
   };
+
+  useEffect(() => {
+    if (account && connectSuccess) {
+      handleCheckWalletAddress();
+    }
+  }, [account, connectSuccess]);
 
   const connectWalletHandler = async (connectorName: E_CONNECTOR_NAMES) => {
     try {
       await connectWallet(connectorName, walletNetwork);
       setConnectorName(connectorName);
-      handleCheckWalletAddress();
+      setConnectSuccess(true);
     } catch (e) {
       console.log(e);
     }
@@ -210,25 +207,33 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
   const handleCheckWalletAddress = async () => {
     if (!account || !networkSeleted) return;
 
-    if (!currentUser?.walletAddress) {
-      const signature = await signMessage(
-        signMsg.confirmWalletAddress(account as string),
-        account as string
-      );
-      // const res = await swapService.confirmWalletAddress({
-      //   walletAddress: account,
-      //   signature,
-      // });
-      const res = {
-        success: true,
-      };
-      if (res.success) {
-        onToast(t("swapPage.confirmWalletAddressSuccess"), "success");
-        checkPurchasePlanStatus();
+    if (!currentUser.walletAddress) {
+      try {
+        const signature = await signMessage(
+          signMsg.confirmWalletAddress(account as string),
+          account as string
+        );
+        const res = await userService.linkWalletAddress({
+          walletAddress: account,
+          signature,
+        });
+        if (res.success) {
+          onToast(t("swapPage.confirmWalletAddressSuccess"), "success");
+          fetchCurrentUser();
+          checkPurchasePlanStatus();
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } else if (currentUser?.walletAddress !== account) {
+    } else if (
+      String(currentUser.walletAddress).toLowerCase() !==
+      String(account).toLowerCase()
+    ) {
       onToast(t("swapPage.walletAddressNotMatch"), "error");
-    } else if (currentUser?.walletAddress === account) {
+    } else if (
+      String(currentUser.walletAddress).toLowerCase() ===
+      String(account).toLowerCase()
+    ) {
       checkPurchasePlanStatus();
     }
   };
@@ -243,26 +248,25 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
     }
   };
 
-  const handleBuyPlan = async (price: number) => {
+  const handleBuyPlan = async (currentPlan: SwapPackage) => {
+    const toastId = toast.info(
+      `${t("swapPage.purchasingAndWaitConfirmation")}`,
+      {
+        position: "top-right",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
     try {
       if (!networkSeleted || !account) {
         throw new Error("account or networkSeleted is null");
       }
       setLoading(true);
-
-      const toastId = toast.info(
-        `${t("swapPage.purchasingAndWaitConfirmation")}`,
-        {
-          position: "top-right",
-          autoClose: false,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      );
 
       const checkApprove = await checkAllowanceAndApprove();
       if (!checkApprove) {
@@ -270,21 +274,17 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
         return;
       }
 
-      const check = await transferUsdt(
-        currentToken,
-        String(currentPlan?.price ?? 0),
-        {
-          blocksToWait: MINIMUM_TX_CONFIRMATION,
-          interval: REFECT_CONFIRMATION_BLOCK,
-        }
+      const check = await buySwapPackage(
+        currentPlan.price === PLAN_SWAP.BASIC
+          ? CODE_CONTRACT_BUY_SWAP.BASIC
+          : CODE_CONTRACT_BUY_SWAP.PREMIUM
       );
 
       if (check) {
         const res = await swapService.buySwapPackage({
-          swapPackageId: currentPlan?._id ?? "",
+          swapPackageId: currentPlan._id,
           txHash: check.transactionHash,
         });
-
         if (res.success) {
           onToast(t(`swapPage.buySuccessful`), "success");
           setOpenModalConnectWallet(false);
@@ -295,8 +295,8 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
       }
       toast.dismiss(toastId);
     } catch (error) {
+      toast.dismiss(toastId);
       console.log(error);
-
       await onToast(t(`errorMsg.${errorMsg()}`), "error");
     } finally {
       setLoading(false);
@@ -332,11 +332,6 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
           throw new Error("account or networkSeleted is null");
         }
         setLoading(true);
-
-        const signature = await signMessage(
-          signMsg.confirmBuyPlan(currentPlan?.price ?? 0, account),
-          account as string
-        );
 
         const res = await swapService.buySwapPackage({
           swapPackageId: currentPlan?._id ?? "",
@@ -476,7 +471,11 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
                     className={`box-shadow border cursor-pointer rounded-2xl flex flex-col  ${
                       currentPlan?._id === item._id ? " !border-[#2B2B87]" : ""
                     }`}
-                    onClick={() => setCurrentPlan(item)}
+                    onClick={() => {
+                      if (!loading) {
+                        setCurrentPlan(item);
+                      }
+                    }}
                   >
                     <div className="pt-3 px-3">
                       <div
@@ -590,7 +589,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
                     transtionFormik.handleSubmit();
                   } else {
                     if (currentPlan) {
-                      handleBuyPlan(currentPlan.price);
+                      handleBuyPlan(currentPlan);
                     }
                   }
                 }}

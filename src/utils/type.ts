@@ -23,3 +23,10 @@ export type SwapPackage = {
   maxSwapAmount: number;
   swapUnit: string;
 };
+
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  walletAddress: string;
+}

@@ -41,11 +41,6 @@ const enum TAB {
   TRANSACTION = "transaction",
 }
 
-const enum PACKAGE {
-  USDT_30 = "30",
-  USDT_50 = "50",
-}
-
 declare const window: any;
 
 export default function SwapPage() {
@@ -57,7 +52,7 @@ export default function SwapPage() {
   const [previewFollowTelegram, setPreviewFollowTelegram] = useState<any>([]);
   const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [currentTab, setCurrentTab] = useState(TAB.VERIFY);
+  const [currentTab, setCurrentTab] = useState(TAB.TRANSACTION);
   const [tokenVerify, setTokenVerify] = useState<string>();
   const { onAliUpload } = useAliUpload();
   const { setOpenModalConnectWallet, connectorName } = useWalletContext();
@@ -97,16 +92,12 @@ export default function SwapPage() {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const signature = await signMessage(
-          signMsg.confirmWalletAddress(account as string),
-          account as string
-        );
+      
         await handleVerify({
           accountAddress: values.accountAddress,
           email: values.email,
           password: values.password,
           imagesUpload,
-          signature,
         });
         setLoading(false);
       } catch (error) {}
@@ -154,13 +145,11 @@ export default function SwapPage() {
     email,
     password,
     imagesUpload,
-    signature,
   }: {
     accountAddress: string;
     email: string;
     password: string;
     imagesUpload: any;
-    signature: string;
   }) => {
     try {
       const images = await handleUploadImage(imagesUpload);
@@ -169,7 +158,6 @@ export default function SwapPage() {
         password,
         walletAddress: accountAddress,
         images,
-        signature,
       });
 
       if (res.success && res.data.token) {
@@ -183,19 +171,6 @@ export default function SwapPage() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const signMessage = async (
-    message: string,
-    fromAddress: string
-  ): Promise<string> => {
-    const web3 = new Web3(provider as any);
-
-    if (typeof window.web3Connector !== "undefined") {
-      web3.setProvider(window.web3Connector);
-    }
-
-    return web3.eth.personal.sign(message, fromAddress, "");
   };
 
   const transtionFormik = useFormik({
@@ -587,12 +562,12 @@ export default function SwapPage() {
                             {t("swapPage.addressVPC")}:&nbsp;
                           </p>
                           <span>
-                            {process.env.NEXT_PUBLIC_VINACHAIN_ADDRESS}
+                            {process.env.NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS}
                             <button
                               className="ml-2"
                               onClick={() => {
                                 navigator.clipboard.writeText(
-                                  process.env.NEXT_PUBLIC_VINACHAIN_ADDRESS ||
+                                  process.env.NEXT_PUBLIC_VINACHAIN_RECIPIENT_ADDRESS ||
                                     ""
                                 );
                                 onToast(t("copied"), "success");
