@@ -19,11 +19,9 @@ const PERCENT_BALANCE = [
 ];
 
 const PERCENT_PROFIT = [
-  { label: "8%", value: 8 },
-  { label: "9%", value: 9 },
-  { label: "10%", value: 10 },
-  { label: "12%", value: 12 },
-  { label: "15%", value: 15 },
+  { label: "12 months", value: 12 },
+  { label: "24 months", value: 24 },
+  { label: "36 months", value: 36 },
 ];
 export default function StakingPage() {
   const [stakingToken, setStakingToken] = useState(STAKING_TOKEN.VPC);
@@ -41,13 +39,13 @@ export default function StakingPage() {
             {t("stakingPage.title")}
           </h1>
           <span className="text-[16px] font-normal text-[#2B2B87] dark:text-[#DA6C1D]">
-          {t("stakingPage.enjoyBenefitsVPC")}
+            {t("stakingPage.enjoyBenefitsVPC")}
           </span>
           <Link
             href={"/coming-soon"}
             className="text-[16px] flex items-center gap-2 font-semibold text-[#1B9BD2] dark:text-[#6BD3FF] hover:text-[#1B9BD2] dark:hover:text-[#6BD3FF]"
           >
-             {t("stakingPage.get")} VPC
+            {t("stakingPage.get")} VPC
             <ArrowRightIcon width={16} height={12} />
           </Link>
         </div>
@@ -55,16 +53,16 @@ export default function StakingPage() {
       <div className="flex justify-center w-full  px-4 py-10 lg:px-0  lg:pb-32  ">
         <div className="w-[768px] max-w-full mx-auto flex flex-col gap-5  boxShadow p-6 rounded-xl bg-white dark:bg-[#111111]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="flex flex-col gap-4 h-full 0">
-              <div className="flex items-center justify-between">
+            <div className="flex flex-col justify-between  h-full 0">
+              <div className="flex items-center justify-between mb-4">
                 <span className="text-[20px] font-semibold text-[#2B2B87] dark:text-[#FF964A] uppercase">
                   {" "}
                   {t("stakingPage.addVpc")}
                 </span>
               </div>
-              <div className="h-[68px] flex items-center gap-2 py-2 px-4 !border !border-[#D2D2ED] bg-[#FAFBFF] dark:bg-[#2C2A28] dark:!border-[#685C51] rounded-2xl">
+              <div className="h-[68px] lg:h-full flex items-center gap-2 py-2 px-4 !border !border-[#D2D2ED] bg-[#FAFBFF] dark:bg-[#2C2A28] dark:!border-[#685C51] rounded-2xl">
                 <div>
-                  <div className="w-10 h-10 rounded-full">
+                  <div className="w-10 h-10 lg:w-20 lg:h-20 rounded-full">
                     <img
                       src={`${getStaticURL()}/assets/images/logo_vpc.svg`}
                       alt="logo-vpc"
@@ -78,13 +76,13 @@ export default function StakingPage() {
                     type="number"
                     placeholder="0.0"
                   />
-                  <span className="text-[16px] font-normal text-[#333333] dark:text-[#FF964A] ">
+                  <span className="text-[16px] font-normal text-[#2B2B87] dark:text-[#FF964A] ">
                     ~ 0 USD
                   </span>
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                {PERCENT_BALANCE.map((item, index) => {
+                {/* {PERCENT_BALANCE.map((item, index) => {
                   return (
                     <div
                       className={`flex-1 p-2 flex items-center justify-center text-[16px] font-semibold rounded-full cursor-pointer  ${
@@ -98,7 +96,7 @@ export default function StakingPage() {
                       {item.label}
                     </div>
                   );
-                })}
+                })} */}
               </div>
             </div>
             {/* ///// */}
@@ -113,15 +111,15 @@ export default function StakingPage() {
                 <div className="flex items-center gap-4 ">
                   <div className="w-6 h-6 rounded-full">
                     <img
-                      src={`${getStaticURL()}/assets/images/clock.svg`}
+                      src={`${getStaticURL()}/assets/images/money-bag.svg`}
                       alt="logo-vpc"
                       className="w-full h-full"
                     />
                   </div>
-                  <span>52</span>
+                  <span>30%</span>
                 </div>
                 <span className="text-[#2B2B87] dark:text-[#FF964A] font-semibold">
-                  {t("stakingPage.week")}
+                  {t("stakingPage.profit")}
                 </span>
               </div>
               <div className="flex items-center gap-1">
@@ -166,7 +164,7 @@ export default function StakingPage() {
                   VPC {t("stakingPage.poolApr")}
                 </span>
                 <span className="text-[16px] font-normal text-[#1A1A1A] dark:text-[#DA6C1D]">
-                  {t("stakingPage.upTo")} 15%
+                  {t("stakingPage.upTo")} 150%
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 px-1 border-b border-dashed !border-b-[#666666] dark:!border-b-[#C4C4C4]">
@@ -174,7 +172,7 @@ export default function StakingPage() {
                   VPC {t("stakingPage.toBeLocked")}
                 </span>
                 <span className=" text-[16px] font-normal text-[#1A1A1A] dark:text-[#DA6C1D]">
-                  100.0 USDT
+                  100,000 VPC
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 px-1 border-b border-dashed !border-b-[#666666] dark:!border-b-[#C4C4C4]">
