@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ReactNode, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 // import { LogoScan } from "../LogoScan";
 import { EarthIcon } from "@/assets/icons/EarthIcon";
 import { MoonNightIcon } from "@/assets/icons/MoonNightIcon";
@@ -14,7 +20,11 @@ import {
 import { useTranslation } from "react-i18next";
 import { IOptions, StakingDropdown } from "../StakingDropdown";
 
-export const HeaderStaking = () => {
+export const HeaderStaking = ({
+  menuBarRef,
+}: {
+  menuBarRef: MutableRefObject<any>;
+}) => {
   const { theme, changeTheme } = useTheme();
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>();
@@ -36,7 +46,7 @@ export const HeaderStaking = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="py-4 border-b border-b-[#DCDCDC] dark:border-b-dark800 bg-white dark:bg-gray900 shadow-2xl">
         <nav
           className="w-full relative z-40 px-4 container-xxl flex flex-wrap items-center"
@@ -77,7 +87,7 @@ export const HeaderStaking = () => {
                           onMouseEnter={() => setIsHovered({ [index]: true })}
                           onMouseLeave={() => setIsHovered(undefined)}
                         >
-                          <ul className="flex flex-col">
+                          <div className="flex flex-col">
                             {item.itemList.map((item, index) => (
                               <Link
                                 href={item.link}
@@ -87,7 +97,7 @@ export const HeaderStaking = () => {
                                 {item.label}
                               </Link>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                       )}
                     </li>
@@ -115,14 +125,14 @@ export const HeaderStaking = () => {
                 />
               </button>
               <button
-                className={`flex justify-between items-center gap-2 w-full h-9 text-base text-blue950 dark:text-gray100 font-bold rounded-full bg-white900 dark:bg-[#2c2a28] lg:pr-2 whitespace-nowrap`}
+                className={`hidden lg:flex justify-between items-center gap-2 w-full h-9 text-base text-blue950 dark:text-gray100 font-bold rounded-full bg-white900 dark:bg-[#2c2a28] lg:pr-2 whitespace-nowrap`}
               >
                 <img
                   src={`${getStaticURL()}/assets/images/icons/logo_${theme}.svg`}
                   alt="metamask"
                   className="h-8"
                 />
-                <span className="hidden lg:inline">Vinachain</span>
+                Vinachain
               </button>
               <button
                 className={`flex justify-between items-center gap-2 w-full h-9 text-base text-blue950 dark:text-gray100 font-bold rounded-full bg-white900 dark:bg-[#2c2a28] lg:pr-2 whitespace-nowrap`}
@@ -132,7 +142,7 @@ export const HeaderStaking = () => {
                   alt="metamask"
                   className="h-8"
                 />
-                <span className="hidden lg:inline">0x...87C&</span>
+                0x...87C&
               </button>
               {/* <StakingDropdown
                 valueSelected={valueSmartChain}
@@ -171,6 +181,42 @@ export const HeaderStaking = () => {
           </div>
         </div>
       )}
-    </div>
+      <div
+        id="menu-bar"
+        ref={menuBarRef}
+        className="fixed bottom-0 left-0 right-0 lg:hidden bg-white dark:bg-black z-50 px-4"
+      >
+        <div className="flex justify-between items-center">
+          {StakingHeader.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => setSelected(index)}
+              onMouseEnter={() => setIsHovered({ [index]: true })}
+              onMouseLeave={() => setIsHovered(undefined)}
+              className={`flex-1 link-header relative ${
+                selected === index &&
+                "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
+              } cursor-pointer`}
+            >
+              <Link
+                key={index}
+                href={item.link}
+                className="flex flex-col items-center gap-1"
+              >
+                {t(`staking.header.${item.label}`)}
+                <img
+                  src={`${getStaticURL()}/assets/images/icons/${
+                    item.iconName
+                  }_${theme}.svg`}
+                  alt="metamask"
+                  className="h-6"
+                  color="red"
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
