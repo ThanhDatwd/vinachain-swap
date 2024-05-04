@@ -63,6 +63,11 @@ export class SwapService {
 
     return data;
   }
+
+  public async getSwapPackageBalanceRemaining(): Promise<any | null> {
+    const { data } = await restConnector.get("/swap-tokens/swap-remaining");
+    return data;
+  }
 }
 
 export const swapService = new SwapService({ restConnector });

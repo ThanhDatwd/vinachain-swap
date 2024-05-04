@@ -3,7 +3,6 @@ import abiUsdtToken from "@/web3/abi/usdt.json";
 import { convertNumberToFormattedString } from "./converter";
 import { EToken, ITokenOption, TOKENS } from "@/web3/token";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
-import { IOptions } from "@/components/StakingDropdown";
 
 export const getStaticURL = () => process.env.NEXT_PUBLIC_STATIC_URL;
 
@@ -786,83 +785,6 @@ export const VinaScanHeader = [...VinaScanData];
 export const VinaScanFooter = VinaScanData.filter(
   (item, index) => item.footerItemKey !== "more"
 );
-
-export const StakingHeader = [
-  {
-    label: "swap",
-    link: "/swap",
-    itemList: [
-      // {
-      //   label: "swap1",
-      //   link: "/coming-soon"
-      // },
-      // {
-      //   label: "swap2",
-      //   link: "/coming-soon"
-      // }
-    ]
-  },
-  {
-    label: "staking",
-    link: "/staking",
-    itemList: [
-      {
-        label: "VPC",
-        link: "/staking"
-      },
-      {
-        label: "VPL",
-        link: "/staking"
-      }
-    ]
-  },
-  {
-    label: "refferal",
-    link: "/coming-soon",
-    itemList: [
-      // {
-      //   label: "refferal1",
-      //   link: "/coming-soon"
-      // },
-      // {
-      //   label: "refferal2",
-      //   link: "/coming-soon"
-      // }
-    ]
-  },
-];
-
-export const SMART_CHAIN_OPTIONS: IOptions[] = [
-  {
-    imgName: "logo",
-    value: "vinachain",
-    label: "Vinachain",
-  }
-];
-
-export const WALLET_INFO_OPTIONS: IOptions[] = [
-  {
-    imgName: "wallet",
-    value: "0x...87C&",
-    label: "0x...87C&",
-  },
-  {
-    imgName: "wallet",
-    value: "0x...87C&",
-    label: "0x...87C&",
-  },
-];
-
-export const CURRENCY_OPTIONS = [
-  {
-    label: "VPC",
-    value: "vpc",
-  },
-  {
-    label: "VPL",
-    value: "vpl",
-  },
-];
 
 export const Developers = [
   {
