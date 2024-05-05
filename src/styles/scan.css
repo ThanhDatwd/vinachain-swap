@@ -185,7 +185,7 @@ p {
 }
 
 .bg-gradient-theme {
-  @apply bg-gradient-to-b from-[#fafbfd] to-gray-50 dark:from-gray800 dark:to-gray900
+  @apply bg-[#fafbfd] dark:bg-[#202022]
 }
 
 .box-shadow {
@@ -244,4 +244,28 @@ p {
 
 .link-header {
   @apply px-4 py-2 text-base text-grey300 dark:text-orange300 hover:text-grey300 hover:bg-white900 dark:hover:bg-[#2c2a28] rounded-2xl
+}
+
+.ref-block {
+  @apply flex-1 lg:w-[239px] py-2 px-4 rounded-2xl bg-purple200 dark:bg-purple800 border border-purple300 dark:border-purple700
+}
+
+.boxShadowStaking {
+  box-shadow: 0px 2px 10px 0px #172E4826;
+}
+
+.border-paginate {
+  @apply flex text-xs justify-between items-center bg-theme border-2 border-purple300 dark:border-purple700 text-gray550 dark:text-gray500 rounded-[4px] whitespace-nowrap
+}
+
+.row-between {
+  @apply flex-1 flex justify-between items-center py-2 px-4
+}
+
+.text-header-table {
+  @apply text-purple550 dark:text-orange100 font-bold text-base
+}
+
+.text-content-table {
+  @apply text-black800 dark:text-purple400 text-base
 }

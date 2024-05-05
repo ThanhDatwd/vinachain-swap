@@ -8,7 +8,7 @@ export const CellText: FC<{
   className?: string;
   icon?: ReactNode;
   leftIcon?: ReactNode;
-}> = ({ text, containerStyle, className, icon, leftIcon }) => {
+}> = ({ text, containerStyle, className = "text-base text-black800 dark:text-purple400", icon, leftIcon }) => {
   return (
     <div className={containerStyle}>
       {leftIcon && leftIcon}

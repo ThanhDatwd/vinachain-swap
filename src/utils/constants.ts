@@ -814,9 +814,9 @@ export const LIST_MENU = [
   },
   {
     label: "refferal",
-    linkDefault: "/coming-soon",
+    linkDefault: "/refferal",
     iconName: "drafts",
-    links: [],
+    links: ["/refferal"],
     itemList: [],
   },
 ];

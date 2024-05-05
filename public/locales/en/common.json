@@ -1475,5 +1475,23 @@
     "unlockOn": "Unlock on",
     "lock": "Lock",
     "get": "Get"
+  },
+  "refferal": {
+    "title": "VPC REFERRAL",
+    "content": "Enjoy the benefits of monthly VPC yield, revenue share,...",
+    "yourReferralCode": "Your referral code",
+    "enteredReferralCode": "Entered referral code",
+    "walletAddress": "Wallet Address",
+    "vpcStakingAmount": "VPC Staking Amount",
+    "vpcStakingValue": "VPC Reward",
+    "time": "Time",
+    "email": "Email",
+    "profits": "Profits",
+    "show": "Show",
+    "records": "Records",
+    "first": "First",
+    "last": "Last",
+    "page": "Page",
+    "noDataTable": "No data available in table"
   }
 }

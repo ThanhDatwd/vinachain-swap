@@ -30,29 +30,29 @@ export const Pagination = ({
   return (
     <div className="flex gap-1 items-center">
       <button
-        className={`flex items-center gap-1 ${prevPageStyle}`}
+        className={`flex items-center ${prevPageStyle}`}
         onClick={onClickPrevPage}
       >
-        <span className="bg-white_98  dark:bg-gray800  h-[28.8px] flex items-center justify-center px-2 border border-[#bdc5d133] text-gray550 dark:text-gray500 rounded-md text-[12.56px]">
+        <span className="h-6 flex items-center justify-center px-2 text-gray550 dark:text-gray500 rounded-[4px] text-xs">
           {t("first")}
         </span>
-        <div className=" bg-white_98  dark:bg-gray800  h-[28.8px] flex items-center justify-center px-1  border border-[#bdc5d133] text-gray550 dark:text-gray500 rounded-md">
+        <div className="w-6 h-6 border-paginate">
           <ChevronLeftIcon
             color={theme === THEME.DARK ? "#BBBBBB" : "#6C757D"}
           />
         </div>
       </button>
-      <span className=" bg-white_98  dark:bg-gray800 h-[28.8px] flex items-center justify-center px-2 border border-[#bdc5d133] text-gray550 dark:text-gray500 rounded-md text-[12.56px] whitespace-nowrap">{`Page ${2}/1000`}</span>
+      <span className="border-paginate h-6 w-fit px-1">{`Page ${2}/1000`}</span>
       <button
-        className={`flex items-center gap-1 ${nextPageStyle}`}
+        className={`flex items-center ${nextPageStyle}`}
         onClick={onClickNextPage}
       >
-        <div className=" bg-white_98  dark:bg-gray800  h-[28.8px] flex items-center justify-center px-1  border border-[#bdc5d133] text-gray550 dark:text-gray500 rounded-md">
+        <div className="w-6 h-6 border-paginate">
           <ChevronRightIcon
             color={theme === THEME.DARK ? "#BBBBBB" : "#6C757D"}
           />
         </div>
-        <span className=" bg-white_98  dark:bg-gray800 h-[28.8px] flex items-center justify-center px-2 border border-[#bdc5d133] text-gray550 dark:text-gray500 rounded-md text-[12.56px]">
+        <span className=" h-6 flex items-center justify-center px-2 text-gray550 dark:text-gray500 rounded-md text-xs">
           {t("last")}
         </span>
       </button>

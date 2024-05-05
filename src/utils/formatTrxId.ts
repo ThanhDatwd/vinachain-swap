@@ -5,6 +5,17 @@ export const formatTrxId = (trxId: string) => {
   )}`;
 };
 
+export const formatTrxIdSwap = (trxId: string) => {
+  return `${trxId?.slice(0, 5)}...${trxId?.slice(
+    trxId.length - 4,
+    trxId.length,
+  )}`;
+};
+
+export const formatVPC = (vpc: string) => {
+  return `${vpc?.slice(0, 5)}`;
+};
+
 export const formatTrxHash = (trxId: string) => {
   return `${trxId.slice(0, 12)}...`;
 };

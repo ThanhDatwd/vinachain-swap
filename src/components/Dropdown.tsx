@@ -56,7 +56,7 @@ export const Dropdown: FC<Props> = ({
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className={`inline-flex w-full text-[12.5px] justify-between gap-x-1.5 bg-theme border border-[#bdc5d133] text-theme rounded-md px-3 py-1  whitespace-nowrap ${className}`}
+          className={`inline-flex w-full text-xs justify-between items-center gap-x-1.5 bg-theme border-2 border-purple300 dark:border-purple700 text-secondary dark:text-secondaryDark rounded-[4px] px-2 py-1  whitespace-nowrap ${className}`}
         >
           {(defaultVal?.label as string) || chosen || title || "Options"}
 
@@ -89,7 +89,7 @@ export const Dropdown: FC<Props> = ({
                 setIsOpen(false);
                 setDefaultVal({ value: "", label: "" });
               }}
-              className={`relative px-4 text-[12.5px] flex  items-center justify-center gap-1 text-left  cursor-pointer text-dark900 hover:text-[#F5F5F5] hover:bg-[#589beb] rounded-md ${classNameMoreItem}`}
+              className={`relative px-4 text-xs flex  items-center justify-center gap-1 text-left  cursor-pointer text-dark900 hover:text-[#F5F5F5] hover:bg-[#589beb] rounded-md ${classNameMoreItem}`}
               onMouseMove={() =>
                 options.value === defaultValue?.value && setIsHover(true)
               }
