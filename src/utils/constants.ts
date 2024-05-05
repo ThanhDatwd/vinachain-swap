@@ -788,80 +788,45 @@ export const VinaScanFooter = VinaScanData.filter(
   (item, index) => item.footerItemKey !== "more"
 );
 
-export const StakingHeader = [
+export const LIST_MENU = [
   {
     label: "swap",
-    link: "/swap",
+    linkDefault: "/swap",
     iconName: "currency_exchange",
-    itemList: [
-      // {
-      //   label: "swap1",
-      //   link: "/coming-soon"
-      // },
-      // {
-      //   label: "swap2",
-      //   link: "/coming-soon"
-      // }
-    ]
+    links: ["/swap"],
+    itemList: [],
   },
   {
     label: "staking",
-    link: "/staking",
+    linkDefault: "/vpc-staking",
     iconName: "price_check",
+    links: ["/vpl-staking", "/vpc-staking", "/staking"],
     itemList: [
       {
         label: "VPC",
-        link: "/staking"
+        link: "/vpc-staking",
       },
       {
         label: "VPL",
-        link: "/staking"
-      }
-    ]
+        link: "/vpl-staking",
+      },
+    ],
   },
   {
     label: "refferal",
-    link: "/coming-soon",
+    linkDefault: "/coming-soon",
     iconName: "drafts",
-    itemList: [
-      // {
-      //   label: "refferal1",
-      //   link: "/coming-soon"
-      // },
-      // {
-      //   label: "refferal2",
-      //   link: "/coming-soon"
-      // }
-    ]
+    links: [],
+    itemList: [],
   },
 ];
-
-export const CHILDREN_MENU = [
-  {
-    links:['/vpl-staking','/vpc-staking','/staking'],
-    itemList: [
-      {
-        label: "VPC",
-        link: "/staking"
-      },
-      {
-        label: "VPL",
-        link: "/staking"
-      }
-    ]
-  }
-]
-
-
-
-
 
 export const SMART_CHAIN_OPTIONS: IOptions[] = [
   {
     imgName: "logo",
     value: "vinachain",
     label: "Vinachain",
-  }
+  },
 ];
 
 export const WALLET_INFO_OPTIONS: IOptions[] = [

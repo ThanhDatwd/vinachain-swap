@@ -1456,10 +1456,12 @@
     }
   },
   "stakingPage": {
-    "title": "VPC Staking",
+    "titleVPC": "VPC Staking",
+    "titleVPL": "VPL Staking",
     "enjoyBenefitsVPC": "Enjoy the benefits of monthly VPC yield, revenue share,...",
+    "enjoyBenefitsVPL": "Enjoy the benefits of monthly VPL yield, revenue share,...",
     "lockOverview": "LOCK OVERVIEW",
-    "addVpc": "Add Vpc",
+    "add": "Add",
     "choosePackage": "CHOOSE PACKAGE",
     "week": "Weeks",
     "profit":"Profit",

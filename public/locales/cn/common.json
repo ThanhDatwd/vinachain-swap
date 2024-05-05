@@ -1417,10 +1417,12 @@
     "item": "项目"
   },
   "stakingPage": {
-    "title": "VPC质押",
+    "titleVPC": "VPC质押",
+    "titleVPL": "VPL质押",
     "enjoyBenefitsVPC": "享受每月VPC产量、收入份额等的好处...",
+    "enjoyBenefitsVPL": "享受每月VPL产量、收入份额等的好处...",
     "lockOverview": "锁定概览",
-    "addVpc": "添加 Vpc",
+    "add": "添加",
     "choosePackage": "选择套餐",
     "week": "周",
     "profit": "利润",

@@ -277,3 +277,10 @@ input:-webkit-autofill {
 .boxShadow {
   box-shadow: 0 0.5rem 1.2rem rgb(189 197 209 / 20%);
 }
+
+.gradient-staking-light {
+  background-image: linear-gradient(to top right, #7F00FF, #E100FF) !important; 
+}
+.gradient-staking-dark {
+  background-image: linear-gradient(to top right, #654EA3, #EAAFC8) !important; 
+}
