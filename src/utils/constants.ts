@@ -808,7 +808,7 @@ export const LIST_MENU = [
       },
       {
         label: "VPL",
-        link: "/vpl-staking",
+        link: "/coming-soon",
       },
     ],
   },

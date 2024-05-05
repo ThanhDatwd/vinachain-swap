@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  MutableRefObject,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 // import { LogoScan } from "../LogoScan";
 import { EarthIcon } from "@/assets/icons/EarthIcon";
 import { MoonNightIcon } from "@/assets/icons/MoonNightIcon";
@@ -94,25 +88,25 @@ export const HeaderStaking = ({
                         {t(`staking.header.${item.label}`)}
                       </Link>
                       <span className="absolute -bottom-2 left-0 h-2 w-full" />
-                      {isHovered?.[index] && item.itemList.length > 0 && (
-                        <div
-                          className={`absolute left-0 top-12 w-[240px] py-1 rounded-2xl bg-white dark:bg-gray900 border border-b-[#DCDCDC] dark:border-b-dark800`}
-                          onMouseEnter={() => setIsHovered({ [index]: true })}
-                          onMouseLeave={() => setIsHovered(undefined)}
-                        >
-                          <ul className="flex flex-col">
-                            {item.itemList.map((item, index) => (
-                              <Link
-                                href={item.link}
-                                key={index}
-                                className="link-header px-4 py-3 rounded-none"
-                              >
-                                {item.label}
-                              </Link>
-                            ))}
-                          </ul>
+                      <div
+                        className={`${
+                          item.itemList.length <= 0
+                            ? "hidden"
+                            : "hidden group-hover:block"
+                        }  absolute left-0 top-12 w-[240px]  after:absolute after:w-full after:h-6 after:-top-6`}
+                      >
+                        <div className="flex flex-col relative overflow-hidden h-full w-full py-1 rounded-2xl bg-white dark:bg-gray900 border border-b-[#DCDCDC] dark:border-b-dark800 ">
+                          {item.itemList.map((item, index) => (
+                            <Link
+                              href={item.link}
+                              key={index}
+                              className="link-header px-4 py-3 rounded-none "
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
                         </div>
-                      )}
+                      </div>
                     </li>
                   ))}
                 </>
@@ -212,10 +206,10 @@ export const HeaderStaking = ({
           {LIST_MENU.map((item, index) => (
             <div
               key={index}
-              className={`flex-1 link-header relative ${
-                item.links.includes(pathname) &&
-                "text-blue900 dark:text-orange400 font-bold hover:text-blue900"
-              } cursor-pointer`}
+              className={`flex-1 py-2 relative ${
+                item.links.includes(pathname) ?
+                "hover:text-blue900 opacity-100":"opacity-50"
+              } cursor-pointer text-blue900 dark:text-orange400 font-bold  `}
             >
               <Link
                 key={index}
@@ -229,7 +223,7 @@ export const HeaderStaking = ({
                   }_${theme}.svg`}
                   alt="metamask"
                   className="h-6"
-                  color="red"
+                  // color="red"
                 />
               </Link>
             </div>
