@@ -9,6 +9,9 @@ import { Web3Provider } from "@/providers/Web3Provider";
 import { Metadata } from "next";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/index.css";
+import { useEffect } from "react";
+import { changeLanguage } from "i18next";
+import { LanguageProvider } from "@/providers/LanguageProvider";
 
 export const metadata: Metadata = {
   title: "Vinachain",
@@ -34,8 +37,10 @@ export default function RootLayout({
             <WalletProvider>
               <AuthProvider>
                 <AddressDetailProvider>
-                  <ToastContainer theme="dark" />
-                  <main>{children}</main>
+                  <LanguageProvider>
+                    <ToastContainer theme="dark" />
+                    <main>{children}</main>
+                  </LanguageProvider>
                 </AddressDetailProvider>
               </AuthProvider>
             </WalletProvider>

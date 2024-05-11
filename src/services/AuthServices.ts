@@ -40,7 +40,7 @@ export class AuthService {
     password: string;
   }): Promise<any | null> {
     const { data } = await restConnector.post("/auth/login", {
-      username: values.username,
+      usernameOrEmail: values.username,
       password: values.password,
     });
 

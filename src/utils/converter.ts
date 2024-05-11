@@ -1,10 +1,11 @@
 import BigNumber from "bignumber.js";
 import { DateTime } from "luxon";
 import { BIG_TEN } from "./bigNumber";
+import { VPC_EXCHANGE_RATE_USD } from "./constants";
 
 export const convertBalanceDecimalToNumber = (
   balance: string,
-  decimals: number,
+  decimals: number
 ): string => {
   return new BigNumber(balance).div(BIG_TEN.pow(decimals)).toString();
 };
@@ -12,7 +13,7 @@ export const convertBalanceDecimalToNumber = (
 // a function convert from number to decimal number
 export const convertNumberToBalanceDecimal = (
   number: string,
-  decimals: number,
+  decimals: number
 ): string => {
   BigNumber.config({ EXPONENTIAL_AT: 100 });
   const data = new BigNumber(number).times(BIG_TEN.pow(decimals)).toString();
@@ -40,8 +41,17 @@ export const cloneDeep = (obj: any) => {
 export const fixedNumber = (number: string, fixed: number) => {
   const numberResult = new BigNumber(number).toFixed(
     fixed,
-    BigNumber.ROUND_FLOOR,
+    BigNumber.ROUND_FLOOR
   );
   // remove trailing zeros
   return numberResult.replace(/\.?0+$/, "");
+};
+
+export function removeTrailingZeros(number: string | number) {
+  const numberString = Number(number).toString();
+  return numberString.replace(/(\.[0-9]*[1-9])0+$/, "$1");
+}
+
+export const calcValueToUSD = (amount: number): string => {
+  return convertNumberToFormattedString(String(amount * VPC_EXCHANGE_RATE_USD));
 };

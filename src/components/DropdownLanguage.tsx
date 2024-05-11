@@ -1,15 +1,19 @@
 "use client";
 
+import { CheckIcon } from "@/assets/icons/CheckIcon";
+import { DropdownCheckIcon } from "@/assets/icons/DropdownCheckIcon";
+import { EarthIcon } from "@/assets/icons/EarthIcon";
 import { LanguageIcon } from "@/assets/icons/LanguageIcon";
+import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
+import { OptionsLanguage, THEME } from "@/utils/constants";
 import { isDarkTheme } from "@/utils/theme";
+import i18next, { changeLanguage } from "i18next";
 import { FC, useEffect, useRef, useState } from "react";
 
 interface Props {
   title?: string;
   defaultValue?: { label: string; value: string };
-  options: { label: string; value: string }[];
-  onChange: (value: string) => void;
   className?: string;
   overlayBgStyle?: string;
   modalLanguageStyle?: string;
@@ -19,14 +23,14 @@ interface Props {
 export const DropdownLanguage: FC<Props> = ({
   defaultValue,
   title,
-  options,
-  onChange,
   className,
   overlayBgStyle = "bg-opacity-0",
   modalLanguageStyle,
   languageItemStyle = "py-2",
 }) => {
   const ref = useRef(null);
+  const [currentLang, setLangCurrentLang] = useState(i18next.language);
+  const { currentUser } = useAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { theme } = useTheme();
   const [chosen, setChosen] = useState<{
@@ -49,57 +53,39 @@ export const DropdownLanguage: FC<Props> = ({
   });
 
   return (
-    <div
-      className="flex justify-center md:inline-block text-left w-full md:relative group"
-      ref={ref}
-    >
-      <div className="">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          type="button"
-          className={`inline-flex w-full  gap-x-1.5 rounded-lg px-1.5 py-1 text-sm whitespace-nowrap ${className}`}
-        >
-          <div className="group-hover:rotate-12 transition-all duration-300">
-            <LanguageIcon color={isDarkTheme(theme) ? "#ffffff" : "#000000"} />
-          </div>
-          {defaultVal?.label}
-        </button>
+    <button className="relative" ref={ref}>
+      <div onClick={() => setIsOpen(!isOpen)}>
+        <EarthIcon color={theme === THEME.DARK ? "#B5A1DC" : "#6b5695"} />
       </div>
-      {isOpen && (
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className={`fixed inset-0 ${overlayBgStyle} bg-white transition-opacity`}
-        />
-      )}
       <div
-        className={`absolute py-1 shadow-lg top-0 md:top-10 right-0 bg-white dark:bg-[#222327] transition-all duration-300 focus:outline-none ${
-          isOpen
-            ? "translate-x-0 shadow-soft-xl"
-            : "-translate-x-[-100%] md:-translate-x-0 hidden"
-        } ${modalLanguageStyle}`}
+        className={` ${isOpen ? "block" : "hidden"} absolute ${
+          currentUser ? "right-1/2 translate-x-1/2" : "right-0"
+        } top-12 w-[240px]  after:absolute after:w-full  after:h-7 after:-top-7 after:right-0`}
       >
-        {options.map((options, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              if (chosen?.label !== options.label) {
-                onChange(options.value);
-                setChosen(options);
-                setIsOpen(false);
-                setDefaultVal({ value: "", label: "" });
-              }
-            }}
-            className={`block px-4 text-sm ${
-              chosen?.label !== options.label
-                ? "cursor-pointer hover:bg-primary dark:hover:bg-secondaryDark text-dark dark:text-[#FAFAFA]"
-                : "dark:text-[#FAFAFA] bg-primary dark:bg-secondaryDark "
-            } ${languageItemStyle} `}
-          >
-            {options.label}
-          </div>
-        ))}
+        <div className=" flex flex-col relative overflow-hidden h-full w-full py-1 rounded-2xl bg-white dark:bg-gray900 border border-b-[#DCDCDC] dark:border-b-dark800 ">
+          {OptionsLanguage.map((lang, index) => {
+            return (
+              <div
+                key={index}
+                className={`px-4 py-3 rounded-none flex items-center justify-between text-[#1D0F3A] dark:text-[#E8DEFD]  ${
+                  currentLang === lang.value
+                    ? "bg-[#F9F6FF] dark:bg-[#3C3548] "
+                    : "hover:bg-[#F3EEFF] hover:dark:bg-[#2D2738]"
+                }`}
+                onClick={() => {
+                  changeLanguage(lang.value);
+                  setLangCurrentLang(lang.value);
+                  localStorage.setItem("locale", lang.value);
+                }}
+              >
+                <span>{lang.label}</span>
+                {currentLang === lang.value && <DropdownCheckIcon />}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </button>
   );
 };
 

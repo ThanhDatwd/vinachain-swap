@@ -17,7 +17,7 @@ export const GaugeIcon = ({ className }: { className?: string }) => {
         <g mask="url(#mask0_4_209)">
           <path
             fillRule="evenodd"
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M105 37.5C106.105 37.5 107 38.3954 107 39.5V129.11C116 130.105 123 137.735 123 147C123 156.941 114.941 165 105 165C95.0589 165 87 156.941 87 147C87 137.735 94.0001 130.105 103 129.11V39.5C103 38.3954 103.895 37.5 105 37.5ZM105 162C113.284 162 120 155.284 120 147C120 138.716 113.284 132 105 132C96.7157 132 90 138.716 90 147C90 155.284 96.7157 162 105 162Z"
             stroke="currentColor"
             strokeWidth="8"
@@ -25,7 +25,7 @@ export const GaugeIcon = ({ className }: { className?: string }) => {
           />
           <path
             fillRule="evenodd"
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M193 105C193 153.601 153.601 193 105 193C56.3989 193 17 153.601 17 105C17 56.3989 56.3989 17 105 17C153.601 17 193 56.3989 193 105ZM189 105C189 151.392 151.392 189 105 189C58.6081 189 21 151.392 21 105C21 58.6081 58.6081 21 105 21C151.392 21 189 58.6081 189 105Z"
             stroke="currentColor"
             strokeWidth="8"

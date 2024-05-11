@@ -218,6 +218,44 @@ export const useToken = () => {
   };
 
 
+  const transferToken = async (
+    token: EToken,
+    amount: string,
+    address: string,
+    opts?: { blocksToWait: number; interval: number },
+  ): Promise<TransferUsdt> => {
+    const networkSeleted = getCurrentChainId();
+    if (!account) throw new Error("Please connect wallet");
+
+    let contract = getContract(
+      provider,
+      abiUsdtToken,
+      CONTRACT_ADDRESS[token][networkSeleted],
+    );
+
+    const { gasLimit, gasPrice } = await getGasPriceAndGasLimit(provider);
+
+    const decimals = await contract.methods.decimals().call();
+    const value = convertNumberToBalanceDecimal(amount, decimals);
+
+    const result: TransferUsdt = await contract.methods
+      .transfer(address, value)
+      .send({ from: account, gasLimit, gasPrice });
+
+    if (!opts) {
+      return result;
+    }
+    const web3 = new Web3(provider as any);
+    await waitTransaction(web3, result.transactionHash, {
+      blocksToWait: opts.blocksToWait,
+      interval: opts.interval,
+    });
+
+    return result;
+  };
+
+
+
   const decimalNotConnectWallet = async (): Promise<number> => {
     const web3 = initialWeb3();
     const methodHash = web3.eth.abi.encodeFunctionSignature("decimals()");
@@ -251,6 +289,7 @@ export const useToken = () => {
     decimalNotConnectWallet,
     checkIsReferrerValid,
     transferUsdt,
-    buySwapPackage
+    buySwapPackage,
+    transferToken
   };
 };

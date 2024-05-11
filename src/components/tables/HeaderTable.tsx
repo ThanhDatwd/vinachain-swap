@@ -8,7 +8,7 @@ export const HeaderTable: FC<{
   icon?: ReactNode;
   textStyle?: string;
   containerStyle?: string;
-}> = ({ text, leftIcon, icon, textStyle = "text-base text-purple550 dark:text-orange200", containerStyle }) => {
+}> = ({ text, leftIcon, icon, textStyle = "text-base text-purple550 dark:text-purple600", containerStyle }) => {
   return (
     <div className={`flex items-center gap-1 ${containerStyle}`}>
       {leftIcon && leftIcon}

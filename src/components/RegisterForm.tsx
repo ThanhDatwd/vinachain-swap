@@ -25,6 +25,10 @@ export const RegisterForm = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string()
+      .matches(
+        /^[^\d][a-zA-Z0-9_]*$/,
+        t("vinaScan.register.usernameMustContainOnlyLettersAndNumbers")
+      )
       .required(t("vinaScan.register.usernameRequiredError"))
       .min(5, "Username must be at least 5 characters")
       .max(30, "Username must be at most 30 characters"),
@@ -47,6 +51,13 @@ export const RegisterForm = () => {
       .matches(
         /[^a-zA-Z0-9.]/,
         "Password must contain at least one special character"
+      )
+      .test(
+        "no-whitespace",
+        t("vinaScan.register.passwordMustNotContainWhitespace"),
+        (value) => {
+          return !/\s/.test(value);
+        }
       ),
     confirmPassword: Yup.string()
       .required(t("Please enter confirm password"))
@@ -73,10 +84,10 @@ export const RegisterForm = () => {
     onSubmit: async (values) => {
       try {
         const data = {
-          username: values.username,
-          email: values.email,
-          password: values.password,
-          refCode: values.refCode,
+          username: values.username.trim(),
+          email: values.email.trim(),
+          password: values.password.trim(),
+          refCode: values.refCode.trim(),
         };
         const res = await authService.register(data);
         if (res && res.success) {
@@ -239,7 +250,10 @@ export const RegisterForm = () => {
                   onChange={handleFieldChange}
                   className="border cursor-pointer border-[#6c757d]"
                 />
-                <label className="text-gray550 cursor-pointer" htmlFor="agreement">
+                <label
+                  className="text-gray550 cursor-pointer"
+                  htmlFor="agreement"
+                >
                   <span>{t("vinaScan.register.agreeToThe")}</span>&nbsp;
                   <Link
                     href={"/terms"}
@@ -261,7 +275,10 @@ export const RegisterForm = () => {
                 id="checkbox_receive"
                 className="relative cursor-pointer top-1 border border-[#6c757d]"
               />
-              <label className=" cursor-pointer text-gray550 lg:w-[400px" htmlFor="checkbox_receive">
+              <label
+                className=" cursor-pointer text-gray550 lg:w-[400px"
+                htmlFor="checkbox_receive"
+              >
                 <span>
                   {t("vinaScan.register.receiveVinascan")}{" "}
                   <Link href={""} className="text-[#0784c3] dark:text-scanDark">

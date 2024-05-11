@@ -9,10 +9,8 @@ export class SwapService {
   }
 
   public async verifyInfo(values: {
-    email: string;
     password: string;
     walletAddress: string;
-    images: string[];
   }): Promise<any | null> {
     const { data } = await restConnector.post("/swap-tokens/info", {
       ...values,
@@ -43,8 +41,8 @@ export class SwapService {
   }
 
   public async verifyTransactionHash(values: {
-    token: string;
     txHash: string;
+    token: string;
   }): Promise<any | null> {
     const { data } = await restConnector.post("/swap-tokens/verify-txhash", {
       ...values,
@@ -66,6 +64,16 @@ export class SwapService {
 
   public async getSwapPackageBalanceRemaining(): Promise<any | null> {
     const { data } = await restConnector.get("/swap-tokens/swap-remaining");
+    return data;
+  }
+
+  public async getListSwapHistory(pagination: {
+    limit: number;
+    offset: number;
+  }): Promise<any | null> {
+    const { data } = await restConnector.get("/swap-tokens/history", {
+      params: { ...pagination },
+    });
     return data;
   }
 }

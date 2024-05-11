@@ -1,11 +1,15 @@
 "use client";
 
 import { onToast } from "@/hooks/useToast";
+import { useConnectorByName } from "@/pkgs/wallet-connector/connector";
+import { useWalletContext } from "@/pkgs/wallet-connector/context";
 import { authService } from "@/services/AuthServices";
+import { stakeService } from "@/services/StakeService";
+import { swapService } from "@/services/SwapService";
 import { errorMsg } from "@/utils/errMsg";
-import { User } from "@/utils/type";
+import { SwapPackage, User } from "@/utils/type";
 import { AxiosError } from "axios";
-import { t } from "i18next";
+import { changeLanguage, t } from "i18next";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -13,6 +17,7 @@ import {
   FC,
   PropsWithChildren,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
 
@@ -25,6 +30,13 @@ interface AuthCtxProps {
   fetchCurrentUser: () => Promise<any>;
   getCurrentUser: () => Promise<any>;
   setCurrentUser: Dispatch<SetStateAction<any | null>>;
+  swapPackageBalanceSwapped: number;
+  fetchSwapPackageBalanceRemaining: () => Promise<any>;
+  availableAmount: number;
+  fetchAvailableAmount: () => Promise<any>;
+  swapPackageBought: SwapPackage | null;
+  isUserBuyPlan: boolean;
+  fetchPurchasePlanStatus: (account: string) => Promise<any>;
 }
 
 const defaultCtxVal: AuthCtxProps = {
@@ -37,14 +49,35 @@ const defaultCtxVal: AuthCtxProps = {
   getCurrentUser: () => new Promise((resolve, reject) => reject(null)),
   setLoading: (value: SetStateAction<boolean>): void => {},
   setCurrentUser: (value: SetStateAction<any | null>): void => {},
+  swapPackageBalanceSwapped: 0,
+  fetchSwapPackageBalanceRemaining: () =>
+    new Promise((resolve, reject) => reject(null)),
+  availableAmount: 0,
+  isUserBuyPlan: false,
+  fetchAvailableAmount: () => new Promise((resolve, reject) => reject(null)),
+  swapPackageBought: null,
+  fetchPurchasePlanStatus: () => new Promise((resolve, reject) => reject(null)),
 };
 
 export const AuthCtx = createContext<AuthCtxProps>(defaultCtxVal);
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
+  const { connectorName } = useWalletContext();
+  const {
+    hook,
+    connector: { provider },
+  } = useConnectorByName(connectorName);
+  const account = hook.useAccount();
+
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [swapPackageBought, setSwapPackageBought] =
+    useState<SwapPackage | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [swapPackageBalanceSwapped, setSwapPackageBalanceSwapped] =
+    useState<number>(0);
+  const [availableAmount, setAvailableAmount] = useState<number>(0);
+  const [isUserBuyPlan, setIsUserBuyPlan] = useState<boolean>(false);
 
   const login = async (values: {
     username: string;
@@ -60,6 +93,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
         const userFetch = await authService.fetchCurrentUser();
 
         if (userFetch) {
+          fetchAvailableAmount();
           setCurrentUser(userFetch);
         }
 
@@ -85,11 +119,57 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     setLoading(true);
     authService.loadAccessToken();
     const currentUser = await authService.fetchCurrentUser();
+    fetchAvailableAmount();
+    fetchSwapPackageBalanceRemaining();
+    // fetchPurchasePlanStatus()
     setCurrentUser(currentUser);
 
     setLoading(false);
 
     return currentUser;
+  };
+
+  const fetchSwapPackageBalanceRemaining = async () => {
+    try {
+      const res = await swapService.getSwapPackageBalanceRemaining();
+      if (res.success) {
+        if (res.data.totalAmountSwapped) {
+          setSwapPackageBalanceSwapped(res.data.totalAmountSwapped);
+        } else {
+          setSwapPackageBalanceSwapped(0);
+        }
+        if (res.data.swapPackage) {
+          setSwapPackageBought(res.data.swapPackage);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchAvailableAmount = async () => {
+    try {
+      const res = await stakeService.getStakeAvailable();
+      if (res.success && res.data > 0) {
+        setAvailableAmount(res.data);
+      } else {
+        setAvailableAmount(0);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchPurchasePlanStatus = async (account: string) => {
+    try {
+      const res = await swapService.getBuySwapPackageStatus(account);
+
+      if (res.success) {
+        setIsUserBuyPlan(res.data.isPurchased);
+        return res.data.isPurchased;
+      } else {
+        onToast(t(`errorMsg.${errorMsg(res.code)}`), "error");
+      }
+    } catch (error) {}
   };
 
   return (
@@ -102,6 +182,13 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
         logout,
         fetchCurrentUser,
         setCurrentUser,
+        swapPackageBalanceSwapped,
+        fetchSwapPackageBalanceRemaining,
+        availableAmount,
+        swapPackageBought,
+        fetchAvailableAmount,
+        isUserBuyPlan,
+        fetchPurchasePlanStatus,
         getCurrentUser: async () => {
           if (!currentUser) {
             return fetchCurrentUser();

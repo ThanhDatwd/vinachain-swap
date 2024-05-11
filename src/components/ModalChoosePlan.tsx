@@ -5,6 +5,7 @@ import { CheckSmallIcon } from "@/assets/icons/CheckSmallIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { onToast } from "@/hooks/useToast";
 import {
+  addBnbNetwork,
   connectWallet,
   disconnectWallet,
   useConnectorByName,
@@ -16,7 +17,7 @@ import { userService } from "@/services/UserService";
 import {
   CODE_CONTRACT_BUY_SWAP,
   PLAN_SWAP,
-  getStaticURL
+  getStaticURL,
 } from "@/utils/constants";
 import {
   convertBalanceDecimalToNumber,
@@ -62,7 +63,12 @@ declare const window: any;
 
 export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
   const { t } = useTranslation();
-  const { currentUser, fetchCurrentUser } = useAuth();
+  const {
+    currentUser,
+    fetchCurrentUser,
+    fetchAvailableAmount,
+    fetchSwapPackageBalanceRemaining,
+  } = useAuth();
   const [openVerifyTransaction, setOpenVerifyTransaction] = useState(false);
   const [modalState, setModalState] = useState<STATE>(STATE.CONNECT_WALLET);
   const [currentPlan, setCurrentPlan] = useState<SwapPackage>();
@@ -127,9 +133,20 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
       await connectWallet(connectorName, walletNetwork);
       setConnectorName(connectorName);
       setConnectSuccess(true);
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      //error when not install switch network
+      if (e.code === 4902) {
+        await handleAddNetwork(connectorName);
+        return;
+      } else {
+        onToast(t("errorMsg.errorConnectWallet"), "error");
+      }
     }
+  };
+
+  const handleAddNetwork = async (connectorName: E_CONNECTOR_NAMES) => {
+    onToast(t("addNewNetwork"), "info", 5000);
+    await addBnbNetwork();
   };
 
   const checkAllowanceOfToken = async (ammout: string): Promise<boolean> => {
@@ -221,6 +238,8 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
           onToast(t("swapPage.confirmWalletAddressSuccess"), "success");
           fetchCurrentUser();
           checkPurchasePlanStatus();
+        } else {
+          onToast(t(`errorMsg.${errorMsg(res.code)}`) || res.message, "error");
         }
       } catch (error) {
         console.log(error);
@@ -275,7 +294,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
       }
 
       const check = await buySwapPackage(
-        currentPlan.price === PLAN_SWAP.BASIC
+        currentPlan.price == PLAN_SWAP.BASIC
           ? CODE_CONTRACT_BUY_SWAP.BASIC
           : CODE_CONTRACT_BUY_SWAP.PREMIUM
       );
@@ -289,6 +308,8 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
           onToast(t(`swapPage.buySuccessful`), "success");
           setOpenModalConnectWallet(false);
           onVerifySuccess();
+          await fetchAvailableAmount();
+          await fetchSwapPackageBalanceRemaining();
         } else {
           onToast(t(`errorMsg.${errorMsg(res.code)}`), "error");
         }
@@ -296,7 +317,6 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
       toast.dismiss(toastId);
     } catch (error) {
       toast.dismiss(toastId);
-      console.log(error);
       await onToast(t(`errorMsg.${errorMsg()}`), "error");
     } finally {
       setLoading(false);
@@ -385,6 +405,12 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
 
   return (
     <>
+      <div
+        id="wallet-connect"
+        onClick={() => {
+          setOpenModalConnectWallet(true);
+        }}
+      />
       <TopModal
         isOpen={openModalConnectWallet}
         titleModal={t(
@@ -562,7 +588,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
                     setOpenVerifyTransaction(true);
                   }
                 }}
-                disabled={!!transtionFormik.errors.transaction || loading}
+                disabled={loading}
                 className="w-full mt-6 bg-theme-hover mx-auto border capitalize flex items-center justify-center gap-2 rounded-lg  px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {t("swapPage.verifyYourTransactionHash")}
@@ -580,7 +606,7 @@ export const ModalChoosePlan = ({ onVerifySuccess }: IProps) => {
                   }}
                   className="w-full bg-theme-hover mx-auto border capitalize flex items-center justify-center gap-2 rounded-lg  px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t("cancel")}
+                  {t("backToBuy")}
                 </button>
               )}
               <button

@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "pm2:start": "pm2 start yarn --name vinachain-client-3000 -- start -- --port=300",
-    "pm2:restart": "pm2 restart vinachain-client-300",
+    "pm2:start": "pm2 start yarn --name vinachain-swap-3002 -- start -- --port=3002",
+    "pm2:restart": "pm2 restart vinachain-swap-3002",
     "lint": "prettier --check ./src/**/*.{js,jsx,ts,tsx} && eslint ./src/**/*.{js,jsx,ts,tsx}",
     "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx} --write ./src/**/**/*.{js,jsx,ts,tsx}",
     "lint-fix": "eslint --fix"

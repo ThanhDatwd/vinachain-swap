@@ -5,8 +5,10 @@ import { MetaMask } from "@web3-react/metamask";
 import { EMPTY, Empty } from "@web3-react/empty";
 import Web3 from "web3";
 export const SAVE_CURRENT_NETWORK_KEY = "currentNetwork";
+import { useWeb3React } from "@web3-react/core";
 
 const projectId = process.env.NEXT_PUBLIC_WAllETCONNECT_PROJECT_ID as string;
+declare const window: any;
 
 export const [walletConnectV2EthTestNet, walletHooksEthTestNet] =
   initializeConnector<WalletConnectV2>(
@@ -19,7 +21,7 @@ export const [walletConnectV2EthTestNet, walletHooksEthTestNet] =
           chains: [E_NETWORK_ID.ETH_TESTNET],
           optionalChains: [E_NETWORK_ID.ETH_TESTNET],
         },
-      }),
+      })
   );
 export const [walletConnectV2EthMainNet, walletHooksEthMainNet] =
   initializeConnector<WalletConnectV2>(
@@ -32,7 +34,7 @@ export const [walletConnectV2EthMainNet, walletHooksEthMainNet] =
           chains: [E_NETWORK_ID.ETH_MAINNET],
           optionalChains: [E_NETWORK_ID.ETH_MAINNET],
         },
-      }),
+      })
   );
 export const [walletConnectV2BscTestNet, walletHooksBscTestNet] =
   initializeConnector<WalletConnectV2>(
@@ -45,7 +47,7 @@ export const [walletConnectV2BscTestNet, walletHooksBscTestNet] =
           chains: [E_NETWORK_ID.BSC_TESTNET],
           optionalChains: [E_NETWORK_ID.BSC_TESTNET],
         },
-      }),
+      })
   );
 export const [walletConnectV2BscMainNet, walletHooksBscMainNet] =
   initializeConnector<WalletConnectV2>(
@@ -58,21 +60,21 @@ export const [walletConnectV2BscMainNet, walletHooksBscMainNet] =
           chains: [E_NETWORK_ID.BSC_MAINNET],
           optionalChains: [E_NETWORK_ID.BSC_MAINNET],
         },
-      }),
+      })
   );
 
 export const [injected, injectedHooks] = initializeConnector<MetaMask>(
   (actions) =>
     new MetaMask({
       actions,
-    }),
+    })
 );
 
 export const [empty, hooks] = initializeConnector<Empty>(() => EMPTY);
 
 export const getConnectorByName = (
   connectorName: E_CONNECTOR_NAMES,
-  chainId: E_NETWORK_ID,
+  chainId: E_NETWORK_ID
 ): {
   connector: WalletConnectV2 | MetaMask | Empty;
   hook: Web3ReactHooks;
@@ -111,14 +113,10 @@ export const getConnectorByName = (
         hook: hooks,
       };
   }
-  return {
-    connector: empty,
-    hook: hooks,
-  };
 };
 
 export const useConnectorByName = (
-  connectorName: E_CONNECTOR_NAMES,
+  connectorName: E_CONNECTOR_NAMES
 ): {
   connector: WalletConnectV2 | MetaMask | Empty;
   hook: Web3ReactHooks;
@@ -150,7 +148,7 @@ export const getGasPriceAndGasLimit = async (provider: any) => {
 
 export const connectWallet = async (
   connectorName: E_CONNECTOR_NAMES,
-  chainId: E_NETWORK_ID,
+  chainId: E_NETWORK_ID
 ) => {
   localStorage.setItem(SAVE_CURRENT_NETWORK_KEY, chainId.toString());
   const { connector } = getConnectorByName(connectorName, chainId);
@@ -161,7 +159,7 @@ export const connectWallet = async (
 export const getCurrentChainId = () => {
   if (typeof window === "undefined") return E_NETWORK_ID.ETH_TESTNET;
   let currentChainId: string | null | E_NETWORK_ID = localStorage.getItem(
-    SAVE_CURRENT_NETWORK_KEY,
+    SAVE_CURRENT_NETWORK_KEY
   );
   if (!currentChainId) {
     currentChainId = E_NETWORK_ID.ETH_TESTNET;
@@ -171,10 +169,10 @@ export const getCurrentChainId = () => {
 
 export const disconnectWallet = async (
   connectorName: E_CONNECTOR_NAMES,
-  ignoreReload = false,
+  ignoreReload = false
 ) => {
   let currentChainId: string | null | E_NETWORK_ID = localStorage.getItem(
-    SAVE_CURRENT_NETWORK_KEY,
+    SAVE_CURRENT_NETWORK_KEY
   );
   if (!currentChainId) {
     currentChainId = E_NETWORK_ID.ETH_TESTNET;
@@ -208,3 +206,38 @@ export const connectors: [WalletConnectV2 | MetaMask, Web3ReactHooks][] = [
   [walletConnectV2BscTestNet, walletHooksBscTestNet],
   [injected, injectedHooks],
 ];
+
+export const addBnbNetwork = async (): Promise<boolean> => {
+  const isDevelopment = process.env.NEXT_PUBLIC_DEV === "development";
+
+  const chainId = isDevelopment
+    ? E_NETWORK_ID.BSC_TESTNET
+    : E_NETWORK_ID.BSC_MAINNET;
+  const networkName = isDevelopment
+    ? "BNB Smart Chain Testnet  "
+    : "BNB Smart Chain Mainnet";
+  const rpcUrl = isDevelopment
+    ? "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
+    : "https://bsc-dataseed1.binance.org/";
+
+  if ((window as any).ethereum && (window as any).ethereum.isMetaMask) {
+    await (window as any).ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [
+        {
+          chainId: `0x${chainId.toString(16)}`,
+          chainName: networkName,
+          nativeCurrency: {
+            name: isDevelopment ? "tBNB" : "BNB",
+            symbol: isDevelopment ? "tBNB" : "BNB",
+            decimals: 18,
+          },
+          rpcUrls: [rpcUrl],
+        },
+      ],
+    });
+    return true;
+  } else {
+    return false;
+  }
+};

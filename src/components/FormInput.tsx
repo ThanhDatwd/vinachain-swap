@@ -29,7 +29,7 @@ const FormInput: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       </div>
       <div className={`relative flex justify-between items-center  border  overflow-hidden rounded-lg ${error?"inputError dark:inputError dark:!border-[#de443780]":rest.value!==""?"inputSuccess dark:inputSuccess dark:!border-[#00c9a780] ":"border-[#e9ecef] "}   `}>
         <input
-          className={`${className} flex-1 outline-none border-none p-3 placeholder:text-gray550 bg-[transparent] `}
+          className={`${className} flex-1 outline-none border-none p-3 placeholder:text-gray550 bg-transparent `}
           {...rest}
         />
         {endIcon}

@@ -29,4 +29,6 @@ export type User = {
   username: string;
   email: string;
   walletAddress: string;
+  code: string;
+  referrerCode?: string;
 }

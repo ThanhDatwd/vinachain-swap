@@ -1,32 +1,59 @@
 "use client";
 
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import Image from "next/image";
 import { getStaticURL } from "@/utils/constants";
 import { useTranslation } from "react-i18next";
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
+import { ScanLayout } from "@/components/layouts/ScanLayout";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { ChevronLeftIcon } from "@/assets/icons/ChevronLeftIcon";
+import { DateTime } from "luxon";
 
 export default function ComingSoon() {
   const { t } = useTranslation();
+  const { getCurrentUser } = useAuth();
+  const router = useRouter();
+  const currentDate = DateTime.now();
+
+// Add days to the current date
+const newDate = currentDate.plus({ days: 120 });
+
+// Format the new date to only include the month
+const formattedMonth = newDate.toFormat("MMMM", {  locale: t("dateFormat") });
+
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  const fetchUser = async () => {
+    const user = await getCurrentUser();
+  };
+
   return (
-    <DefaultLayout
-      headerStyle="bg-gradient-to-r from-[#E6E3F7] dark:from-[#323544] dark:from-5.26% from-16.64% to-[#DFEAEE] dark:to-[#354546] dark:to-82.23% to-86.77%"
-      containerStyle="bg-gradient-to-r from-[#E6E3F7] dark:from-[#323544] dark:from-5.26% from-16.64% to-[#DFEAEE] dark:to-[#354546] dark:to-82.23% to-86.77%"
-      tootlipStyle="bg-gradient-to-r from-[#E6E3F7] dark:from-[#323544] dark:from-5.26% from-16.64% to-[#DFEAEE] dark:to-[#354546] dark:to-82.23% to-86.77%"
-    >
-      <div className="flex flex-col gap-6 pb-[30px] px-4 pt-[20px] md:pt-[140px] md:pl-[120px] text-[#1C1C73] dark:text-[#FAFAFA]">
-        <h2 className="text-2xl md:text-[32px] dark:text-[#FAFAFA]">
+    <ScanLayout containerStyle="bg-[#FAFAFA] dark:bg-primaryDark font-sans-serif relative">
+      <div className="flex flex-col gap-6 pb-[30px] px-4 pt-[20px] md:pt-[80px] md:pl-[120px] text-[#1C1C73] dark:text-[#FAFAFA]">
+        <div
+          className="flex items-center text-[#6B5695] dark:text-[#B5A1DC] -translate-x-[8px] cursor-pointer"
+          onClick={() => router.back()}
+        >
+          <ChevronLeftIcon />
+          <span>{t("back")}</span>
+        </div>
+        <h2 className="text-2xl md:text-[32px] dark:text-[#FAFAFA] mt-10">
           {t("comingSoon.vinachain")}
         </h2>
         <div className="flex flex-col gap-1">
           <p className="text-[32px] md:text-[64px] font-bold mb-1">
-            {t("comingSoon.title")}
+            {t("comingSoon.title")} !
           </p>
           <p className="text-base md:text-[40px] font-light leading-6 md:leading-[60px]">
             {t("comingSoon.experimentContent")}
           </p>
           <p className="text-base md:text-[40px] font-light leading-6 md:leading-[60px]">
-            {t("comingSoon.comeBackContent")}
+            {t("comingSoon.comeBackContent",{month:formattedMonth})}
+            
           </p>
         </div>
         <div className="flex flex-col md:flex-row gap-[52px] md:gap-0">
@@ -60,6 +87,6 @@ export default function ComingSoon() {
           />
         </div>
       </div>
-    </DefaultLayout>
+    </ScanLayout>
   );
 }

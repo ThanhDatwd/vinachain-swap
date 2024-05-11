@@ -14,6 +14,12 @@ export const useAuth = () => {
     setCurrentUser,
     setLoading,
     logout,
+    swapPackageBalanceSwapped,
+    availableAmount,
+    isUserBuyPlan,
+    fetchAvailableAmount,
+    fetchSwapPackageBalanceRemaining,
+    swapPackageBought,
   } = useContext(AuthCtx);
 
   return {
@@ -24,7 +30,13 @@ export const useAuth = () => {
     setLoading,
     fetchCurrentUser,
     getCurrentUser,
-    setCurrentUser
+    setCurrentUser,
+    swapPackageBalanceSwapped,
+    availableAmount,
+    isUserBuyPlan,
+    fetchAvailableAmount,
+    fetchSwapPackageBalanceRemaining,
+    swapPackageBought,
   };
 };
 

@@ -21,7 +21,7 @@ export const TopModal: FC<Props> = ({
   return (
     <>
       <div
-        className="relative z-[99] "
+        className="relative z-[50] "
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"

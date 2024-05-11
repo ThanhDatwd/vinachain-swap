@@ -56,7 +56,7 @@ const Header = ({
                   key={index}
                   title={`vinaChain.header.${item.footerItemKey}`}
                   options={item.footerList}
-                  onChange={(value) => console.log(value)}
+                  onChange={(value) => {}}
                   tooltipStyle={tootlipStyle}
                 />
               ))}
@@ -82,7 +82,7 @@ const Header = ({
               </div>
               <div className="flex items-center  w-[56px]">
                 <div className="max-w-fit">
-                  <DropdownLanguage
+                  {/* <DropdownLanguage
                     defaultValue={{
                       label: `${i18n.language.toUpperCase()}`,
                       value: "language",
@@ -90,7 +90,7 @@ const Header = ({
                     className="px-0  justify-end"
                     options={OptionsLanguage}
                     onChange={(value) => changeLanguage(value)}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ const Header = ({
 
           <div className="flex flex-col gap-1 items-center mt-[120px]">
             <LanguageIcon color={isDarkTheme(theme) ? "#ffffff" : "#000000"} />
-            <DropdownLanguage
+            {/* <DropdownLanguage
               defaultValue={{
                 label: `Language ${i18n.language.toUpperCase()}`,
                 value: "language",
@@ -140,7 +140,7 @@ const Header = ({
               overlayBgStyle="bg-opacity-75"
               modalLanguageStyle="absolute top-0 w-4/5 z-50 h-screen right-0 z-50 bg-white dark:bg-primaryDark"
               languageItemStyle="py-6"
-            />
+            /> */}
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export const AuthenticationLayout = ({
   return (
     <>
       {currentUser ? (
-        children
+        <>{children}</>
       ) : (
         <div className="h-screen flex justify-center items-center w-screen">
           <div className="w-10 h-10">

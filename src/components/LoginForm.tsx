@@ -22,7 +22,23 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const validationSchema = Yup.object({
     username: Yup.string().required(t("vinaScan.login.usernameRequiredError")),
-    password: Yup.string().required(t("vinaScan.login.passwordRequiredError")),
+    password: Yup.string()
+      .required("Please enter Password.")
+      .min(8, "Password must be at least 8 characters long")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(
+        /[^a-zA-Z0-9.]/,
+        "Password must contain at least one special character"
+      )
+      .test(
+        "no-whitespace",
+        t("vinaScan.register.passwordMustNotContainWhitespace"),
+        (value) => {
+          return !/\s/.test(value);
+        }
+      ),
   });
   const formik = useFormik({
     initialValues: {
@@ -33,12 +49,12 @@ export const LoginForm = () => {
     onSubmit: async (values) => {
       try {
         const data = {
-          username: values.username,
-          password: values.password,
+          username: values.username.trim(),
+          password: values.password.trim(),
         };
         const user = await login(data);
         if (user) {
-          router.push("/swap");
+          router.push("/referral");
         }
       } catch (error) {
         //console.log("error", error);
@@ -62,8 +78,8 @@ export const LoginForm = () => {
       <FormInput
         name="username"
         id="username"
-        label={t("vinaScan.register.username")}
-        placeholder={t("vinaScan.register.username")}
+        label={t("vinaScan.register.usernameOrEmail")}
+        placeholder={t("vinaScan.register.usernameOrEmail")}
         onChange={handleFieldChange}
         value={formik.values.username}
         error={
@@ -99,7 +115,11 @@ export const LoginForm = () => {
         }
       />
       <div className="flex gap-1">
-        <input type="checkbox" id="checkbox_remember" className="border cursor-pointer border-[#6c757d]" />
+        <input
+          type="checkbox"
+          id="checkbox_remember"
+          className="border cursor-pointer border-[#6c757d]"
+        />
         <TooltipCustom
           position="bottom"
           content={

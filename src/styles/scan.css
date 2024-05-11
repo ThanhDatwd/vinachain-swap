@@ -24,7 +24,6 @@
   }
 }
 
-
 a {
   text-decoration: none;
   @apply text-[#0784C3] hover:text-[#066A9C];
@@ -174,42 +173,41 @@ p {
 }
 
 .border-address {
-  @apply border !border-[#dee2e6] dark:!border-[#333]
+  @apply border !border-[#dee2e6] dark:!border-[#333];
 }
 
 .link-color {
   @apply text-blue dark:text-scanDark;
 }
 .bg-button-theme {
-  @apply bg-gray300 hover:bg-gray400 dark:bg-gray600 dark:hover:bg-gray500
+  @apply bg-gray300 hover:bg-gray400 dark:bg-gray600 dark:hover:bg-gray500;
 }
 
 .bg-gradient-theme {
-  @apply bg-[#fafbfd] dark:bg-[#202022]
+  @apply bg-[#fafbfd] dark:bg-[#202022];
 }
 
 .box-shadow {
-  @apply shadow-lg dark:shadow-xl  dark:shadow-gray700
+  @apply shadow-lg dark:shadow-xl  dark:shadow-gray700;
 }
 
 .text-theme {
-  @apply !text-gray-950 dark:!text-white
+  @apply !text-gray-950 dark:!text-white;
 }
 .text-cap {
-  font-size: .75rem;
-  letter-spacing: .5px;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   font-weight: 400;
-  @apply text-[#6c757d] dark:text-[#bbb]
+  @apply text-[#6c757d] dark:text-[#bbb];
 }
 
 .text-theme {
-  @apply text-dark900 dark:text-[#FAFAFA]
+  @apply text-dark900 dark:text-[#FAFAFA];
 }
-.border-theme { 
-  @apply border !border-sky-600 dark:!border-scanDark
+.border-theme {
+  @apply border !border-sky-600 dark:!border-scanDark;
 }
-
 
 @keyframes fade-down {
   from {
@@ -223,8 +221,8 @@ p {
 }
 
 .animate-fade-down {
-  -webkit-animation: fade-down .3s both;
-          animation: fade-down .3s both;
+  -webkit-animation: fade-down 0.3s both;
+  animation: fade-down 0.3s both;
 }
 
 @keyframes fade-out {
@@ -238,34 +236,123 @@ p {
 }
 
 .animate-fade-out {
-  -webkit-animation: fade-out .3s both;
-          animation: fade-out .3s both;
+  -webkit-animation: fade-out 0.3s both;
+  animation: fade-out 0.3s both;
 }
 
 .link-header {
-  @apply px-4 py-2 text-base text-grey300 dark:text-orange300 hover:text-grey300 hover:bg-white900 dark:hover:bg-[#2c2a28] rounded-2xl
+  @apply px-4 py-2 text-base text-grey300 dark:text-orange100 hover:text-grey300 hover:bg-white900 dark:hover:bg-[#2c2a28] rounded-2xl;
 }
 
 .ref-block {
-  @apply flex-1 lg:w-[239px] py-2 px-4 rounded-2xl bg-purple200 dark:bg-purple800 border border-purple300 dark:border-purple700
+  @apply flex-1 flex items-center justify-between h-10 px-4 rounded-2xl bg-purple200 dark:bg-purple800 border border-purple300 dark:border-[#685C51];
 }
 
 .boxShadowStaking {
-  box-shadow: 0px 2px 10px 0px #172E4826;
+  @apply shadow-[0px_2px_10px_0px_#172e4826] dark:shadow-[0px_2px_10px_0px_#7b9fc926];
 }
 
 .border-paginate {
-  @apply flex text-xs justify-between items-center bg-theme border-2 border-purple300 dark:border-purple700 text-gray550 dark:text-gray500 rounded-[4px] whitespace-nowrap
+  @apply flex text-xs justify-between items-center bg-theme border-2 border-purple300 dark:border-purple700 text-gray550 dark:text-gray500 rounded-[4px] whitespace-nowrap;
 }
 
 .row-between {
-  @apply flex-1 flex justify-between items-center py-2 px-4
+  @apply flex-1 flex justify-between items-center py-2 px-4 whitespace-nowrap;
 }
 
 .text-header-table {
-  @apply text-purple550 dark:text-orange100 font-bold text-base
+  @apply text-purple550 dark:text-purple600 font-bold text-base;
 }
 
 .text-content-table {
-  @apply text-black800 dark:text-purple400 text-base
+  @apply text-black800 dark:text-purple400 text-base max-w-[190px] truncate;
 }
+
+.swal2-popup {
+  @apply bg-theme;
+}
+
+.wallet-address-modal {
+  @apply left-0 bg-white dark:bg-gray900 boxShadowStaking text-black800 dark:text-purple400 text-base truncate rounded-3xl;
+}
+
+.wallet-address-row {
+  @apply px-4 py-2 w-40;
+}
+
+.wallet-address-border {
+  @apply border-b border-[#DDD4EF] dark:border-[#534A64];
+}
+
+.page-btn {
+  @apply h-6 flex items-center justify-center px-2 text-secondary dark:text-[#FF8911] text-xs;
+}
+
+.exchange-card {
+  @apply flex flex-col bg-white dark:bg-gray900 rounded-2xl boxShadowStaking p-4;
+}
+
+.exchange-bg {
+  @apply bg-purple200 dark:bg-purple800 border border-purple300 dark:border-purple700 rounded-lg;
+}
+
+.exchange-color-heading {
+  @apply text-[#7E4DE0] dark:text-purple500 font-semibold;
+}
+
+.exchange-color-main {
+  @apply text-purple550 dark:text-purple600;
+}
+
+.footer-title {
+  @apply text-base font-semibold mb-1 text-purple550 dark:text-purple600;
+}
+
+.footer-content {
+  @apply text-[#7E4DE0] dark:text-purple550 hover:text-[#3B3BFC] dark:hover:text-[#FF8911] text-base
+}
+
+.exchange-color-second {
+  @apply text-black800 dark:text-purple400 text-base font-normal;
+}
+
+.exchange-balance-block {
+  @apply px-4 py-2 exchange-bg;
+}
+
+.claimed-block {
+  @apply flex items-center justify-between py-[10px] border-dashed !border-b !border-purple550 dark:!border-purple600;
+}
+
+.button-primary-staking {
+  @apply rounded-lg !bg-secondary dark:bg-[#FF8911] text-[#FAFAFA] text-base font-semibold;
+}
+
+.button-transfer {
+  @apply button-primary-staking py-2 mt-2;
+}
+
+.border-profile {
+  @apply !border !border-[#D2C5ED] dark:!border-[#534A64];
+}
+
+.line-profile {
+  @apply my-4 border-profile;
+}
+
+.active-tab-bg {
+  @apply bg-purple200 dark:bg-purple800 rounded-lg;
+}
+
+.user-info-block {
+  @apply flex flex-col gap-1 lg:gap-0 lg:flex-row text-black800 dark:text-purple400 text-base font-semibold truncate;
+}
+
+.user-info-title {
+  @apply flex items-center gap-2 text-base exchange-color-main font-normal min-w-[244px] whitespace-nowrap truncate;
+}
+
+.text-ellipsis {
+  @apply max-w-full truncate
+}
+

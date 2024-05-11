@@ -5,15 +5,19 @@ import { useTheme } from "@/hooks/useTheme";
 import { onToast } from "@/hooks/useToast";
 import { authService } from "@/services/AuthServices";
 import { THEME } from "@/utils/constants";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import "../../../i18n";
+
 
 const VerifyPage = () => {
   const router = useRouter();
   const { theme } = useTheme();
   const isMounted = useRef(false);
+  const { t } = useTranslation();
 
-  const searchParams = useSearchParams();
+
   const handleVerifyEmail = async (token: string) => {
     const response = await authService.verifyEmail({ token });
     if (response && response.success) {
@@ -27,7 +31,7 @@ const VerifyPage = () => {
 
   useEffect(() => {
     if (!isMounted.current) {
-      const token = searchParams.get("token");
+      const token = new URLSearchParams(window.location.search).get("token");
       if (token) {
         handleVerifyEmail(token);
       }
@@ -41,7 +45,7 @@ const VerifyPage = () => {
         <div className="flex flex-col  gap-3 px-3  md:px-6 lg:px-20 ">
           <LogoScan />
           <h2 className="text-[20px] md:text-[28px] dark:text-[#fff] text-gray700 mb-3">
-            Đang xác minh bạn là người. Quá trình này có thể mất vài giây.
+          {t("verification.verifying")}
           </h2>
           <div className="w-12 h-12 dark:text-[#fff] text-gray700">
             <LoadingSpinner
@@ -49,8 +53,7 @@ const VerifyPage = () => {
             />
           </div>
           <h2 className="text-[20px] md:text-[28px] mt-6 dark:text-[#fff] text-gray700">
-            vinachain.io cần đánh giá tính bảo mật kết nối của bạn trước khi
-            tiếp
+          {t("verification.securityCheck")} 
           </h2>
         </div>
       </div>

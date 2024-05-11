@@ -10,6 +10,7 @@ export interface IToken {
 export enum EToken {
   USC = "USC",
   USDT = "USDT",
+  VPL = "VPL",
 }
 
 export type ITokenMap = { [key in EToken]: IToken };
@@ -27,6 +28,12 @@ export const TOKENS: ITokenMap = {
     image: "usdt.svg",
     address: "",
   },
+  VPL: {
+    name: "VPL",
+    value: EToken.VPL,
+    image: "vpl.png",
+    address: "",
+  },
 };
 
 export const CONTRACT_ADDRESS = {
@@ -41,6 +48,12 @@ export const CONTRACT_ADDRESS = {
     [E_NETWORK_ID.ETH_TESTNET]: "0x1f1ef35EFe2BD0AD76600791bC652EC56d96f9ea", // ethereumTestNetId
     [E_NETWORK_ID.BSC_MAINNET]: "0x55d398326f99059ff775485246999027b3197955", // binanceMainNetId
     [E_NETWORK_ID.BSC_TESTNET]: "0x70Ac99C98d0123111a4A4A32d44A9a03667Caed1", // binanceTestNetId
+  },
+  [EToken.VPL]: {
+    [E_NETWORK_ID.ETH_MAINNET]: "0xd34BccbB0AE0866d16EAc857a6e5dF9dBD9f97ce", // ethereumMainNetId
+    [E_NETWORK_ID.ETH_TESTNET]: "0xd34BccbB0AE0866d16EAc857a6e5dF9dBD9f97ce", // ethereumTestNetId
+    [E_NETWORK_ID.BSC_MAINNET]: "0x31dD51eB09A21ad6d95035D0164827acF362E308", // binanceMainNetId
+    [E_NETWORK_ID.BSC_TESTNET]: "0xd34BccbB0AE0866d16EAc857a6e5dF9dBD9f97ce", // binanceTestNetId
   },
   VINACHAIN: {
     0: "",

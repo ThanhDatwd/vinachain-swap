@@ -1,6 +1,8 @@
 "use client";
 
 import { DropdownCheckIcon } from "@/assets/icons/DropdownCheckIcon";
+import { useTheme } from "@/hooks/useTheme";
+import { THEME } from "@/utils/constants";
 import { CSSProperties, FC, useEffect, useRef, useState } from "react";
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
   containerStyle?: CSSProperties;
   classNameMore?: string;
   classNameMoreItem?: string;
+  iconColor?: string;
 }
 
 export const Dropdown: FC<Props> = ({
@@ -25,6 +28,7 @@ export const Dropdown: FC<Props> = ({
   containerStyle,
   classNameMore= "right-0",
   classNameMoreItem,
+  iconColor,
 }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -34,6 +38,7 @@ export const Dropdown: FC<Props> = ({
     value: string;
   }>();
   const [isHover, setIsHover] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (defaultValue) {
@@ -63,7 +68,7 @@ export const Dropdown: FC<Props> = ({
           <svg
             className="-mr-1 h-5 w-5"
             viewBox="0 0 20 20"
-            fill="currentColor"
+            fill={iconColor || "currentColor"}
             aria-hidden="true"
           >
             <path
@@ -77,7 +82,7 @@ export const Dropdown: FC<Props> = ({
       <div
         className={`absolute ${isOpen ? "" : "hidden"} ${
           reverse ? "bottom-[120%] w-full" : "w-80"
-        }  z-20 mt-2 origin-top-right rounded-md focus:outline-none border  border-[#bdc5d133] px-1 shadow-inner bg-[#e9ecef] ${classNameMore}`}
+        }  z-20 mt-2 origin-top-right rounded-md focus:outline-none bg-theme border-2 border-purple300 dark:border-purple700 shadow-inner bg-white dark:bg-gray900 ${classNameMore}`}
       >
         <div className="py-1">
           {options?.map((options, i) => (
@@ -89,7 +94,7 @@ export const Dropdown: FC<Props> = ({
                 setIsOpen(false);
                 setDefaultVal({ value: "", label: "" });
               }}
-              className={`relative px-4 text-xs flex  items-center justify-center gap-1 text-left  cursor-pointer text-dark900 hover:text-[#F5F5F5] hover:bg-[#589beb] rounded-md ${classNameMoreItem}`}
+              className={`relative px-4 py-1 text-xs flex  items-center justify-center gap-1 text-left  cursor-pointer text-purple550 dark:text-purple600 hover:bg-purple200 dark:hover:bg-purple800 rounded-[4px] ${classNameMoreItem}`}
               onMouseMove={() =>
                 options.value === defaultValue?.value && setIsHover(true)
               }
@@ -102,7 +107,7 @@ export const Dropdown: FC<Props> = ({
                   <DropdownCheckIcon
                     width={16}
                     height={16}
-                    color={isHover ? "#FAFAFA" : "#212529"}
+                    color={theme === THEME.DARK ? "#B5A1DC" : "#6B5695"}
                   />
                 </div>
               )}

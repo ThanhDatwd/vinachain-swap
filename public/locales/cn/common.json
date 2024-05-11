@@ -155,9 +155,9 @@
   "purchasingAndWaitConfirmation": "购买中... 请不要离开或重新加载页面。",
   "comingSoon": {
     "vinachain": "Vinachain",
-    "title": "即将推出!",
+    "title": "即将推出",
     "experimentContent": "我们正在努力为您带来新的实验。",
-    "comeBackContent": "请在一月初回来。",
+    "comeBackContent": "请回到开头 {{month}}。",
     "getNotifyContent": "当网站完成时获取通知。",
     "subscribeBtn": "订阅",
     "placeholder": "输入您的电子邮件地址"
@@ -263,6 +263,7 @@
       }
     },
     "footer": {
+      "poweredBy": "由Vinachain提供支持",
       "useVina": {
         "title": "使用Vina",
         "findWallet": "查找钱包",
@@ -328,6 +329,21 @@
         "termOfUse": "使用条款",
         "cookiePolicy": "Cookie政策",
         "contact": "联系"
+      },
+      "aboutUs": {
+        "title": "关于我们",
+        "privacyPolicy": "隐私政策",
+        "termOfUse": "使用条款"
+      },
+      "support": {
+        "title": "支持",
+        "supportCenter": "支持中心",
+        "stakingGuide": "质押指南",
+        "referralGuide": "推荐指南",
+        "payment": "付款"
+      },
+      "followUs": {
+        "title": "关注我们"
       }
     }
   },
@@ -543,6 +559,7 @@
       "signInHere": "在这里登录",
       "usernamePlaceholder": "例如：johndoe",
       "username": "用户名",
+      "usernameOrEmail": "用户名或电子邮件",
       "refCode": "推荐码",
       "refCodePlaceholder": "推荐码",
       "emailAddress": "邮箱地址",
@@ -1111,7 +1128,20 @@
     "buyNow": "立即购买",
     "verifyYourTransactionHash": "验证您的交易哈希",
     "purchasingAndWaitConfirmation": "购买并等待确认。 请勿关闭或重新加载页面。",
-    "buySuccessful": "购买成功"
+    "buySuccessful": "购买成功",
+    "forgotPassword": "忘记密码了吗？",
+    "vpcRemaining": "套餐中剩余的VPL",
+    "confirmWalletAddressSuccess": "确认钱包地址成功",
+    "walletAddressNotMatch": "钱包地址不匹配。请尝试使用正确的钱包连接",
+    "confirmPassword": "确认密码",
+    "swapVPL": "交换VPL",
+    "scanQr": "扫描QR",
+    "backToSwap": "返回交换",
+    "yourPackageRemainingIsOver": "您的套餐余额已用完",
+    "availableBalance": "可用余额",
+    "availableBalanceIsOver": "可用余额已用完",
+    "max": "最大限度",
+    "swapNow": "立即交换"
   },
   "settings": {
     "title": "网站设置",
@@ -1307,7 +1337,9 @@
       "startsWith0x": "账户地址必须以 '0x' 开头。"
     },
     "amount": {
-      "required": "金额是必填的。"
+      "required": "金额是必填的。",
+      "min": "金额必须大于或等于{{value}}。",
+      "max": "金额必须小于或等于{{value}}。"
     },
     "email": {
       "required": "电子邮件是必需的。",
@@ -1370,7 +1402,27 @@
     "notTransferringEnoughMoney": "没有转移足够的资金",
     "doNotBoughtSwapPackageYet": "尚未购买交换套餐",
     "notEnoughBalanceToSwap": "余额不足以进行交换",
-    "PleaseTryAgainLater": "请稍后再试"
+    "exceedMaxAmount": "超出最大金额",
+    "notOwnerOfWalletAddress": "不是钱包地址的所有者",
+    "transactionHashAlreadyExistsOrUserAlreadyBoughtSwapPackage": "交易哈希已存在或用户已购买交换包",
+    "walletAddressAndLoggedInUserWalletAddressDoNotMatch": "钱包地址和登录用户的钱包地址不匹配",
+    "transactionSentNotCorrectContractAddress": "发送的交易不正确的合约地址",
+    "userNotFound": "找不到用户",
+    "circleReferralNotAllowed": "不允许圈子推荐",
+    "pleaseTryAgainLater": "请稍后再试",
+    "errorConnectWallet": "哎呀！我们无法连接到您的钱包。请确保您安装了 MetaMask 或其他受支持的钱包，然后重试。",
+    "transactionAlreadyExists": "交易已存在",
+    "invalidReferralCode": "错误的推荐代码",
+    "excessAmount": "你已经超出了VPL交换限额。请创建一个新帐户并链接新钱包以继续交换。",
+    "transactionHashOrAmountIsRequired": "交易哈希或金额是必需的",
+    "mustNotHaveBothTransactionHashAndAmount": "不能同时具有交易哈希和金额",
+    "transactionNotSentToCorrectStakeUsdtRecipientAddress": "交易未发送到正确的质押USDT接收地址",
+    "userAlreadyLinkedWalletAddress": "用户已经关联了钱包地址",
+    "transactionAlreadyUsedToStake": "交易已经被用于质押",
+    "stakeDoNotSupportThisCurrency": "质押不支持这种货币",
+    "invalidFunctionName": "无效的函数名称",
+    "stakeNotEnoughMiniumRequiredAmount": "质押金额不足最低要求",
+    "stakePeriodUsdtIsOneYear": "USDT质押期限为一年"
   },
   "tokenTransfers": {
     "title": "代币转账 (ERC-20)",
@@ -1417,8 +1469,10 @@
     "item": "项目"
   },
   "stakingPage": {
-    "titleVPC": "VPC质押",
-    "titleVPL": "VPL质押",
+    "title": "{{value}} 质押",
+    "titleVPC": "VPC 质押",
+    "titleVPL": "VPL 质押",
+    "enjoyBenefits": "享受每月{{value}}产量、收入份额等的好处...",
     "enjoyBenefitsVPC": "享受每月VPC产量、收入份额等的好处...",
     "enjoyBenefitsVPL": "享受每月VPL产量、收入份额等的好处...",
     "lockOverview": "锁定概览",
@@ -1435,6 +1489,147 @@
     "duration": "持续时间",
     "unlockOn": "解锁时间",
     "lock": "锁定",
-    "get": "获取"
+    "get": "获取",
+    "stakingSuccessFully": "质押成功。请检查您的历史记录以查看详细信息。",
+    "amountStaked": "已锁定的{{value}}",
+    "interest": "待收取的利息",
+    "done": "完成",
+    "notEnoughBalance": "余额不足",
+    "viewStakingHistory": "查看 {{value}} 质押历史记录",
+    "enterUSDT": "输入USDT",
+    "yourBalance": "您的余额",
+    "backToLock": "返回锁定"
+  },
+  "staking": {
+    "header": {
+      "swap": "交换",
+      "staking": "投资",
+      "referral": "推荐",
+      "exchange": "交换",
+      "noAddress": "没有地址",
+      "claim": "领取奖励",
+      "bridge": "桥接",
+      "vpcTransfer": "转换",
+      "VPL": "VPL"
+    }
+  },
+  "lastUpdated": "网站最后更新时间:",
+  "dateFormat": "zh-CN",
+  "referral": {
+    "title": "VPC 推荐",
+    "content": "享受每月 VPC 收益、分成等好处...",
+    "yourReferralCode": "您的推荐码",
+    "enteredReferralCode": "输入的推荐码",
+    "walletAddress": "钱包地址",
+    "vpcStakingAmount": "VPC 投入数量",
+    "vpcStakingValue": "VPC 奖励",
+    "usdtStakingAmount": "USDT 投入数量",
+    "usdtStakingValue": "USDT 奖励",
+    "time": "时间",
+    "email": "电子邮件地址",
+    "profit": "利润",
+    "show": "显示",
+    "records": "记录",
+    "first": "第一页",
+    "last": "最后一页",
+    "page": "页",
+    "noDataTable": "表中无数据",
+    "noData": "无数据可用",
+    "numberOfInvestors": "投资者数量",
+    "totalStackingValue": "总投入价值",
+    "noWalletAddress": "无钱包地址",
+    "noReferrer": "无推荐人",
+    "record": "记录",
+    "teammate": "队友",
+    "totalF1": "总 F1",
+    "showAs": "显示货币为"
+  },
+  "verification": {
+    "verifying": "正在验证您的身份。这可能需要几秒钟。",
+    "securityCheck": "swap.vinachain.io 需要在继续之前评估您的安全连接。",
+    "retry": "重试"
+  },
+  "logout": "登出",
+  "addNewNetwork": "请批准添加新网络，然后再次点击连接按钮以连接到新网络。",
+  "backToBuy": "返回购买",
+  "stakingHistory": {
+    "title": "质押历史",
+    "packageDuration": "包期",
+    "packageProfit": "套餐利润",
+    "vpcLocked": "VPC 已锁定",
+    "usdtLocked": "USDT 已锁定",
+    "vpcReceive": "VPC 接收",
+    "usdtReceive": "USDT 接收",
+    "lockOn": "锁定",
+    "unlockOn": "解锁"
+  },
+  "back": "返回",
+  "exchangePage": {
+    "title": "兑换您的WVPC和RVPC",
+    "subTitle": "在您可以从抵押中获得奖励之前，您必须将WVPC/RVPC兑换成VPC。",
+    "yourBalance": "您的余额：",
+    "vpcAmount": "VPC数量",
+    "wvpcAmount": "WVPC数量",
+    "rvpcAmount": "RVPC数量",
+    "exchangeRate": "兑换率：",
+    "exchangeFrom": "从这个网络兑换",
+    "youWillGet": "您将获得",
+    "exchange": "兑换",
+    "claim": "声明",
+    "bridge": "桥梁",
+    "claimedTitle": "已声明",
+    "claimedSubTitle": "享受月度VPC收益、收入分配等好处...",
+    "walletAddress": "钱包地址",
+    "enterVPCToBeClaimed": "输入要声明的VPC",
+    "available": "可用",
+    "max": "最大",
+    "claimingOverview": "声明概览",
+    "vpcToBeClaimed": "待声明的VPC",
+    "fee": "费用",
+    "total": "总计"
+  },
+  "bridgePage": {
+    "title": "VPC桥梁",
+    "subTitle": "将您的VPC从Vinachain网络转移到另一个网络。",
+    "fromThisNetwork": "从这个网络",
+    "toThisNetwork": "到这个网络",
+    "youSend": "您发送",
+    "youReceive": "您接收",
+    "bridge": "桥梁",
+    "youPayOnVinachain": "您在Vinachain上支付",
+    "VPCTransferAmount": "VPC转账金额",
+    "includedFeeEstimate": "包括费用（估算）",
+    "gasFee": "Gas费",
+    "swapRate": "兑换率",
+    "youReceiveOnBNBChain": "您在BNB链上收到",
+    "returnEstimate": "返回（估算）",
+    "includedFeeEstimateTooltip": "这是使用桥梁的预计成本，已经包含在转账金额中。它包括兑换率、BNB链上的gas费以及桥梁的任何其他运营成本。",
+    "gasFeeTooltip": "这是BNB上的gas费用估算。Gas费用会根据网络流量和交易复杂性而变化。",
+    "returnEstimateTooltip": "这是您在BNB链上预计会收到的金额（+/-0.5%的滑点）。",
+    "bridgeOverview": "桥梁概览"
+  },
+  "profile":{
+    "title": "用户资料",
+    "accountOverview": "账户概览",
+    "accountSetting": "密码设置",
+    "personalInformation": "个人信息",
+    "personalInformationContent": "以下是您帐户的用户名、电子邮件和概述信息。",
+    "username": "用户名",
+    "emailAddress": "电子邮件地址",
+    "walletAddress": "钱包地址",
+    "totalVPCBalance": "VPC总余额",
+    "userSettings": "用户设置",
+    "userSettingsContent": "以下是用户名和电子邮件。",
+    "edit": "编辑",
+    "changePassword": "修改密码",
+    "passwordSettingsContent": "编辑下面的字段以更新新密码。",
+    "oldPassword": "旧密码",
+    "newPassword": "新密码",
+    "confirmNewPassword": "确认新密码",
+    "forgotPassword": "忘记密码？",
+    "passwordErrorMsg": "密码为必填项。",
+    "changedPasswordSuccessfully": "密码修改成功",
+    "saveChange": "保存更改",
+    "myProfile": "我的个人资料"
   }
 }

@@ -155,9 +155,9 @@
   "purchasingAndWaitConfirmation": "Purchasing... Please don't leave out or reload page.",
   "comingSoon": {
     "vinachain": "Vinachain",
-    "title": "COMING SOON!",
+    "title": "Coming soon",
     "experimentContent": "We are working hard to bring you new experiment.",
-    "comeBackContent": "Please come back in early January.",
+    "comeBackContent": "Please come back in early {{month}}.",
     "getNotifyContent": "Get notify when the website is completed.",
     "subscribeBtn": "Subscribe",
     "placeholder": "Enter your email address"
@@ -263,6 +263,7 @@
       }
     },
     "footer": {
+      "poweredBy": "Powered by Vinachain",
       "useVina": {
         "title": "Use Vina",
         "findWallet": "Find wallet",
@@ -328,6 +329,21 @@
         "termOfUse": "Term of use",
         "cookiePolicy": "Cookie policy",
         "contact": "Contact"
+      },
+      "aboutUs": {
+        "title": "About us",
+        "privacyPolicy": "Privacy Policy",
+        "termOfUse": "Term of Use"
+      },
+      "support": {
+        "title": "Support",
+        "supportCenter": "Support Center",
+        "stakingGuide": "Staking guide",
+        "referralGuide": "Referral Guide",
+        "payment": "Payment"
+      },
+      "followUs": {
+        "title": "Follow us"
       }
     }
   },
@@ -543,6 +559,7 @@
       "signInHere": "Sign In here",
       "usernamePlaceholder": "e.g.johndoe",
       "username": "Username",
+      "usernameOrEmail": "User name or email",
       "refCode": "Referral Code",
       "refCodePlaceholder": "Referral code",
       "emailAddress": "Email Address",
@@ -558,6 +575,8 @@
       "atAnyTime": "at any time.",
       "createAnAccount": "Create an Account",
       "usernameRequiredError": "Please enter Username.",
+      "usernameMustContainOnlyLettersAndNumbers": "Username must contain only letters and numbers",
+      "passwordMustNotContainWhitespace": "Password must not contain whitespace",
       "refCodeRequiredError": "Please enter Refcode.",
       "emailAddressRequiredError": "Please enter a valid email address.",
       "confirmEmailAddressRequiredError": "Please re-enter your email address.",
@@ -1115,7 +1134,19 @@
     "purchasingAndWaitConfirmation": "Purchasing and wait confirmation. Please don't leave out or reload page.",
     "buySuccessful": "Buy Successful",
     "confirmWalletAddressSuccess": "Confirm Wallet Address Success",
-    "walletAddressNotMatch": "Wallet address not match. Please try connect with the correct wallet"
+    "walletAddressNotMatch": "Wallet address not match. Please try connect with the correct wallet",
+    "forgotPassword": "Forgot your password?",
+    "vpcRemaining": "VPL remaining in package",
+    "confirmPassword": "Confirm password",
+    "swapVPL": "Swap VPL",
+    "scanQr": "Scan QR",
+    "backToSwap": "Back to Swap",
+    "yourPackageRemainingIsOver": "Your package remaining is over",
+    "availableBalance": "Available balance",
+    "availableBalanceIsOver": "Available balance is over",
+    "max": "Max",
+    "swapNow": "Swap Now",
+    "amountVPLToSwap": "Amount VPL to swap"
   },
   "settings": {
     "title": "Site Settings",
@@ -1311,7 +1342,9 @@
       "startsWith0x": "Account address must start with '0x'"
     },
     "amount": {
-      "required": "Amount is required."
+      "required": "Amount is required.",
+      "min": "Amount must be greater than or equal to {{value}}.",
+      "max": "Amount must be less than or equal to {{value}}."
     },
     "email": {
       "required": "Email is required.",
@@ -1374,7 +1407,27 @@
     "notTransferringEnoughMoney": "Not transferring enough money",
     "doNotBoughtSwapPackageYet": "Do not bought swap package yet",
     "notEnoughBalanceToSwap": "Not enought balance to swap",
-    "PleaseTryAgainLater": "Please try again later"
+    "exceedMaxAmount": "Stake amount exceeds available number",
+    "notOwnerOfWalletAddress": "Not owner of wallet address",
+    "transactionHashAlreadyExistsOrUserAlreadyBoughtSwapPackage": "Transaction hash already exists or user already bought swap package",
+    "walletAddressAndLoggedInUserWalletAddressDoNotMatch": "Wallet address and logged in user wallet address do not match",
+    "transactionSentNotCorrectContractAddress": "Transaction sent not correct contract address",
+    "userNotFound": "User not found",
+    "circleReferralNotAllowed": "Circle referral not allowed",
+    "pleaseTryAgainLater": "Please try again later",
+    "errorConnectWallet": "Oops! We couldn't connect to your wallet. Please make sure you have MetaMask or another supported wallet installed and try again.",
+    "transactionAlreadyExists": "Transaction already exists",
+    "invalidReferralCode": "Wrong referral code",
+    "excessAmount": "You have exceeded the VPL swap limit. Please create a new account and link a new wallet to continue the swap.",
+    "transactionHashOrAmountIsRequired": "Transaction hash or amount is required",
+    "mustNotHaveBothTransactionHashAndAmount": "Must not have both transaction hash and amount",
+    "transactionNotSentToCorrectStakeUsdtRecipientAddress": "Transaction not sent to correct stake USDT recipient address",
+    "userAlreadyLinkedWalletAddress": "User already linked wallet address",
+    "transactionAlreadyUsedToStake": "Transaction already used to stake",
+    "stakeDoNotSupportThisCurrency": "Stake do not support this currency",
+    "invalidFunctionName": "Invalid function name",
+    "stakeNotEnoughMiniumRequiredAmount": "Stake not enough minimum required amount",
+    "stakePeriodUsdtIsOneYear": "Stake period USDT is one year"
   },
   "tokenTransfers": {
     "title": "Token Transfers (ERC-20)",
@@ -1452,20 +1505,28 @@
     "header": {
       "swap": "Swap",
       "staking": "Staking",
-      "refferal": "Refferal"
+      "referral": "Referral",
+      "exchange": "Exchange",
+      "noAddress": "No address",
+      "claim": "Claim",
+      "bridge": "Bridge",
+      "vpcTransfer": "Transfer",
+      "VPL": "VPL"
     }
   },
   "stakingPage": {
+    "title": "{{value}} Staking",
     "titleVPC": "VPC Staking",
     "titleVPL": "VPL Staking",
+    "enjoyBenefits": "Enjoy the benefits of monthly {{value}} yield, revenue share,...",
     "enjoyBenefitsVPC": "Enjoy the benefits of monthly VPC yield, revenue share,...",
     "enjoyBenefitsVPL": "Enjoy the benefits of monthly VPL yield, revenue share,...",
     "lockOverview": "LOCK OVERVIEW",
     "add": "Add",
     "choosePackage": "CHOOSE PACKAGE",
     "week": "Weeks",
-    "profit":"Profit",
-    "months":"months",
+    "profit": "Profit",
+    "months": "months",
     "totalApr": "Total APR",
     "poolApr": "Pool APR",
     "upTo": "Up to ",
@@ -1474,9 +1535,19 @@
     "duration": "Duration",
     "unlockOn": "Unlock on",
     "lock": "Lock",
-    "get": "Get"
+    "get": "Get",
+    "stakingSuccessFully": "Staking successfully. Please check your history to see the details.",
+    "stake": "Stake",
+    "amountStaked": "{{value}} locked",
+    "interest": "Interest to be received",
+    "done": "Done",
+    "notEnoughBalance": "Not enough balance to stake",
+    "viewStakingHistory": "View {{value}} staking history",
+    "enterUSDT": "Enter USDT",
+    "yourBalance": "Your balance",
+    "backToLock": "Back to Lock"
   },
-  "refferal": {
+  "referral": {
     "title": "VPC REFERRAL",
     "content": "Enjoy the benefits of monthly VPC yield, revenue share,...",
     "yourReferralCode": "Your referral code",
@@ -1484,14 +1555,116 @@
     "walletAddress": "Wallet Address",
     "vpcStakingAmount": "VPC Staking Amount",
     "vpcStakingValue": "VPC Reward",
+    "usdtStakingAmount": "USDT Staking Amount",
+    "usdtStakingValue": "USDT Reward",
     "time": "Time",
-    "email": "Email",
-    "profits": "Profits",
+    "email": "Email Address",
+    "profit": "Profit",
     "show": "Show",
     "records": "Records",
     "first": "First",
     "last": "Last",
     "page": "Page",
-    "noDataTable": "No data available in table"
+    "noDataTable": "No data available in table",
+    "noData": "No data available",
+    "numberOfInvestors": "Number of Investors",
+    "totalStackingValue": "Total Stacking Value",
+    "noWalletAddress": "No wallet address",
+    "noReferrer": "No referrer",
+    "record": "Record",
+    "teammate": "Teammate",
+    "totalF1": "Total F1",
+    "showAs": "Show currency as"
+  },
+  "lastUpdated": "Website last updated:",
+  "dateFormat": "en-US",
+  "verification": {
+    "verifying": "Verifying you're human. This process may take a few seconds.",
+    "securityCheck": "swap.vinachain.io needs to assess your connection's security before proceeding.",
+    "retry": "Retry"
+  },
+  "logout": "Logout",
+  "addNewNetwork": "Please approve the addition of the new network and try clicking the connect button again to connect to the network.",
+  "backToBuy": "Back to buy",
+  "stakingHistory": {
+    "title": "Staking History",
+    "packageDuration": "Package Duration",
+    "packageProfit": "Package Profit",
+    "vpcLocked": "VPC Locked",
+    "usdtLocked": "USDT Locked",
+    "vpcReceive": "VPC Receive",
+    "usdtReceive": "USDT Receive",
+    "lockOn": "Lock On",
+    "unlockOn": "Unlock On"
+  },
+  "back": "Back",
+  "exchangePage": {
+    "title": "EXCHANGE YOUR WVPC & RVPC",
+    "subTitle": "Before you can claim your rewards from staking, you must exchange WVPC/RVPC to VPC.",
+    "yourBalance": "Your balance:",
+    "vpcAmount": "VPC Amount",
+    "wvpcAmount": "WVPC Amount",
+    "rvpcAmount": "RVPC Amount",
+    "exchangeRate": "Exchange rate:",
+    "exchangeFrom": "Exchange from",
+    "youWillGet": "You will get",
+    "exchange": "Exchange",
+    "claim": "Claim",
+    "bridge": "Bridge",
+    "claimedTitle": "CLAIMED",
+    "claimedSubTitle": "Enjoy the benefits of monthly VPC yield, revenue share,...",
+    "walletAddress": "Wallet Address",
+    "enterVPCToBeClaimed": "Enter VPC to be Claimed",
+    "available": "available",
+    "max": "Max",
+    "claimingOverview": "CLAIMING OVERVIEW",
+    "vpcToBeClaimed": "VPC to be claimed",
+    "fee": "Fee",
+    "total": "Total"
+  },
+  "bridgePage": {
+    "title": "VPC Bridge",
+    "subTitle": "Transfer your VPC from Vinachain network to another network.",
+    "fromThisNetwork": "From this network",
+    "toThisNetwork": "To this network",
+    "youSend": "You send",
+    "youReceive": "You Receive",
+    "bridge": "Bridge",
+    "youPayOnVinachain": "You pay on Vinachain",
+    "VPCTransferAmount": "VPC Transfer amount",
+    "includedFeeEstimate": "Included fee (estimate)",
+    "gasFee": "Gas fee",
+    "swapRate": "Swap rate",
+    "youReceiveOnBNBChain": "You receive on BNB Chain",
+    "returnEstimate": "Return (estimate)",
+    "includedFeeEstimateTooltip": "This is the estimated cost of using the bridge, which is already included with the transfer amount. It includes the exchange rate, gas fees on BNB Chain, and any other costs of operating the bridge.",
+    "gasFeeTooltip": "This is a gas fee estimate on BNB. Gas fees vary based on network traffic and transaction complexity.",
+    "returnEstimateTooltip": "This is the estimated amount (+/-0.5% slippage) you would receive on BNB Chain.",
+    "bridgeOverview": "BRIDGE OVERVIEW"
+  },
+  "profile": {
+    "title": "USER PROFILE",
+    "accountOverview": "Account Overview",
+    "accountSetting": "Password Setting",
+    "personalInformation": "Personal Information",
+    "personalInformationContent": "Below are the username, email and overview information for your account.",
+    "username": "Username",
+    "emailAddress": "Email address",
+    "walletAddress": "Wallet address",
+    "totalVPCBalance": "Total VPC balance",
+    "userSettings": "User Settings",
+    "userSettingsContent": "Below are the username, email.",
+    "edit": "Edit",
+    "changePassword": "Change password",
+    "passwordSettingsContent": "Edit field below to update the newpassword.",
+    "oldPassword": "Old password",
+    "newPassword": "New password",
+    "confirmNewPassword": "Confirm new password",
+    "forgotPassword": "Forgot password?",
+    "passwordErrorMsg": "Password is required.",
+    "changedPasswordSuccessfully": "Changed password successfully",
+    "saveChange": "Save change",
+    "myProfile": "My profile"
   }
+  
 }

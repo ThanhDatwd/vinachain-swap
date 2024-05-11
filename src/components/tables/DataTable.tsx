@@ -310,7 +310,7 @@ export const DataTable: FC<DataTableProps> = ({
                       Download Page Data
                     </button>
                   )}
-                  {showPagination && (
+                  {/* {showPagination && (
                     <Pagination
                       prevPageStyle={`${
                         activePage.prev
@@ -327,7 +327,7 @@ export const DataTable: FC<DataTableProps> = ({
                       onClickPrevPage={handlePrevPage}
                       onClickNextPage={handleNextPage}
                     />
-                  )}
+                  )} */}
                   {isFilter && (
                     <DropdownAddress defaultValue={<FilterIcon />} />
                   )}
@@ -416,7 +416,7 @@ export const DataTable: FC<DataTableProps> = ({
                     &nbsp;
                   </div>
 
-                  <Pagination
+                  {/* <Pagination
                     prevPageStyle={`${
                       activePage.prev
                         ? "text-secondary dark:text-secondaryDark"
@@ -431,7 +431,7 @@ export const DataTable: FC<DataTableProps> = ({
                     totalPage={2}
                     onClickPrevPage={handlePrevPage}
                     onClickNextPage={handleNextPage}
-                  />
+                  /> */}
                 </div>
               </div>
             ) : (

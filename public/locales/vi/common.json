@@ -2,7 +2,7 @@
   "title": "Vinachain",
   "preSale": "Vòng Gọi Vốn",
   "preSaleTitle": "Vòng gọi vốn của VinaChain",
-  "preSaleSubTitle": "Không chỉ là một bot thông thường, Vinachain được phát triển để cung cấp một công cụ giao dịch mạnh mẽ và chuyên nghiệp cũng như là một công cụ săn token cho người dùng trên toàn hệ sinh thái của Base mà không tốn phí. Với tầm nhìn đơn giản hóa trải nghiệm giao dịch và tối ưu hóa hiệu suất vốn, các tính năng tích hợp trong Vinachain được thiết kế để cung cấp một giao diện thân thiện với người dùng và nhiều chiến lược sinh lợi khác nhau.",
+  "preSaleSubTitle": "Không chỉ là một bot thông thường, Vinachain được phát triển để cung cấp một công cụ giao dịch mạnh mẽ và chuyên nghiệp cũng như là một công cụ săn token cho người dùng trên toàn hệ sinh thái của Vinachain mà không tốn phí. Với tầm nhìn đơn giản hóa trải nghiệm giao dịch và tối ưu hóa hiệu suất vốn, các tính năng tích hợp trong Vinachain được thiết kế để cung cấp một giao diện thân thiện với người dùng và nhiều chiến lược sinh lợi khác nhau.",
   "poolDetail": "Thông tin thanh khoản",
   "hardCap": "Tối đa",
   "softCap": "Tối thiểu",
@@ -10,7 +10,7 @@
   "endDay": "Ngày kết thúc",
   "rate": "Tỷ lệ",
   "listRate": "Danh sách tỷ lệ",
-  "unlock": "Mở khóa tại TGE",
+  "unlock": "Mở khóa",
   "token": "Token",
   "ticker": "Đơn vị",
   "totalSupply": "Tổng nguồn cung",
@@ -124,7 +124,7 @@
     },
     "value": {
       "title": "GIÁ TRỊ ĐƯỢC KHOÁ TRONG DEFI (USD)",
-      "subtitle": "Số tiền trong ứng dụng tài chính phi tập trung (DeFi), nằm trong nền kinh tế số Ethereum."
+      "subtitle": "Số tiền trong ứng dụng tài chính phi tập trung (DeFi), nằm trong nền kinh tế số Vinachain."
     }
   },
   "contribute": {
@@ -155,9 +155,9 @@
   "purchasingAndWaitConfirmation": "Đang mua... Vui lòng không rời khỏi hoặc làm mới trang.",
   "comingSoon": {
     "vinachain": "Vinachain",
-    "title": "Sắp ra mắt!",
+    "title": "Sắp ra mắt",
     "experimentContent": "Chúng tôi đang nỗ lực mang đến cho bạn thử nghiệm mới.",
-    "comeBackContent": "Xin vui lòng quay lại vào đầu tháng 1.",
+    "comeBackContent": "Xin vui lòng quay lại vào đầu {{month}}.",
     "getNotifyContent": "Nhận thông báo khi trang web được hoàn thành.",
     "subscribeBtn": "Đăng ký",
     "placeholder": "Nhập vào địa chỉ email của bạn."
@@ -263,6 +263,7 @@
       }
     },
     "footer": {
+      "poweredBy": "Được hỗ trợ bởi Vinachain",
       "useVina": {
         "title": "Sử dụng Vina",
         "findWallet": "Tìm ví",
@@ -328,6 +329,21 @@
         "termOfUse": "Điều khoản sử dụng",
         "cookiePolicy": "Chính sách cookie",
         "contact": "Liên hệ"
+      },
+      "aboutUs": {
+        "title": "Về chúng tôi",
+        "privacyPolicy": "Chính sách bảo mật",
+        "termOfUse": "Điều khoản sử dụng"
+      },
+      "support": {
+        "title": "Hỗ trợ",
+        "supportCenter": "Trung tâm hỗ trợ",
+        "stakingGuide": "Hướng dẫn đầu tư",
+        "referralGuide": "Hướng dẫn giới thiệu",
+        "payment": "Thanh toán"
+      },
+      "followUs": {
+        "title": "Theo dõi chúng tôi"
       }
     }
   },
@@ -543,6 +559,7 @@
       "signInHere": "Đăng nhập ở đây",
       "usernamePlaceholder": "Ví dụ: johndoe",
       "username": "Tên người dùng",
+      "usernameOrEmail": "Tên người dùng hoặc email",
       "refCode": "Mã Giới Thiệu",
       "refCodePlaceholder": "Mã giới thiệu",
       "emailAddress": "Địa chỉ Email",
@@ -776,7 +793,7 @@
     "privacy": {
       "title": "Chính sách bảo mật",
       "pleaseReadThePrivacyPolicyCarefully": "VUI LÒNG ĐỌC CHÍNH SÁCH BẢO MẬT CẨN THẬN.",
-      "pleaseReadThePrivacyPolicyCarefullyContent": "Etherscan.io (gọi là “Công ty”, “Etherscan”, “chúng tôi”, “của chúng tôi” hoặc “chúng ta”) cam kết bảo vệ Dữ liệu Cá nhân của bạn và coi việc bảo vệ quyền riêng tư của bạn là ưu tiên hàng đầu.",
+      "pleaseReadThePrivacyPolicyCarefullyContent": "Vinachain.io (gọi là “Công ty”, “Vinascan”, “chúng tôi”, “của chúng tôi” hoặc “chúng ta”) cam kết bảo vệ Dữ liệu Cá nhân của bạn và coi việc bảo vệ quyền riêng tư của bạn là ưu tiên hàng đầu.",
       "typeOfDataWeCollect": "LOẠI DỮ LIỆU CHÚNG TÔI THU THẬP.",
       "typeOfDataWeCollectContent1": "Các loại Dữ liệu Cá nhân mà chúng tôi thu thập trực tiếp từ bạn hoặc từ bên thứ ba phụ thuộc vào hoàn cảnh của việc thu thập và tính chất của dịch vụ được yêu cầu hoặc giao dịch được tiến hành. Điều này có thể bao gồm (nhưng không giới hạn vào):",
       "typeOfDataWeCollectContent11": "thông tin cá nhân liên kết trở lại với một cá nhân, ví dụ, tên, giới tính, ngày sinh và các số nhận dạng cá nhân khác;",
@@ -875,7 +892,7 @@
       "ifYouAreTheFirstToReportTheIssueContent4": "* Cấp độ lỗ hổng sẽ được xác định theo quyết định của chúng tôi",
       "ifYouAreTheFirstToReportTheIssueContent5": "** Trong trường hợp lỗ hổng tồn tại trên nhiều nhà khám phá, chỉ nhà khám phá được báo cáo mới có quyền được thưởng",
       "scope": "Phạm vi",
-      "scopeContent1": "Etherscan (etherscan.io) và các nhà khám phá dưới EaaS",
+      "scopeContent1": "Vinascan (vinachain.io) và các nhà khám phá dưới EaaS",
       "scopeContent2": "Chúng tôi quan tâm đến các lỗ hổng sau:",
       "scopeContent21": "Vấn đề logic kinh doanh",
       "scopeContent22": "Thực thi mã từ xa (RCE)",
@@ -918,7 +935,7 @@
       "hallOfFameContent": "Cảm ơn đặc biệt các nhà nghiên cứu sau đã giúp chúng tôi làm cho Etherscan và các nhà khám phá khác trở nên tốt đẹp hơn"
     },
     "brandAssets": {
-      "title": "Tài Nguyên và Hướng Dẫn Thương Hiệu Etherscan",
+      "title": "Tài Nguyên và Hướng Dẫn Thương Hiệu Vinachain",
       "subTitle": "Cảm ơn bạn đã ủng hộ và yêu thích công việc của chúng tôi. Dưới đây là một số hướng dẫn để sử dụng tài nguyên thương hiệu của chúng tôi.",
       "ourBrandNameTittle": "Tên Thương Hiệu Của Chúng Tôi",
       "ourBrandNameContent": "là một từ và được viết hoa chữ cái 'E'.",
@@ -957,8 +974,8 @@
       "sourceCode": "Mã nguồn",
       "tokenContract": "Hợp đồng Token",
       "overview": "Tổng quan",
-      "ethBalance": "Số dư ETH",
-      "ethValue": "Giá trị ETH",
+      "ethBalance": "Số dư VPC",
+      "ethValue": "Giá trị VPC",
       "tokenHoldings": "Số lượng Token",
       "tokens": "Token",
       "moreInfo": "Thêm Thông Tin",
@@ -1065,7 +1082,7 @@
     "sponsored": "Được tài trợ"
   },
   "home": "Trang chủ",
-  "swap": "Đổi",
+  "swap": "Chuyển đổi",
   "backToTop": "Trở về đầu trang",
   "addNetwork": "Thêm Mạng {{value}}",
   "modalCard": {
@@ -1086,15 +1103,15 @@
   },
   "swapPage": {
     "title": "Chuyển đổi VPL sang VPC",
-    "accountAddress": "Địa chỉ tài khoản",
+    "accountAddress": "Địa chỉ ví",
     "emailAddress": "Địa chỉ email",
     "amount": "Số lượng",
     "password": "Mật khẩu",
     "likeFanpage": "Thích Fanpage",
     "followTelegram": "Theo dõi Telegram",
-    "verify": "Xác minh",
+    "verify": "Xác thực",
     "transaction": "Giao dịch",
-    "youHaveBeenVerified": "Bạn đã được xác minh",
+    "youHaveBeenVerified": "Bạn đã được xác thực",
     "pleaseEnterYourTransaction": "Vui lòng nhập giao dịch của bạn để hoàn tất việc chuyển đổi.",
     "addressVPC": "Địa chỉ để chuyển VPL",
     "amountTransfer": "Số lượng chuyển",
@@ -1107,15 +1124,29 @@
     "planPrice": "Giá gói",
     "descriptionPlan": "Chuyển đổi tối đa {{value}} VPL",
     "basic": "Cơ bản",
-    "premium": "Cao cấp",
+    "premium": "Nâng cao",
     "buyNow": "Mua Ngay",
     "verifyYourTransactionHash": "Xác minh mã giao dịch của bạn",
     "purchasingAndWaitConfirmation": "Đang mua và chờ xác nhận. Vui lòng không thoát ra hoặc làm mới trang.",
-    "buySuccessful": "Mua thành công"
+    "buySuccessful": "Mua thành công",
+    "forgotPassword": "Quên mật khẩu?",
+    "vpcRemaining": "VPL còn lại trong gói",
+    "confirmWalletAddressSuccess": "Xác nhận địa chỉ Ví thành công",
+    "walletAddressNotMatch": "Địa chỉ ví không khớp. Vui lòng thử kết nối với đúng ví",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "swapVPL": "Chuyển đổi VPL",
+    "scanQr": "Quét mã QR",
+    "backToSwap": "Quay lại Chuyển đổi",
+    "yourPackageRemainingIsOver": "Gói của bạn mua đã hết",
+    "availableBalance": "Số dư khả dụng",
+    "availableBalanceIsOver": "Số dư khả dụng đã hết",
+    "max": "Tối đa",
+    "swapNow": "Chuyển đổi ngay",
+    "amountVPLToSwap": "Số lượng VPL chuyển đổi"
   },
   "settings": {
     "title": "Cài đặt Trang web",
-    "subTitle": "Trang này cho phép bạn tùy chỉnh trải nghiệm duyệt web của mình trên Etherscan.",
+    "subTitle": "Trang này cho phép bạn tùy chỉnh trải nghiệm duyệt web của mình trên Vinachain.io",
     "advancedMode": {
       "title": "Chế độ Nâng cao",
       "content": "Hiển thị chi tiết giao dịch và khối đầy đủ trong một chế độ xem duy nhất. Hữu ích cho các nhà phát triển để gỡ lỗi. Cũng sẽ hiển thị thông báo lỗi revert từ các hợp đồng token chưa được cập nhật thông tin.",
@@ -1123,7 +1154,7 @@
     },
     "ignoreToken": {
       "title": "Bỏ qua các Token có Rufi kém",
-      "content": "Ẩn tất cả các giao dịch của các token đã được Etherscan gắn cờ là Đáng ngờ, Không an toàn, Spam hoặc Vi phạm thương hiệu để không hiển thị trên trang web.",
+      "content": "Ẩn tất cả các giao dịch của các token đã được Vinachain gắn cờ là Đáng ngờ, Không an toàn, Spam hoặc Vi phạm thương hiệu để không hiển thị trên trang web.",
       "note": "*Lưu ý: Đây là một tính năng Beta đang được cải thiện liên tục."
     },
     "tolenTransfers": {
@@ -1307,7 +1338,9 @@
       "startsWith0x": "Địa chỉ tài khoản phải bắt đầu bằng '0x'"
     },
     "amount": {
-      "required": "Số tiền là bắt buộc."
+      "required": "Số tiền là bắt buộc.",
+      "min": "Số tiền phải lớn hơn hoặc bằng {{value}}.",
+      "max": "Số tiền phải nhỏ hơn hoặc bằng {{value}}."
     },
     "email": {
       "required": "Email là bắt buộc.",
@@ -1370,7 +1403,27 @@
     "notTransferringEnoughMoney": "Không chuyển đủ tiền",
     "doNotBoughtSwapPackageYet": "Chưa mua gói trao đổi",
     "notEnoughBalanceToSwap": "Không đủ số dư để trao đổi",
-    "PleaseTryAgainLater": "Vui lòng thử lại sau"
+    "exceedMaxAmount": "Vượt quá số lượng tối đa",
+    "notOwnerOfWalletAddress": "Không phải chủ sở hữu của địa chỉ ví",
+    "transactionHashAlreadyExistsOrUserAlreadyBoughtSwapPackage": "Transaction hash đã tồn tại hoặc người dùng đã mua gói trao đổi",
+    "walletAddressAndLoggedInUserWalletAddressDoNotMatch": "Địa chỉ ví và địa chỉ ví của người dùng đăng nhập không khớp",
+    "transactionSentNotCorrectContractAddress": "Giao dịch đã gửi không chính xác địa chỉ hợp đồng",
+    "userNotFound": "Không tìm thấy người dùng",
+    "circleReferralNotAllowed": "Không cho phép giới thiệu hình tròn",
+    "pleaseTryAgainLater": "Vui lòng thử lại sau",
+    "errorConnectWallet": "Chúng tôi không thể kết nối với ví của bạn. Vui lòng đảm bảo rằng bạn đã cài đặt MetaMask hoặc ví được hỗ trợ khác và thử lại.",
+    "transactionAlreadyExists": "Transaction hash đã tồn tại",
+    "invalidReferralCode": "Mã tiếp thị liên kết không đúng",
+    "excessAmount": "Bạn đã vượt quá hạn mức hoán đổi VPL. Vui lòng tạo tài khoản và liên kết ví mới để tiếp tục hoán đổi.",
+    "transactionHashOrAmountIsRequired": "Mã giao dịch hoặc số tiền là bắt buộc",
+    "mustNotHaveBothTransactionHashAndAmount": "Không được có cả hai mã giao dịch và số tiền",
+    "transactionNotSentToCorrectStakeUsdtRecipientAddress": "Giao dịch không được gửi đến địa chỉ người nhận USDT đúng",
+    "userAlreadyLinkedWalletAddress": "Người dùng đã liên kết địa chỉ ví",
+    "transactionAlreadyUsedToStake": "Giao dịch đã được sử dụng để đặt cược",
+    "stakeDoNotSupportThisCurrency": "Đặt cược không hỗ trợ loại tiền này",
+    "invalidFunctionName": "Tên hàm không hợp lệ",
+    "stakeNotEnoughMiniumRequiredAmount": "Không đủ số tiền yêu cầu tối thiểu để đặt cược",
+    "stakePeriodUsdtIsOneYear": "Giai đoạn đặt cược USDT là một năm"
   },
   "tokenTransfers": {
     "title": "Chuyển đổi Token (ERC-20)",
@@ -1417,8 +1470,10 @@
     "item": "Mục"
   },
   "stakingPage": {
+    "title": "Đầu tư {{value}}",
     "titleVPC": "Đầu tư VPC",
     "titleVPL": "Đầu tư VPC",
+    "enjoyBenefits": "Tận hưởng lợi ích từ lợi suất hàng tháng của {{value}}, chia sẻ doanh thu,...",
     "enjoyBenefitsVPC": "Tận hưởng lợi ích từ lợi suất hàng tháng của VPC, chia sẻ doanh thu,...",
     "enjoyBenefitsVPL": "Tận hưởng lợi ích từ lợi suất hàng tháng của VPL, chia sẻ doanh thu,...",
     "lockOverview": "TỔNG QUAN",
@@ -1435,6 +1490,147 @@
     "duration": "Thời gian",
     "unlockOn": "Mở khóa vào",
     "lock": "Khóa",
-    "get": "Nhận"
+    "get": "Nhận",
+    "stakingSuccessFully": "Đặt cược thành công. Vui lòng kiểm tra lịch sử của bạn để xem chi tiết.",
+    "amountStaked": "{{value}} đã khóa",
+    "interest": "Lãi sẽ nhận được",
+    "done": "Hoàn thành",
+    "notEnoughBalance": "Không đủ số dư",
+    "viewStakingHistory": "Xem lịch sử staking {{value}}",
+    "enterUSDT": "Nhập USDT",
+    "yourBalance": "Số dư của bạn",
+    "backToLock": "Quay lại khóa"
+  },
+  "staking": {
+    "header": {
+      "swap": "Trao đổi",
+      "staking": "Đầu tư",
+      "referral": "Giới thiệu",
+      "exchange": "Trao đổi",
+      "noAddress": "Không có địa chỉ",
+      "claim": "Nhận thưởng",
+      "bridge": "Cầu nối",
+      "vpcTransfer": "Quy đổi ",
+      "VPL": "VPL"
+    }
+  },
+  "lastUpdated": "Website được cập nhật lần cuối vào:",
+  "dateFormat": "vi-VN",
+  "referral": {
+    "title": "GIỚI THIỆU VPC",
+    "content": "Tận hưởng các lợi ích từ lãi suất hàng tháng của VPC, chia sẻ doanh thu,...",
+    "yourReferralCode": "Mã giới thiệu của bạn",
+    "enteredReferralCode": "Mã giới thiệu đã nhập",
+    "walletAddress": "Địa chỉ Ví",
+    "vpcStakingAmount": "Số lượng VPC đầu tư",
+    "vpcStakingValue": "Phần thưởng VPC",
+    "usdtStakingAmount": "Số lượng USDT đầu tư",
+    "usdtStakingValue": "Phần thưởng USDT",
+    "time": "Thời gian",
+    "email": "Địa chỉ Email",
+    "profit": "Lợi nhuận",
+    "show": "Hiển thị",
+    "records": "Bản ghi",
+    "first": "Đầu tiên",
+    "last": "Cuối cùng",
+    "page": "Trang",
+    "noDataTable": "Không có dữ liệu trong bảng",
+    "noData": "Không có dữ liệu",
+    "numberOfInvestors": "Số lượng Nhà đầu tư",
+    "totalStackingValue": "Tổng giá trị Stake",
+    "noWalletAddress": "Không có địa chỉ Ví",
+    "noReferrer": "Không có người giới thiệu",
+    "record": "Bản ghi",
+    "teammate": "Cộng đồng",
+    "totalF1": "Tổng F1",
+    "showAs": "Hiển thị tiền tệ là"
+  },
+  "verification": {
+    "verifying": "Đang xác minh bạn là người. Quá trình này có thể mất vài giây.",
+    "securityCheck": "swap.vinachain.io cần đánh giá tính bảo mật kết nối của bạn trước khi tiếp tục.",
+    "retry": "Thử lại"
+  },
+  "logout": "Đăng xuất",
+  "addNewNetwork": "Vui lòng chấp nhận thêm mạng mới và thử nhấn lại nút kết nối để kết nối vào mạng mới.",
+  "backToBuy": "Quay lai mua",
+  "stakingHistory": {
+    "title": "Lịch sử Staking",
+    "packageDuration": "Thời gian gói",
+    "packageProfit": "Lợi nhuận gói",
+    "vpcLocked": "VPC đã khóa",
+    "usdtLocked": "USDT đã khóa",
+    "vpcReceive": "Nhận VPC",
+    "usdtReceive": "Nhận USDT",
+    "lockOn": "Khóa vào",
+    "unlockOn": "Mở khóa vào"
+  },
+  "back": "Quay lại",
+  "exchangePage": {
+    "title": "ĐỔI WVPC & RVPC CỦA BẠN",
+    "subTitle": "Trước khi bạn có thể nhận phần thưởng từ việc stake, bạn phải đổi WVPC/RVPC thành VPC.",
+    "yourBalance": "Số dư của bạn:",
+    "vpcAmount": "Số lượng VPC",
+    "wvpcAmount": "Số lượng WVPC",
+    "rvpcAmount": "Số lượng RVPC",
+    "exchangeRate": "Tỷ lệ đổi:",
+    "exchangeFrom": "Đổi từ",
+    "youWillGet": "Bạn sẽ nhận được",
+    "exchange": "Đổi",
+    "claim": "Yêu cầu",
+    "bridge": "Cầu",
+    "claimedTitle": "ĐÃ YÊU CẦU",
+    "claimedSubTitle": "Tận hưởng các lợi ích từ lợi suất VPC hàng tháng, chia sẻ doanh thu,...",
+    "walletAddress": "Địa chỉ ví",
+    "enterVPCToBeClaimed": "Nhập số lượng VPC",
+    "available": "có sẵn",
+    "max": "Tối đa",
+    "claimingOverview": "TỔNG QUAN YÊU CẦU",
+    "vpcToBeClaimed": "VPC cần yêu cầu",
+    "fee": "Phí",
+    "total": "Tổng cộng"
+  },
+  "bridgePage": {
+    "title": "Cầu VPC",
+    "subTitle": "Chuyển đổi VPC của bạn từ mạng Vinachain sang một mạng khác.",
+    "fromThisNetwork": "Từ mạng này",
+    "toThisNetwork": "Đến mạng này",
+    "youSend": "Bạn gửi",
+    "youReceive": "Bạn nhận",
+    "bridge": "Cầu",
+    "youPayOnVinachain": "Bạn thanh toán trên Vinachain",
+    "VPCTransferAmount": "Số lượng chuyển VPC",
+    "includedFeeEstimate": "Phí đã bao gồm (ước tính)",
+    "gasFee": "Phí Gas",
+    "swapRate": "Tỷ lệ hoán đổi",
+    "youReceiveOnBNBChain": "Bạn nhận được trên chuỗi BNB",
+    "returnEstimate": "Lợi nhuận (ước tính)",
+    "includedFeeEstimateTooltip": "Đây là chi phí ước tính khi sử dụng cầu nối, đã được bao gồm trong số tiền chuyển. Bao gồm tỷ lệ hoán đổi, phí gas trên BNB Chain và bất kỳ chi phí hoạt động nào của cầu nối.",
+    "gasFeeTooltip": "Đây là ước tính phí gas trên BNB. Phí gas thay đổi dựa trên lưu lượng mạng và độ phức tạp của giao dịch.",
+    "returnEstimateTooltip": "Đây là số tiền ước tính (+/-0.5% độ trượt) bạn sẽ nhận được trên chuỗi BNB.",
+    "bridgeOverview": "TỔNG QUAN"
+  },
+  "profile":{
+    "title": "HỒ SƠ NGƯỜI DÙNG",
+    "accountOverview": "Tổng quan tài khoản",
+    "accountSetting": "Cài đặt mật khẩu",
+    "personalInformation": "Thông tin cá nhân",
+    "personalInformationContent": "Dưới đây là tên người dùng, địa chỉ email và thông tin tổng quan cho tài khoản của bạn.",
+    "username": "Tên người dùng",
+    "emailAddress": "Địa chỉ email",
+    "walletAddress": "Địa chỉ ví",
+    "totalVPCBalance": "Tổng số dư VPC",
+    "userSettings": "Cài đặt người dùng",
+    "userSettingsContent": "Dưới đây là tên người dùng và email.",
+    "edit": "Chỉnh sửa",
+    "changePassword": "Đổi mật khẩu",
+    "passwordSettingsContent": "Chỉnh sửa các trường dưới đây để cập nhật mật khẩu mới.",
+    "oldPassword": "Mật khẩu cũ",
+    "newPassword": "Mật khẩu mới",
+    "confirmNewPassword": "Xác nhận mật khẩu mới",
+    "forgotPassword": "Quên mật khẩu?",
+    "passwordErrorMsg": "Mật khẩu là bắt buộc.",
+    "changedPasswordSuccessfully": "Đổi mật khẩu thành công",
+    "saveChange": "Lưu thay đổi",
+    "myProfile": "Hồ sơ của tôi"
   }
 }

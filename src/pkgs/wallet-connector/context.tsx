@@ -25,7 +25,10 @@ const defaultContext: IWalletContext = {
   setCurentCurency: () => {},
   network: NETWORK.BINANCE,
   setNetwork: () => {},
-  walletNetwork: E_NETWORK_ID.BSC_TESTNET,
+  walletNetwork:
+    process.env.NEXT_PUBLIC_DEV === "development"
+      ? E_NETWORK_ID.BSC_TESTNET
+      : E_NETWORK_ID.BSC_MAINNET,
   setWalletNetwork: () => {},
   openModalConnectWallet: false,
   setOpenModalConnectWallet: () => {},
@@ -45,15 +48,15 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   const [network, setNetwork] = useState<NETWORK>(NETWORK.BINANCE);
   const [walletNetwork, setWalletNetwork] = useState<E_NETWORK_ID>(
     (() => {
-      if (typeof window !== "undefined") {
-        const data = localStorage.getItem(SAVE_CURRENT_NETWORK_KEY);
-        if (data) {
-          const currentChainId = parseInt(data) as unknown as E_NETWORK_ID;
-          return currentChainId;
-        }
-      }
+      // if (typeof window !== "undefined") {
+      //   const data = localStorage.getItem(SAVE_CURRENT_NETWORK_KEY);
+      //   if (data) {
+      //     const currentChainId = parseInt(data) as unknown as E_NETWORK_ID;
+      //     return currentChainId;
+      //   }
+      // }
 
-      return process.env.NEXT_PUBLIC_DEV
+      return process.env.NEXT_PUBLIC_DEV === "development"
         ? E_NETWORK_ID.BSC_TESTNET
         : E_NETWORK_ID.BSC_MAINNET;
     })()
